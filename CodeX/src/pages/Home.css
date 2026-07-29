@@ -1,0 +1,218 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#fff7fb;
+    font-family:Segoe UI,sans-serif;
+}
+
+/* HERO */
+
+.hero{
+
+height:90vh;
+
+background-image:
+linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+url("https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1600&q=80");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+
+color:white;
+
+}
+
+.hero-content h1{
+
+font-size:60px;
+margin-bottom:20px;
+
+}
+
+.hero-content p{
+
+font-size:22px;
+margin-bottom:35px;
+
+}
+
+.hero button{
+
+padding:16px 45px;
+
+background:#ff4081;
+
+border:none;
+
+font-size:18px;
+
+color:white;
+
+border-radius:40px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.hero button:hover{
+
+background:#d81b60;
+
+transform:scale(1.05);
+
+}
+
+/* COLLECTIONS */
+
+.collections{
+
+padding:80px 60px;
+
+}
+
+.collections h2{
+
+text-align:center;
+
+font-size:40px;
+
+color:#d81b60;
+
+margin-bottom:40px;
+
+}
+
+.collection-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+gap:30px;
+
+}
+
+.collection{
+
+height:350px;
+
+border-radius:20px;
+
+display:flex;
+
+align-items:flex-end;
+
+padding:30px;
+
+color:white;
+
+font-size:30px;
+
+font-weight:bold;
+
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+transition:.4s;
+
+background-size:cover;
+
+background-position:center;
+
+}
+
+.collection:hover{
+
+transform:translateY(-10px);
+
+}
+
+.one{
+
+background-image:url("https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=800&q=80");
+
+}
+
+.two{
+
+background-image:url("https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=80");
+
+}
+
+.three{
+
+background-image:url("https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=800&q=80");
+
+}
+
+/* OFFER */
+
+.offer{
+
+margin:70px;
+
+padding:80px;
+
+background:linear-gradient(135deg,#ff4081,#f06292);
+
+text-align:center;
+
+color:white;
+
+border-radius:20px;
+
+}
+
+.offer h2{
+
+font-size:45px;
+
+margin-bottom:20px;
+
+}
+
+/* FEATURES */
+
+.features{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:30px;
+
+padding:60px;
+
+}
+
+.features div{
+
+background:white;
+
+padding:30px;
+
+text-align:center;
+
+border-radius:15px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+.features h3{
+
+color:#e91e63;
+
+margin-bottom:10px;
+
+}
