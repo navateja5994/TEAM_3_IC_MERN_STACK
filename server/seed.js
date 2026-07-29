@@ -549,6 +549,121 @@ const seedDatabase = async () => {
         ]
       },
       {
+        title: 'Hello!',
+        description: 'A young man seeks his childhood soulmate, whom he lost contact with, leading to a race against time and destiny.',
+        duration: 132,
+        rating: 8.0,
+        numRatings: 4500,
+        language: 'Telugu',
+        genres: ['Romance', 'Action'],
+        certificate: 'U',
+        formats: ['2D'],
+        releaseDate: new Date('2017-12-22'),
+        posterUrl: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=400',
+        backdropUrl: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&q=80&w=1200',
+        trailerUrl: 'https://www.youtube.com/embed/zSWdZVtXT7E',
+        status: 'Now Showing',
+        cast: [
+          { name: 'Akhil Akkineni', character: 'Avinash', imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Kalyani Priyadarshan', character: 'Priya', imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150' }
+        ],
+        crew: [
+          { name: 'Vikram K. Kumar', role: 'Director', imageUrl: '' }
+        ]
+      },
+      {
+        title: 'Matti Kusthi',
+        description: 'A sports comedy drama showcasing the wrestling matchup between a traditional husband and a professional wrestler wife.',
+        duration: 142,
+        rating: 8.2,
+        numRatings: 2100,
+        language: 'Telugu',
+        genres: ['Comedy', 'Sports', 'Drama'],
+        certificate: 'U/A',
+        formats: ['2D'],
+        releaseDate: new Date('2022-12-02'),
+        posterUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=400',
+        backdropUrl: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&q=80&w=1200',
+        trailerUrl: 'https://www.youtube.com/embed/coA8nQ1WkAY',
+        status: 'Now Showing',
+        cast: [
+          { name: 'Vishnu Vishal', character: 'Veera', imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Aishwarya Lekshmi', character: 'Keerthi', imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150' }
+        ],
+        crew: [
+          { name: 'Chella Ayyavu', role: 'Director', imageUrl: '' }
+        ]
+      },
+      {
+        title: 'Varudu Kaavalenu',
+        description: 'A romantic comedy about the matching process between an architect with high values and a perfectionist businesswoman.',
+        duration: 136,
+        rating: 7.8,
+        numRatings: 1500,
+        language: 'Telugu',
+        genres: ['Romance', 'Comedy'],
+        certificate: 'U',
+        formats: ['2D'],
+        releaseDate: new Date('2021-10-29'),
+        posterUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400',
+        backdropUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=1200',
+        trailerUrl: 'https://www.youtube.com/embed/KVnheGkWPhw',
+        status: 'Now Showing',
+        cast: [
+          { name: 'Naga Shaurya', character: 'Akash', imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Ritu Varma', character: 'Bhoomi', imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150' }
+        ],
+        crew: [
+          { name: 'Lakshmi Sowjanya', role: 'Director', imageUrl: '' }
+        ]
+      },
+      {
+        title: 'Magadheera',
+        description: 'A warrior dies defending his princess and kingdom. 400 years later, he is reincarnated and remembers his past life.',
+        duration: 165,
+        rating: 8.9,
+        numRatings: 25000,
+        language: 'Telugu',
+        genres: ['Action', 'Fantasy', 'Romance'],
+        certificate: 'U/A',
+        formats: ['2D'],
+        releaseDate: new Date('2009-07-31'),
+        posterUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=400',
+        backdropUrl: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&q=80&w=1200',
+        trailerUrl: 'https://www.youtube.com/embed/JKa05nyU168',
+        status: 'Now Showing',
+        cast: [
+          { name: 'Ram Charan', character: 'Kala Bhairava / Harsha', imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Kajal Aggarwal', character: 'Mithravinda / Indu', imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150' }
+        ],
+        crew: [
+          { name: 'S. S. Rajamouli', role: 'Director', imageUrl: '' }
+        ]
+      },
+      {
+        title: 'Karnan',
+        description: 'A youth fights for the basic rights of his villagers, who are oppressed by local government officials and police.',
+        duration: 158,
+        rating: 8.5,
+        numRatings: 8400,
+        language: 'Tamil',
+        genres: ['Drama', 'Action'],
+        certificate: 'U/A',
+        formats: ['2D'],
+        releaseDate: new Date('2021-04-09'),
+        posterUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=400',
+        backdropUrl: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=1200',
+        trailerUrl: 'https://www.youtube.com/embed/Po3jG409rLo',
+        status: 'Now Showing',
+        cast: [
+          { name: 'Dhanush', character: 'Karnan', imageUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Lal', character: 'Yema Raja', imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150' }
+        ],
+        crew: [
+          { name: 'Mari Selvaraj', role: 'Director', imageUrl: '' }
+        ]
+      },
+      {
         title: 'Dune: Part Two',
         description: 'Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.',
         duration: 166,
