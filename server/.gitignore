@@ -1,0 +1,9 @@
+# Backend dependencies
+node_modules/
+
+# Local configuration files
+.env
+
+# Uploaded movie posters/assets
+uploads/*
+!uploads/.gitkeep

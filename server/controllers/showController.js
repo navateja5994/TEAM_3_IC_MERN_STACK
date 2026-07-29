@@ -1,0 +1,102 @@
+const Show = require('../models/Show');
+const Screen = require('../models/Screen');
+const Seat = require('../models/Seat');
+
+// Get active shows by movie and date
+exports.getShows = async (req, res, next) => {
+  try {
+    const { movieId, date } = req.query;
+    const filter = { isActive: true };
+
+    if (movieId) filter.movieId = movieId;
+    if (date) filter.date = date;
+
+    const shows = await Show.find(filter)
+      .populate('movieId')
+      .populate('screenId')
+      .sort({ time: 1 });
+
+    res.json(shows);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Get show details and seats layout/occupancy status
+exports.getShowById = async (req, res, next) => {
+  try {
+    const show = await Show.findById(req.params.id)
+      .populate('movieId')
+      .populate('screenId');
+
+    if (!show || !show.isActive) {
+      return res.status(404).json({ error: 'Show not found.' });
+    }
+
+    // Retrieve all physical seats in this screen
+    const seats = await Seat.find({ screenId: show.screenId._id }).sort({ row: 1, number: 1 });
+
+    res.json({
+      show,
+      seats,
+      bookedSeats: show.bookedSeats
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Admin: Create new Show (assign screen, movie, date, showtime, and ticket category prices)
+exports.createShow = async (req, res, next) => {
+  try {
+    const { movieId, screenId, date, time, prices } = req.body;
+
+    if (!movieId || !screenId || !date || !time) {
+      return res.status(400).json({ error: 'Please provide movieId, screenId, date, and time.' });
+    }
+
+    // Validate Screen exists
+    const screen = await Screen.findById(screenId);
+    if (!screen || !screen.isActive) {
+      return res.status(404).json({ error: 'Screen not found.' });
+    }
+
+    // Check for show clash on same screen, date, and time
+    const clash = await Show.findOne({ screenId, date, time, isActive: true });
+    if (clash) {
+      return res.status(400).json({ error: 'Another show is already scheduled in this screen at this date and time.' });
+    }
+
+    const show = new Show({
+      movieId,
+      screenId,
+      date,
+      time,
+      prices: prices || { Standard: 150, Premium: 250, Recliner: 400 }
+    });
+
+    await show.save();
+    res.status(201).json({ message: 'Show scheduled successfully', show });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Admin: Delete/Cancel Show
+exports.deleteShow = async (req, res, next) => {
+  try {
+    const show = await Show.findByIdAndUpdate(
+      req.params.id,
+      { $set: { isActive: false } },
+      { new: true }
+    );
+
+    if (!show) {
+      return res.status(404).json({ error: 'Show not found.' });
+    }
+
+    res.json({ message: 'Show cancelled successfully' });
+  } catch (error) {
+    next(error);
+  }
+};

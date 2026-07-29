@@ -1,0 +1,86 @@
+:root {
+  /* Font Family */
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Accent Colors (Sleek Gold/Amber Cinema Theme) */
+  --primary-hsl: 42, 79%, 54%; /* Golden yellow */
+  --primary: hsl(var(--primary-hsl));
+  --primary-hover: hsl(42, 85%, 46%);
+  --primary-light: hsla(var(--primary-hsl), 0.1);
+  --primary-glow: hsla(var(--primary-hsl), 0.4);
+  
+  --secondary-accent: #e50914; /* Crimson Red */
+  --secondary-accent-glow: rgba(229, 9, 20, 0.4);
+
+  /* Status Colors */
+  --success: #10b981;
+  --success-light: rgba(16, 185, 129, 0.15);
+  --warning: #f59e0b;
+  --warning-light: rgba(245, 158, 11, 0.15);
+  --danger: #ef4444;
+  --danger-light: rgba(239, 68, 68, 0.15);
+  --info: #3b82f6;
+  --info-light: rgba(59, 130, 246, 0.15);
+
+  /* Shared Properties */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 20px 35px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 15px var(--primary-glow);
+  --shadow-red-glow: 0 0 15px var(--secondary-accent-glow);
+
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  --navbar-height: 72px;
+  --mobile-nav-height: 60px;
+  
+  /* Seating Colors */
+  --seat-available: #22c55e;
+  --seat-selected: var(--primary);
+  --seat-booked: #374151;
+  --seat-recliner: #a855f7;
+  --seat-blocked: #1f2937;
+
+  /* Forced Dark Theme default */
+  --bg-primary: #07080a;
+  --bg-secondary: #0f1118;
+  --bg-tertiary: #171a24;
+  
+  --border-color: #1e2230;
+  --border-focus: var(--primary);
+  
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  
+  --glass-bg: rgba(15, 17, 24, 0.8);
+  --glass-border: rgba(30, 34, 48, 0.6);
+  --glass-blur: blur(16px);
+
+  --gradient-hero: linear-gradient(180deg, rgba(7, 8, 10, 0) 0%, rgba(7, 8, 10, 0.95) 90%, #07080a 100%);
+  --gradient-gold: linear-gradient(135deg, #f5d061 0%, #e5b83b 100%);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  
+  --input-bg: #0b0c10;
+}
+
+/* Fallback for system light preferences or active triggers to keep it cinematic */
+[data-theme='light'] {
+  --bg-primary: #07080a;
+  --bg-secondary: #0f1118;
+  --bg-tertiary: #171a24;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --border-color: #1e2230;
+}
