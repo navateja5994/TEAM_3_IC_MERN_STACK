@@ -693,7 +693,7 @@ const seedDatabase = async () => {
     // 7. Seed Shows dynamically for the next 7 days
     console.log('Seeding shows dynamically for the next 7 days...');
     const nowShowingMovies = movies.filter(m => m.status === 'Now Showing' || m.status === 'Featured');
-    const timeSlots = ['10:00 AM', '01:30 PM', '04:30 PM', '07:30 PM', '10:30 PM'];
+    const timeSlots = ['08:00 AM', '10:30 AM', '01:00 PM', '03:30 PM', '06:00 PM', '08:30 PM', '11:00 PM'];
     
     const showRecords = [];
 
@@ -710,65 +710,36 @@ const seedDatabase = async () => {
       targetDate.setDate(targetDate.getDate() + dayOffset);
       const dateString = formatDate(targetDate);
 
-      // Loop through screens and assign movies
-      // Screen 1: Kalki / Leo
-      // Screen 2: Avatar / Jawan
-      // Screen 3: Kantara / Manjummel Boys / Deadpool
+      // Track occupied slots for this day: "screenId_time"
+      const occupiedSlots = new Set();
 
-      // Screen 1 Shows
-      for (let s = 0; s < 4; s++) {
-        const movie = s < 2 
-          ? nowShowingMovies.find(m => m.title === 'Kalki 2898 AD') 
-          : nowShowingMovies.find(m => m.title === 'Leo');
+      // Distribute all now-showing movies across the 3 screens and 7 time slots
+      nowShowingMovies.forEach((movie) => {
+        let scheduled = false;
 
-        if (movie) {
-          showRecords.push({
-            movieId: movie._id,
-            screenId: screen1._id,
-            date: dateString,
-            time: timeSlots[s],
-            prices: { Standard: 180, Premium: 280, Recliner: 450 }
-          });
+        for (const screen of [screen1, screen2, screen3]) {
+          for (const time of timeSlots) {
+            const key = `${screen._id}_${time}`;
+            if (!occupiedSlots.has(key)) {
+              occupiedSlots.add(key);
+              showRecords.push({
+                movieId: movie._id,
+                screenId: screen._id,
+                date: dateString,
+                time: time,
+                prices: screen === screen1 
+                  ? { Standard: 180, Premium: 280, Recliner: 450 }
+                  : screen === screen2 
+                  ? { Standard: 200, Premium: 300, Recliner: 500 }
+                  : { Standard: 250, Premium: 400, Recliner: 600 }
+              });
+              scheduled = true;
+              break;
+            }
+          }
+          if (scheduled) break;
         }
-      }
-
-      // Screen 2 Shows
-      for (let s = 0; s < 4; s++) {
-        const movie = s < 2 
-          ? nowShowingMovies.find(m => m.title === 'Avatar: The Way of Water') 
-          : nowShowingMovies.find(m => m.title === 'Jawan');
-
-        if (movie) {
-          showRecords.push({
-            movieId: movie._id,
-            screenId: screen2._id,
-            date: dateString,
-            time: timeSlots[s],
-            prices: { Standard: 200, Premium: 300, Recliner: 500 }
-          });
-        }
-      }
-
-      // Screen 3 Shows
-      for (let s = 0; s < 3; s++) {
-        const movieArr = [
-          nowShowingMovies.find(m => m.title === 'Kantara'),
-          nowShowingMovies.find(m => m.title === 'Manjummel Boys'),
-          nowShowingMovies.find(m => m.title === 'Deadpool & Wolverine')
-        ].filter(Boolean);
-
-        const movie = movieArr[s % movieArr.length];
-
-        if (movie) {
-          showRecords.push({
-            movieId: movie._id,
-            screenId: screen3._id,
-            date: dateString,
-            time: timeSlots[s + 1], // Offset to start at 1:30 PM
-            prices: { Standard: 250, Premium: 400, Recliner: 600 }
-          });
-        }
-      }
+      });
     }
 
     await Show.insertMany(showRecords);
