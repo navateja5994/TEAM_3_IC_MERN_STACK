@@ -384,19 +384,195 @@ const seedDatabase = async () => {
         releaseDate: new Date('2026-11-07'), // Scheduled for re-release or coming soon
         posterUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&q=80&w=400',
         backdropUrl: 'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&q=80&w=1200',
-        trailerUrl: 'https://www.youtube.com/embed/zSWdZVtXT7E',
-        status: 'Coming Soon',
+      },
+      {
+        title: 'Devara: Part 1',
+        description: 'An epic action saga set against coastal lands, charting the story of a savior of his people against evil forces.',
+        duration: 178,
+        rating: 8.6,
+        numRatings: 9450,
+        language: 'Telugu',
+        genres: ['Action', 'Drama'],
+        certificate: 'U/A',
+        formats: ['2D', '3D', 'IMAX'],
+        releaseDate: new Date('2024-09-27'),
+        posterUrl: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&q=80&w=400',
+        backdropUrl: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&q=80&w=1200',
+        trailerUrl: 'https://www.youtube.com/embed/coA8nQ1WkAY',
+        status: 'Now Showing',
         cast: [
-          { name: 'Matthew McConaughey', character: 'Cooper', imageUrl: '' },
-          { name: 'Anne Hathaway', character: 'Brand', imageUrl: '' },
-          { name: 'Jessica Chastain', character: 'Murph', imageUrl: '' }
+          { name: 'NTR Jr.', character: 'Devara / Varadha', imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Saif Ali Khan', character: 'Bhaira', imageUrl: 'https://images.unsplash.com/photo-1628157582853-a796fa650a6a?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Janhvi Kapoor', character: 'Thangam', imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150' }
         ],
         crew: [
-          { name: 'Christopher Nolan', role: 'Director', imageUrl: '' },
-          { name: 'Emma Thomas', role: 'Producer', imageUrl: '' }
+          { name: 'Koratala Siva', role: 'Director', imageUrl: '' }
+        ]
+      },
+      {
+        title: 'Pushpa 2: The Rule',
+        description: 'The clash between Pushpa Raj and SP Bhanwar Singh Shekhawat continues in this high-octane action drama sequel.',
+        duration: 175,
+        rating: 9.2,
+        numRatings: 15400,
+        language: 'Telugu',
+        genres: ['Action', 'Thriller', 'Crime'],
+        certificate: 'U/A',
+        formats: ['2D', 'IMAX'],
+        releaseDate: new Date('2024-12-05'),
+        posterUrl: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=400',
+        backdropUrl: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&q=80&w=1200',
+        trailerUrl: 'https://www.youtube.com/embed/1kVPZyYf8Y4',
+        status: 'Coming Soon',
+        cast: [
+          { name: 'Allu Arjun', character: 'Pushpa Raj', imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Fahadh Faasil', character: 'SP Bhanwar Singh', imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Rashmika Mandanna', character: 'Srivalli', imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150' }
+        ],
+        crew: [
+          { name: 'Sukumar', role: 'Director', imageUrl: '' }
+        ]
+      },
+      {
+        title: 'Stree 2',
+        description: 'Chanderi is haunted once again, this time by a headless entity called Sarkata. Stree returns to aid the townspeople.',
+        duration: 147,
+        rating: 8.8,
+        numRatings: 8750,
+        language: 'Hindi',
+        genres: ['Comedy', 'Horror'],
+        certificate: 'U/A',
+        formats: ['2D'],
+        releaseDate: new Date('2024-08-15'),
+        posterUrl: 'https://images.unsplash.com/photo-1508349937151-22b68b72d5b1?auto=format&fit=crop&q=80&w=400',
+        backdropUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=1200',
+        trailerUrl: 'https://www.youtube.com/embed/KVnheGkWPhw',
+        status: 'Now Showing',
+        cast: [
+          { name: 'Rajkummar Rao', character: 'Vicky', imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Shraddha Kapoor', character: 'Stree', imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150' }
+        ],
+        crew: [
+          { name: 'Amar Kaushik', role: 'Director', imageUrl: '' }
+        ]
+      },
+      {
+        title: 'Animal',
+        description: 'A son\'s obsessive love for his father leads to a violent conflict in this intense action drama.',
+        duration: 201,
+        rating: 8.3,
+        numRatings: 18450,
+        language: 'Hindi',
+        genres: ['Action', 'Thriller', 'Crime'],
+        certificate: 'A',
+        formats: ['2D', 'IMAX'],
+        releaseDate: new Date('2023-12-01'),
+        posterUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=400',
+        backdropUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200',
+        trailerUrl: 'https://www.youtube.com/embed/8F203X-t8k4',
+        status: 'Now Showing',
+        cast: [
+          { name: 'Ranbir Kapoor', character: 'Vijay Balbir Singh', imageUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Bobby Deol', character: 'Abrar Haque', imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150' }
+        ],
+        crew: [
+          { name: 'Sandeep Reddy Vanga', role: 'Director', imageUrl: '' }
+        ]
+      },
+      {
+        title: 'Thangalaan',
+        description: 'A historical action-adventure detailing a tribal leader\'s fight against land-grabbing forces in the Kolar Gold Fields.',
+        duration: 156,
+        rating: 8.4,
+        numRatings: 5430,
+        language: 'Tamil',
+        genres: ['Drama', 'Adventure', 'Action'],
+        certificate: 'U/A',
+        formats: ['2D'],
+        releaseDate: new Date('2024-08-15'),
+        posterUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=400',
+        backdropUrl: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=1200',
+        trailerUrl: 'https://www.youtube.com/embed/Po3jG409rLo',
+        status: 'Now Showing',
+        cast: [
+          { name: 'Chiyaan Vikram', character: 'Thangalaan', imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Malavika Mohanan', character: 'Aarathi', imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150' }
+        ],
+        crew: [
+          { name: 'Pa. Ranjith', role: 'Director', imageUrl: '' }
+        ]
+      },
+      {
+        title: 'Aavesham',
+        description: 'Three college students find themselves entangled with a local eccentric gangster named Ranga in Bangalore.',
+        duration: 158,
+        rating: 8.9,
+        numRatings: 9420,
+        language: 'Malayalam',
+        genres: ['Comedy', 'Action'],
+        certificate: 'U/A',
+        formats: ['2D'],
+        releaseDate: new Date('2024-04-11'),
+        posterUrl: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=400',
+        backdropUrl: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&q=80&w=1200',
+        trailerUrl: 'https://www.youtube.com/embed/coA8nQ1WkAY',
+        status: 'Now Showing',
+        cast: [
+          { name: 'Fahadh Faasil', character: 'Ranga', imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Sajin Gopu', character: 'Amban', imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150' }
+        ],
+        crew: [
+          { name: 'Jithu Madhavan', role: 'Director', imageUrl: '' }
+        ]
+      },
+      {
+        title: 'KGF: Chapter 2',
+        description: 'In the blood-drenched Kolar Gold Fields, Rocky\'s name strikes fear into his foes, who combine to destroy him.',
+        duration: 168,
+        rating: 9.1,
+        numRatings: 25400,
+        language: 'Kannada',
+        genres: ['Action', 'Drama', 'Crime'],
+        certificate: 'U/A',
+        formats: ['2D', 'IMAX'],
+        releaseDate: new Date('2022-04-14'),
+        posterUrl: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&q=80&w=400',
+        backdropUrl: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&q=80&w=1200',
+        trailerUrl: 'https://www.youtube.com/embed/JKa05nyU168',
+        status: 'Now Showing',
+        cast: [
+          { name: 'Yash', character: 'Rocky / Bairya', imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Sanjay Dutt', character: 'Adheera', imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150' }
+        ],
+        crew: [
+          { name: 'Prashanth Neel', role: 'Director', imageUrl: '' }
+        ]
+      },
+      {
+        title: 'Dune: Part Two',
+        description: 'Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.',
+        duration: 166,
+        rating: 9.0,
+        numRatings: 18400,
+        language: 'English',
+        genres: ['Sci-Fi', 'Adventure', 'Action'],
+        certificate: 'U/A',
+        formats: ['2D', '3D', 'IMAX 2D', 'IMAX 3D'],
+        releaseDate: new Date('2024-03-01'),
+        posterUrl: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80&w=400',
+        backdropUrl: 'https://images.unsplash.com/photo-1547234935-80c7145ec969?auto=format&fit=crop&q=80&w=1200',
+        trailerUrl: 'https://www.youtube.com/embed/Way9Dexny3w',
+        status: 'Featured',
+        cast: [
+          { name: 'Timothée Chalamet', character: 'Paul Atreides', imageUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=150' },
+          { name: 'Zendaya', character: 'Chani', imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150' }
+        ],
+        crew: [
+          { name: 'Denis Villeneuve', role: 'Director', imageUrl: '' }
         ]
       }
     ]);
+
     console.log('Movies seeded successfully.');
 
     // 7. Seed Shows dynamically for the next 7 days
