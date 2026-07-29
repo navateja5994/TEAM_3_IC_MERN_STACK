@@ -1,0 +1,42 @@
+.testimonials-section {
+  padding: 5rem 8%;
+  background: #fff8fa;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.2rem;
+}
+
+.testimonial-card {
+  background: white;
+  padding: 1.4rem;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 16px 35px rgba(216, 27, 96, 0.08);
+}
+
+.testimonial-card img {
+  width: 74px;
+  height: 74px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 0.8rem;
+}
+
+.stars {
+  color: #f4b400;
+  margin-bottom: 0.7rem;
+}
+
+.testimonial-card p {
+  color: #5b3b51;
+  line-height: 1.7;
+  margin-bottom: 0.8rem;
+}
+
+.testimonial-card h3 {
+  color: #2c1e2d;
+  margin: 0;
+}

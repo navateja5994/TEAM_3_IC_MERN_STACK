@@ -1,0 +1,64 @@
+.featured-section {
+  padding: 5rem 8%;
+  background: linear-gradient(180deg, #fff8fa 0%, #ffffff 100%);
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.section-heading.compact {
+  margin-bottom: 1.2rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #d81b60;
+  margin-bottom: 0.3rem;
+}
+
+.section-heading h2 {
+  font-size: 2rem;
+  color: #2c1e2d;
+  margin: 0;
+}
+
+.section-link {
+  color: #d81b60;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem;
+}
+
+.best-sellers {
+  margin-top: 3rem;
+}
+
+.best-seller-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 700px) {
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .featured-section {
+    padding: 3.5rem 1.2rem;
+  }
+}

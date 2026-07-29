@@ -1,0 +1,29 @@
+.footer {
+  padding: 3rem 8% 2rem;
+  background: #2c1e2d;
+  color: #f8e9f0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.footer h3,
+.footer h4 {
+  color: white;
+  margin-bottom: 0.7rem;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.45rem;
+  color: #f0c9dc;
+}
+
+@media (max-width: 700px) {
+  .footer {
+    padding: 2rem 1.2rem;
+  }
+}

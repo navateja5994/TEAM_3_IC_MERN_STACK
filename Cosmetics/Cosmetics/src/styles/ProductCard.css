@@ -1,0 +1,136 @@
+.product-card {
+  background: white;
+  border-radius: 24px;
+  padding: 1rem;
+  box-shadow: 0 16px 40px rgba(216, 27, 96, 0.08);
+  border: 1px solid rgba(216, 27, 96, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 22px 50px rgba(216, 27, 96, 0.16);
+}
+
+.product-image-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  margin-bottom: 0.95rem;
+}
+
+.product-image-wrap img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  background: #d81b60;
+  color: white;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.wishlist-btn,
+.icon-btn {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  border: none;
+  background: white;
+  color: #d81b60;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.icon-btn {
+  position: static;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+}
+
+.product-info h3 {
+  margin: 0.3rem 0 0.5rem;
+  font-size: 1rem;
+  color: #2c1e2d;
+}
+
+.brand {
+  margin: 0;
+  color: #d81b60;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.7rem;
+  color: #f4b400;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.current-price {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #2c1e2d;
+}
+
+.old-price {
+  margin-left: 0.5rem;
+  color: #9b8b95;
+  text-decoration: line-through;
+  font-size: 0.9rem;
+}
+
+.add-btn {
+  width: 100%;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #d81b60, #ff5c9a);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+  transition: transform 0.25s ease;
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+}
+
+.product-card.compact .product-image-wrap img {
+  height: 180px;
+}
+
+@media (max-width: 700px) {
+  .product-card {
+    padding: 0.8rem;
+  }
+}
