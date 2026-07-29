@@ -14,11 +14,16 @@ export const AuthProvider = ({ children }) => {
       if (token) {
         try {
           const res = await api.get('/api/auth/profile');
-          setUser(res.data);
+          if (res.data && res.data._id) {
+            setUser(res.data);
+          } else {
+            throw new Error('Invalid user session data structure.');
+          }
         } catch (err) {
           console.error('Failed to load user session:', err);
           localStorage.removeItem('token');
           localStorage.removeItem('user');
+          setUser(null);
         }
       }
       setLoading(false);
@@ -66,8 +71,10 @@ export const AuthProvider = ({ children }) => {
   const reloadProfile = async () => {
     try {
       const res = await api.get('/api/auth/profile');
-      setUser(res.data);
-      localStorage.setItem('user', JSON.stringify(res.data));
+      if (res.data && res.data._id) {
+        setUser(res.data);
+        localStorage.setItem('user', JSON.stringify(res.data));
+      }
     } catch (err) {
       console.error('Failed to reload profile:', err);
     }

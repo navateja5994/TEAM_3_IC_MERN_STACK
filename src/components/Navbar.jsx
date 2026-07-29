@@ -91,14 +91,14 @@ const Navbar = () => {
                   }}>
                     <User size={18} />
                   </div>
-                  <span style={{ fontSize: '0.9rem', color: '#ffffff' }} className="nav-username">{user.name.split(' ')[0]}</span>
+                  <span style={{ fontSize: '0.9rem', color: '#ffffff' }} className="nav-username">{user?.name ? user.name.split(' ')[0] : 'User'}</span>
                 </div>
 
                 {profileDropdownOpen && (
                   <div className="profile-dropdown">
                     <div style={{ padding: '8px 16px', borderBottom: '1px solid var(--border-color)', marginBottom: '4px' }}>
-                      <p style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ffffff' }}>{user.name}</p>
-                      <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{user.email}</p>
+                      <p style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ffffff' }}>{user?.name}</p>
+                      <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{user?.email}</p>
                     </div>
                     
                     <Link to="/profile" className="profile-dropdown-item" onClick={() => setProfileDropdownOpen(false)}>
@@ -174,8 +174,8 @@ const Navbar = () => {
             {user ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div>
-                  <p style={{ fontWeight: 600, color: '#ffffff' }}>{user.name}</p>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{user.email}</p>
+                  <p style={{ fontWeight: 600, color: '#ffffff' }}>{user?.name}</p>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{user?.email}</p>
                 </div>
                 <button 
                   onClick={handleLogout} 
