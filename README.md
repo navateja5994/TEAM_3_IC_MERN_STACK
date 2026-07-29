@@ -1,1 +1,130 @@
+# SmartNotify 🔔
 
+SmartNotify is a modern, full-stack, responsive web application designed for real-time and scheduled communication among students, teachers, classes, and groups. It integrates messaging, calendar scheduling, notification centers, and academic timetables into a single productivity platform.
+
+The system ensures the **Right Message** reaches the **Right Person/Group** at the **Right Time** using a custom background scheduling engine, automated class reminders, and holiday-sensitive notification blocks.
+
+---
+
+## 🌟 Key Features
+
+1. **Scheduled Messaging**: Write messages and schedule them for automatic server-side dispatch at any future date and time.
+2. **Class Timetables**: Repeating weekly timetables with flexible override support (e.g. "Only this class" or "All future classes").
+3. **Class Adjustments**: 
+   - **Cancellation**: Silences reminders and broadcasts real-time alerts to students.
+   - **Rescheduling**: Changes time/room details and updates calendars.
+   - **Substitute Teacher**: Reassigns active faculty and alerts both substitute and class students.
+4. **Group Channels**: Private study groups and official class groups synchronized automatically with institutional rosters.
+5. **Voice Memos**: Record voice messages directly in the browser and send them instantly or schedule them for later.
+6. **Alert Center**: Grouped notifications categorized by tabs (All, Today, Classes, Messages, Important) with priority settings (Normal, Important, Urgent, Emergency).
+7. **Acknowledgements**: Request acknowledgements for important class announcements and track read stats (e.g., *52 / 60 acknowledged*).
+8. **Secure Phone Lookup**: Discover other registered users using exact E.164 phone numbers with masked contact data and API rate limiting to prevent scan abuses.
+9. **Multi-Tenant Ready**: Decoupled multi-organization keys across departments, classes, users, and schedules.
+
+---
+
+## 🛠️ Technology Stack
+
+* **Frontend**: React.js, Vite, Axios, React Router, Socket.IO Client, Lucide Icons, Custom CSS variables
+* **Backend**: Node.js, Express.js, Socket.IO, Mongoose, JSON Web Tokens (JWT), bcryptjs, Multer
+* **Database**: MongoDB (Local or Atlas)
+* **Job Scheduler**: Atomic claiming loop with exponential backoff retries and sparse unique message keys.
+
+---
+
+## 📂 Folder Structure
+
+```text
+smartnotify/
+  ├── package.json               # Root Vite configs
+  ├── vite.config.js             # Vite configuration and proxy
+  ├── index.html                 # Main HTML Entry
+  ├── src/                       # Frontend source
+  │   ├── api/                   # Axios HTTP services
+  │   ├── components/            # Reusable components (Sidebar, Navbar, Recorder)
+  │   ├── context/               # Auth, Socket, Theme providers
+  │   ├── layouts/               # Dashboard layouts
+  │   ├── pages/                 # Routing views (Dashboard, Chat, Timetable, Admin)
+  │   └── styles/                # CSS themes (variables, global, pages)
+  └── server/                    # Backend source
+      ├── config/                # Mongoose database hookups
+      ├── controllers/           # REST endpoints controllers
+      ├── middleware/            # Auth gates, Rate limiters, Error catchers
+      ├── models/                # 17 DB Entity schemas
+      ├── routes/                # Express router mounts
+      ├── services/              # Scheduler daemon & local static storage
+      ├── sockets/               # Socket.IO channel management
+      ├── utils/                 # E.164 phone normalizers
+      ├── uploads/               # Local voice notes directory
+      ├── seed.js                # Database seeder
+      ├── .env                   # Local variables config
+      └── server.js              # Server entry point
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+* [Node.js](https://nodejs.org/) (v16+ recommended)
+* [MongoDB Community Server](https://www.mongodb.com/try/download/community) (running locally on `mongodb://127.0.0.1:27017/`)
+
+### Setup Environment
+Create `server/.env` with:
+```env
+PORT=5000
+MONGODB_URI=mongodb://127.0.0.1:27017/smartnotify
+JWT_SECRET=smartnotify_super_secret_key_12345
+CLIENT_URL=http://localhost:5173
+```
+
+### Installation
+1. **Install Frontend Dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Install Backend Dependencies**:
+   ```bash
+   cd server
+   npm install
+   ```
+
+### Seeding Development Data
+Generate mock accounts, departments, and class timetables:
+```bash
+cd server
+node seed.js
+```
+
+**Development Logins (Password is `student123` / `teacher123` / `admin123`):**
+* **Admin**: `+919999999999`
+* **Teacher**: `+918888888888` (Ramesh - Java)
+* **Student**: `+916666666666` (Ravi)
+* **Student**: `+915555555555` (Babu)
+
+### Running Locally
+* **Start Backend Server**:
+  ```bash
+  cd server
+  node server.js
+  ```
+* **Start Vite Frontend Server**:
+  ```bash
+  # In root directory
+  npm run dev
+  ```
+Open `http://localhost:5173` (or the console's alternate port) to interact with the application.
+
+---
+
+## ☁️ MongoDB Atlas Deployment
+
+To deploy this application to production using MongoDB Atlas:
+1. Log in to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and create a free Shared Cluster.
+2. In **Database Access**, create a database user with read/write privileges.
+3. In **Network Access**, whitelist `0.0.0.0/full` (or your production server's static IP).
+4. Retrieve the connection string:
+   ```text
+   mongodb+srv://<username>:<password>@cluster0.abcde.mongodb.net/smartnotify?retryWrites=true&w=majority
+   ```
+5. Set this connection string as the `MONGODB_URI` environment variable on your hosting platform (e.g., Render, Heroku, Railway). No backend code changes are required.
