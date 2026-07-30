@@ -1,41 +1,23 @@
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
+const { sequelize } = require('./config/db');
 const User = require('./models/User');
-const Admin = require('./models/Admin');
 const Movie = require('./models/Movie');
 const Screen = require('./models/Screen');
 const Seat = require('./models/Seat');
 const Show = require('./models/Show');
 const Booking = require('./models/Booking');
-const BookingSeat = require('./models/BookingSeat');
-const Payment = require('./models/Payment');
 const FoodItem = require('./models/FoodItem');
-const FoodOrder = require('./models/FoodOrder');
 const Offer = require('./models/Offer');
 
 const seedDatabase = async () => {
   try {
-    const connStr = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/smartnotify';
-    console.log(`Connecting to MongoDB for seeding: ${connStr}`);
-    await mongoose.connect(connStr);
-
-    // 1. Clean all collections
-    console.log('Clearing existing collections...');
-    await User.deleteMany({});
-    await Admin.deleteMany({});
-    await Movie.deleteMany({});
-    await Screen.deleteMany({});
-    await Seat.deleteMany({});
-    await Show.deleteMany({});
-    await Booking.deleteMany({});
-    await BookingSeat.deleteMany({});
-    await Payment.deleteMany({});
-    await FoodItem.deleteMany({});
-    await FoodOrder.deleteMany({});
-    await Offer.deleteMany({});
-    console.log('Database cleared.');
+    console.log('Connecting to SQLite for seeding...');
+    
+    // Sync force to drop existing tables and recreate them
+    await sequelize.sync({ force: true });
+    console.log('Database cleared and synced.');
 
     // 2. Seed Users & Admin
     console.log('Seeding users...');
@@ -51,11 +33,6 @@ const seedDatabase = async () => {
       role: 'admin'
     });
 
-    await Admin.create({
-      userId: adminUser._id,
-      permissions: ['all']
-    });
-
     const regularUser = await User.create({
       name: 'John Doe',
       email: 'customer@cinebook.com',
@@ -68,7 +45,7 @@ const seedDatabase = async () => {
 
     // 3. Seed Food Items
     console.log('Seeding food items...');
-    const foodItems = await FoodItem.create([
+    const foodItems = await FoodItem.bulkCreate([
       {
         name: 'Salted Popcorn (Medium)',
         price: 150,
@@ -121,7 +98,7 @@ const seedDatabase = async () => {
     const expiryDate = new Date();
     expiryDate.setFullYear(expiryDate.getFullYear() + 1); // Valid for 1 year
 
-    await Offer.create([
+    await Offer.bulkCreate([
       {
         code: 'WELCOME50',
         description: 'Get 50% discount up to ₹150 on your first booking!',
@@ -178,14 +155,14 @@ const seedDatabase = async () => {
 
         for (let c = 1; c <= screen.cols; c++) {
           seats.push({
-            screenId: screen._id,
+            screenId: screen.id,
             row: rowLabel,
             number: c,
             category
           });
         }
       }
-      await Seat.insertMany(seats);
+      await Seat.bulkCreate(seats);
     };
 
     await generateSeatsForScreen(screen1);
@@ -195,7 +172,7 @@ const seedDatabase = async () => {
 
     // 6. Seed Movies (Telugu, English, Hindi, Tamil, Kannada, Malayalam)
     console.log('Seeding movies...');
-    const movies = await Movie.create([
+    const movies = await Movie.bulkCreate([
       {
         title: 'Kalki 2898 AD',
         description: 'A modern avatar of Vishnu, a Hindu god, is believed to have descended to earth to protect the world from evil forces. Set in a post-apocalyptic world in the year 2898 AD.',
@@ -719,12 +696,12 @@ const seedDatabase = async () => {
 
         for (const screen of [screen1, screen2, screen3]) {
           for (const time of timeSlots) {
-            const key = `${screen._id}_${time}`;
+            const key = `${screen.id}_${time}`;
             if (!occupiedSlots.has(key)) {
               occupiedSlots.add(key);
               showRecords.push({
-                movieId: movie._id,
-                screenId: screen._id,
+                movieId: movie.id,
+                screenId: screen.id,
                 date: dateString,
                 time: time,
                 prices: screen === screen1 
@@ -742,7 +719,7 @@ const seedDatabase = async () => {
       });
     }
 
-    await Show.insertMany(showRecords);
+    await Show.bulkCreate(showRecords);
     console.log(`Successfully scheduled ${showRecords.length} shows across 7 days.`);
 
     console.log('\n=========================================');
@@ -752,7 +729,7 @@ const seedDatabase = async () => {
     console.log(`- Admin:    admin@cinebook.com    (password: admin123)`);
     console.log('=========================================\n');
 
-    await mongoose.connection.close();
+    await sequelize.close();
     process.exit(0);
   } catch (error) {
     console.error('Seeding failed:', error);

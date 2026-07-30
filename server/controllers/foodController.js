@@ -3,7 +3,7 @@ const FoodItem = require('../models/FoodItem');
 // Get all available food items
 exports.getFoodItems = async (req, res, next) => {
   try {
-    const items = await FoodItem.find({ isAvailable: true });
+    const items = await FoodItem.findAll({ where: { isAvailable: true } });
     res.json(items);
   } catch (error) {
     next(error);
@@ -19,8 +19,7 @@ exports.createFoodItem = async (req, res, next) => {
       return res.status(400).json({ error: 'Please provide name and price.' });
     }
 
-    const item = new FoodItem({ name, price, image, category });
-    await item.save();
+    const item = await FoodItem.create({ name, price, image, category });
 
     res.status(201).json({ message: 'Food item added successfully', item });
   } catch (error) {
@@ -31,15 +30,13 @@ exports.createFoodItem = async (req, res, next) => {
 // Admin: Update food item
 exports.updateFoodItem = async (req, res, next) => {
   try {
-    const item = await FoodItem.findByIdAndUpdate(
-      req.params.id,
-      { $set: req.body },
-      { new: true, runValidators: true }
-    );
+    const item = await FoodItem.findByPk(req.params.id);
 
     if (!item) {
       return res.status(404).json({ error: 'Food item not found.' });
     }
+
+    await item.update(req.body);
 
     res.json({ message: 'Food item updated successfully', item });
   } catch (error) {
@@ -50,16 +47,13 @@ exports.updateFoodItem = async (req, res, next) => {
 // Admin: Delete/Disable food item
 exports.deleteFoodItem = async (req, res, next) => {
   try {
-    const item = await FoodItem.findByIdAndUpdate(
-      req.params.id,
-      { $set: { isAvailable: false } },
-      { new: true }
-    );
+    const item = await FoodItem.findByPk(req.params.id);
 
     if (!item) {
       return res.status(404).json({ error: 'Food item not found.' });
     }
 
+    await item.update({ isAvailable: false });
     res.json({ message: 'Food item removed successfully' });
   } catch (error) {
     next(error);

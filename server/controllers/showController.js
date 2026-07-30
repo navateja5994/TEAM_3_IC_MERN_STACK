@@ -1,6 +1,7 @@
 const Show = require('../models/Show');
 const Screen = require('../models/Screen');
 const Seat = require('../models/Seat');
+const Movie = require('../models/Movie');
 
 // Get active shows by movie and date
 exports.getShows = async (req, res, next) => {
@@ -11,10 +12,14 @@ exports.getShows = async (req, res, next) => {
     if (movieId) filter.movieId = movieId;
     if (date) filter.date = date;
 
-    const shows = await Show.find(filter)
-      .populate('movieId')
-      .populate('screenId')
-      .sort({ time: 1 });
+    const shows = await Show.findAll({
+      where: filter,
+      include: [
+        { model: Movie, as: 'movieId' },
+        { model: Screen, as: 'screenId' }
+      ],
+      order: [['time', 'ASC']]
+    });
 
     res.json(shows);
   } catch (error) {
@@ -25,16 +30,22 @@ exports.getShows = async (req, res, next) => {
 // Get show details and seats layout/occupancy status
 exports.getShowById = async (req, res, next) => {
   try {
-    const show = await Show.findById(req.params.id)
-      .populate('movieId')
-      .populate('screenId');
+    const show = await Show.findByPk(req.params.id, {
+      include: [
+        { model: Movie, as: 'movieId' },
+        { model: Screen, as: 'screenId' }
+      ]
+    });
 
     if (!show || !show.isActive) {
       return res.status(404).json({ error: 'Show not found.' });
     }
 
     // Retrieve all physical seats in this screen
-    const seats = await Seat.find({ screenId: show.screenId._id }).sort({ row: 1, number: 1 });
+    const seats = await Seat.findAll({
+      where: { screenId: show.screenId.id },
+      order: [['row', 'ASC'], ['number', 'ASC']]
+    });
 
     res.json({
       show,
@@ -56,18 +67,20 @@ exports.createShow = async (req, res, next) => {
     }
 
     // Validate Screen exists
-    const screen = await Screen.findById(screenId);
+    const screen = await Screen.findByPk(screenId);
     if (!screen || !screen.isActive) {
       return res.status(404).json({ error: 'Screen not found.' });
     }
 
     // Check for show clash on same screen, date, and time
-    const clash = await Show.findOne({ screenId, date, time, isActive: true });
+    const clash = await Show.findOne({
+      where: { screenId, date, time, isActive: true }
+    });
     if (clash) {
       return res.status(400).json({ error: 'Another show is already scheduled in this screen at this date and time.' });
     }
 
-    const show = new Show({
+    const show = await Show.create({
       movieId,
       screenId,
       date,
@@ -75,7 +88,6 @@ exports.createShow = async (req, res, next) => {
       prices: prices || { Standard: 150, Premium: 250, Recliner: 400 }
     });
 
-    await show.save();
     res.status(201).json({ message: 'Show scheduled successfully', show });
   } catch (error) {
     next(error);
@@ -85,16 +97,13 @@ exports.createShow = async (req, res, next) => {
 // Admin: Delete/Cancel Show
 exports.deleteShow = async (req, res, next) => {
   try {
-    const show = await Show.findByIdAndUpdate(
-      req.params.id,
-      { $set: { isActive: false } },
-      { new: true }
-    );
+    const show = await Show.findByPk(req.params.id);
 
     if (!show) {
       return res.status(404).json({ error: 'Show not found.' });
     }
 
+    await show.update({ isActive: false });
     res.json({ message: 'Show cancelled successfully' });
   } catch (error) {
     next(error);

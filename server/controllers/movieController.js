@@ -1,4 +1,5 @@
 const Movie = require('../models/Movie');
+const { Op } = require('sequelize');
 
 // Get all movies (supports language, genre, and status filters)
 exports.getMovies = async (req, res, next) => {
@@ -11,14 +12,19 @@ exports.getMovies = async (req, res, next) => {
     }
 
     if (genre) {
-      filter.genres = genre; // matches if genre is in genres array
+      filter.genres = {
+        [Op.like]: `%"${genre}"%`
+      };
     }
 
     if (status) {
       filter.status = status;
     }
 
-    const movies = await Movie.find(filter).sort({ releaseDate: -1 });
+    const movies = await Movie.findAll({
+      where: filter,
+      order: [['releaseDate', 'DESC']]
+    });
     res.json(movies);
   } catch (error) {
     next(error);
@@ -28,7 +34,7 @@ exports.getMovies = async (req, res, next) => {
 // Get single movie details
 exports.getMovieById = async (req, res, next) => {
   try {
-    const movie = await Movie.findById(req.params.id);
+    const movie = await Movie.findByPk(req.params.id);
     if (!movie || !movie.isActive) {
       return res.status(404).json({ error: 'Movie not found.' });
     }
@@ -60,7 +66,7 @@ exports.createMovie = async (req, res, next) => {
       status
     } = req.body;
 
-    const movie = new Movie({
+    const movie = await Movie.create({
       title,
       description,
       duration,
@@ -79,7 +85,6 @@ exports.createMovie = async (req, res, next) => {
       status: status || 'Now Showing'
     });
 
-    await movie.save();
     res.status(201).json({ message: 'Movie created successfully', movie });
   } catch (error) {
     next(error);
@@ -89,15 +94,14 @@ exports.createMovie = async (req, res, next) => {
 // Admin: Edit movie details
 exports.updateMovie = async (req, res, next) => {
   try {
-    const movie = await Movie.findByIdAndUpdate(
-      req.params.id,
-      { $set: req.body },
-      { new: true, runValidators: true }
-    );
+    const movie = await Movie.findByPk(req.params.id);
 
     if (!movie) {
       return res.status(404).json({ error: 'Movie not found.' });
     }
+
+    // Apply updates
+    await movie.update(req.body);
 
     res.json({ message: 'Movie updated successfully', movie });
   } catch (error) {
@@ -108,16 +112,13 @@ exports.updateMovie = async (req, res, next) => {
 // Admin: Delete (deactivate) movie
 exports.deleteMovie = async (req, res, next) => {
   try {
-    const movie = await Movie.findByIdAndUpdate(
-      req.params.id,
-      { $set: { isActive: false } },
-      { new: true }
-    );
+    const movie = await Movie.findByPk(req.params.id);
 
     if (!movie) {
       return res.status(404).json({ error: 'Movie not found.' });
     }
 
+    await movie.update({ isActive: false });
     res.json({ message: 'Movie deleted successfully' });
   } catch (error) {
     next(error);

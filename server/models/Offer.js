@@ -1,37 +1,46 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../config/db');
 
-const OfferSchema = new mongoose.Schema({
+const Offer = sequelize.define('Offer', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
   code: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    uppercase: true
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
   },
   description: {
-    type: String,
-    required: true
+    type: DataTypes.TEXT,
+    allowNull: false
   },
   discountPercentage: {
-    type: Number,
-    required: true,
-    default: 0
+    type: DataTypes.INTEGER,
+    defaultValue: 0
   },
   maxDiscount: {
-    type: Number,
-    required: true,
-    default: 0
+    type: DataTypes.FLOAT,
+    defaultValue: 0
   },
   expiryDate: {
-    type: Date,
-    required: true
+    type: DataTypes.DATE,
+    allowNull: false
   },
   isActive: {
-    type: Boolean,
-    default: true
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
   }
 }, {
   timestamps: true
 });
 
-module.exports = mongoose.model('Offer', OfferSchema);
+// Map id to _id for frontend compatibility
+Offer.prototype.toJSON = function () {
+  const values = Object.assign({}, this.get());
+  values._id = values.id;
+  return values;
+};
+
+module.exports = Offer;

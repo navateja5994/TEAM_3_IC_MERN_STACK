@@ -1,71 +1,88 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../config/db');
 
-const BookingSchema = new mongoose.Schema({
+const Booking = sequelize.define('Booking', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-    index: true
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
   showId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Show',
-    required: true,
-    index: true
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
   bookingId: {
-    type: String,
-    required: true,
-    unique: true,
-    index: true
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
   },
   seats: {
-    type: [String], // e.g. ['A1', 'A2']
-    required: true
+    type: DataTypes.TEXT,
+    allowNull: false,
+    get() {
+      const value = this.getDataValue('seats');
+      return value ? JSON.parse(value) : [];
+    },
+    set(value) {
+      this.setDataValue('seats', JSON.stringify(value));
+    }
   },
-  foodItems: [{
-    foodItemId: { type: mongoose.Schema.Types.ObjectId, ref: 'FoodItem' },
-    name: { type: String, required: true },
-    price: { type: Number, required: true },
-    quantity: { type: Number, required: true }
-  }],
+  foodItems: {
+    type: DataTypes.TEXT,
+    defaultValue: '[]',
+    get() {
+      const value = this.getDataValue('foodItems');
+      return value ? JSON.parse(value) : [];
+    },
+    set(value) {
+      this.setDataValue('foodItems', JSON.stringify(value));
+    }
+  },
   ticketSubtotal: {
-    type: Number,
-    required: true
+    type: DataTypes.FLOAT,
+    allowNull: false
   },
   foodSubtotal: {
-    type: Number,
-    default: 0
+    type: DataTypes.FLOAT,
+    defaultValue: 0
   },
   convenienceFee: {
-    type: Number,
-    required: true,
-    default: 30 // Flat fee
+    type: DataTypes.FLOAT,
+    defaultValue: 30
   },
   tax: {
-    type: Number,
-    required: true
+    type: DataTypes.FLOAT,
+    allowNull: false
   },
   totalAmount: {
-    type: Number,
-    required: true
+    type: DataTypes.FLOAT,
+    allowNull: false
   },
   paymentStatus: {
-    type: String,
-    enum: ['Pending', 'Paid', 'Failed', 'Cancelled'],
-    default: 'Pending'
+    type: DataTypes.ENUM('Pending', 'Paid', 'Failed', 'Cancelled'),
+    defaultValue: 'Pending'
   },
   bookingStatus: {
-    type: String,
-    enum: ['Booked', 'Cancelled'],
-    default: 'Booked'
+    type: DataTypes.ENUM('Booked', 'Cancelled'),
+    defaultValue: 'Booked'
   },
   qrCodeUrl: {
-    type: String,
-    default: ''
+    type: DataTypes.STRING,
+    defaultValue: ''
   }
 }, {
   timestamps: true
 });
 
-module.exports = mongoose.model('Booking', BookingSchema);
+// Map id to _id for frontend compatibility
+Booking.prototype.toJSON = function () {
+  const values = Object.assign({}, this.get());
+  values._id = values.id;
+  return values;
+};
+
+module.exports = Booking;

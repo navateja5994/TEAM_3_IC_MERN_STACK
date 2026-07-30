@@ -1,7 +1,7 @@
 const User = require('../models/User');
-const Admin = require('../models/Admin');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { Op } = require('sequelize');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'cinebook_super_secret_key_12345';
 
@@ -15,7 +15,14 @@ exports.register = async (req, res, next) => {
     }
 
     // Check if user already exists (by email or phone)
-    let userExists = await User.findOne({ $or: [{ email }, { phoneNumber }] });
+    let userExists = await User.findOne({
+      where: {
+        [Op.or]: [
+          { email: email.trim().toLowerCase() },
+          { phoneNumber: phoneNumber.trim() }
+        ]
+      }
+    });
     if (userExists) {
       return res.status(400).json({ error: 'User with this email or phone number already exists.' });
     }
@@ -26,26 +33,16 @@ exports.register = async (req, res, next) => {
 
     // Create User
     const userRole = role === 'admin' ? 'admin' : 'customer';
-    const user = new User({
+    const user = await User.create({
       name,
-      email,
-      phoneNumber,
+      email: email.trim().toLowerCase(),
+      phoneNumber: phoneNumber.trim(),
       passwordHash,
       role: userRole
     });
-    await user.save();
-
-    // If Admin, create Admin record
-    if (userRole === 'admin') {
-      const admin = new Admin({
-        userId: user._id,
-        permissions: ['all']
-      });
-      await admin.save();
-    }
 
     // Generate JWT Token
-    const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: '7d' });
 
     res.status(201).json({
       message: 'Registration successful',
@@ -68,10 +65,12 @@ exports.login = async (req, res, next) => {
 
     // Find User by email or phone
     const user = await User.findOne({
-      $or: [
-        { email: emailOrPhone.trim().toLowerCase() },
-        { phoneNumber: emailOrPhone.trim() }
-      ]
+      where: {
+        [Op.or]: [
+          { email: emailOrPhone.trim().toLowerCase() },
+          { phoneNumber: emailOrPhone.trim() }
+        ]
+      }
     });
 
     if (!user) {
@@ -85,7 +84,7 @@ exports.login = async (req, res, next) => {
     }
 
     // Generate JWT Token
-    const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: '7d' });
 
     res.json({
       message: 'Login successful',
@@ -100,7 +99,7 @@ exports.login = async (req, res, next) => {
 // Get Profile
 exports.getProfile = async (req, res, next) => {
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findByPk(req.user.id);
     if (!user) {
       return res.status(404).json({ error: 'User not found.' });
     }
@@ -114,7 +113,7 @@ exports.getProfile = async (req, res, next) => {
 exports.updateProfile = async (req, res, next) => {
   try {
     const { name, email, phoneNumber } = req.body;
-    const user = await User.findById(req.user.id);
+    const user = await User.findByPk(req.user.id);
 
     if (!user) {
       return res.status(404).json({ error: 'User not found.' });
@@ -122,13 +121,13 @@ exports.updateProfile = async (req, res, next) => {
 
     // Verify uniqueness of new email or phone if changing
     if (email && email !== user.email) {
-      const emailExists = await User.findOne({ email });
+      const emailExists = await User.findOne({ where: { email } });
       if (emailExists) return res.status(400).json({ error: 'Email already in use.' });
       user.email = email;
     }
 
     if (phoneNumber && phoneNumber !== user.phoneNumber) {
-      const phoneExists = await User.findOne({ phoneNumber });
+      const phoneExists = await User.findOne({ where: { phoneNumber } });
       if (phoneExists) return res.status(400).json({ error: 'Phone number already in use.' });
       user.phoneNumber = phoneNumber;
     }

@@ -1,34 +1,45 @@
 const Booking = require('../models/Booking');
-const BookingSeat = require('../models/BookingSeat');
 const Show = require('../models/Show');
 const Seat = require('../models/Seat');
 const FoodItem = require('../models/FoodItem');
-const FoodOrder = require('../models/FoodOrder');
 const Offer = require('../models/Offer');
-const Payment = require('../models/Payment');
+const Movie = require('../models/Movie');
+const Screen = require('../models/Screen');
+const { sequelize } = require('../config/db');
 
-// Create a new Booking (Pending state, atomic seat lock)
+// Create a new Booking (Pending state, atomic seat lock via SQL Transaction)
 exports.createBooking = async (req, res, next) => {
+  const transaction = await sequelize.transaction();
   try {
     const { showId, seats, foodItems, couponCode } = req.body;
     const userId = req.user.id;
 
     if (!showId || !seats || !Array.isArray(seats) || seats.length === 0) {
+      await transaction.rollback();
       return res.status(400).json({ error: 'Please select at least one seat.' });
     }
 
-    const show = await Show.findById(showId).populate('screenId');
+    // 1. Lock the Show row to prevent concurrent race conditions
+    const show = await Show.findByPk(showId, {
+      include: [{ model: Screen, as: 'screenId' }],
+      transaction,
+      lock: transaction.LOCK.UPDATE
+    });
+
     if (!show || !show.isActive) {
+      await transaction.rollback();
       return res.status(404).json({ error: 'Show not found.' });
     }
 
-    // 1. Double check seat availability on Show
-    const alreadyBooked = seats.some(seat => show.bookedSeats.includes(seat));
+    // 2. Double check seat availability on Show
+    const currentBookedSeats = show.bookedSeats; // Array via getter
+    const alreadyBooked = seats.some(seat => currentBookedSeats.includes(seat));
     if (alreadyBooked) {
+      await transaction.rollback();
       return res.status(400).json({ error: 'One or more selected seats are already booked.' });
     }
 
-    // 2. Query physical seat categories to determine ticket prices
+    // 3. Query physical seat categories to determine ticket prices
     // Parse seat codes, e.g. "A5" -> row: "A", number: 5
     const seatQueries = seats.map(seatStr => {
       const match = seatStr.match(/^([A-Z]+)(\d+)$/);
@@ -37,15 +48,21 @@ exports.createBooking = async (req, res, next) => {
     }).filter(Boolean);
 
     // Fetch matching seat configurations
-    const seatsConfig = await Seat.find({
-      screenId: show.screenId._id,
-      $or: seatQueries.map(q => ({ row: q.row, number: q.number }))
-    });
+    const seatsConfig = [];
+    for (const q of seatQueries) {
+      const seat = await Seat.findOne({
+        where: {
+          screenId: show.screenId.id,
+          row: q.row,
+          number: q.number
+        },
+        transaction
+      });
+      if (seat) seatsConfig.push(seat);
+    }
 
     // Calculate ticket subtotal based on seat category
     let ticketSubtotal = 0;
-    const seatCategoryMap = {}; // mapping for confirmation
-
     for (const seatStr of seats) {
       const match = seatStr.match(/^([A-Z]+)(\d+)$/);
       const row = match ? match[1] : '';
@@ -53,38 +70,34 @@ exports.createBooking = async (req, res, next) => {
       
       const config = seatsConfig.find(s => s.row === row && s.number === num);
       const category = config ? config.category : 'Standard';
-      seatCategoryMap[seatStr] = category;
 
       const price = show.prices[category] || 150;
       ticketSubtotal += price;
     }
 
-    // 3. Atomically update Show bookedSeats list (guarantees concurrency safety)
-    const updatedShow = await Show.findOneAndUpdate(
-      { _id: showId, bookedSeats: { $nin: seats }, isActive: true },
-      { $push: { bookedSeats: { $each: seats } } },
-      { new: true }
-    );
+    // 4. Update Show bookedSeats list (guarantees concurrency safety inside transaction)
+    const updatedBookedSeats = [...currentBookedSeats, ...seats];
+    show.bookedSeats = updatedBookedSeats; // Setter stringifies it
+    await show.save({ transaction });
 
-    if (!updatedShow) {
-      return res.status(400).json({ error: 'Failed to reserve seats. One or more seats were booked by another customer.' });
-    }
-
-    // 4. Calculate Food Subtotal
+    // 5. Calculate Food Subtotal
     let foodSubtotal = 0;
     const resolvedFoodItems = [];
 
     if (foodItems && Array.isArray(foodItems) && foodItems.length > 0) {
       const foodItemIds = foodItems.map(item => item.foodItemId);
-      const dbFoodItems = await FoodItem.find({ _id: { $in: foodItemIds } });
+      const dbFoodItems = await FoodItem.findAll({
+        where: { id: foodItemIds },
+        transaction
+      });
 
       for (const item of foodItems) {
-        const dbItem = dbFoodItems.find(f => f._id.toString() === item.foodItemId);
+        const dbItem = dbFoodItems.find(f => f.id.toString() === item.foodItemId.toString());
         if (dbItem && dbItem.isAvailable) {
           const itemTotal = dbItem.price * item.quantity;
           foodSubtotal += itemTotal;
           resolvedFoodItems.push({
-            foodItemId: dbItem._id,
+            foodItemId: dbItem.id,
             name: dbItem.name,
             price: dbItem.price,
             quantity: item.quantity
@@ -93,26 +106,29 @@ exports.createBooking = async (req, res, next) => {
       }
     }
 
-    // 5. Apply Promo Coupon if applicable
+    // 6. Apply Promo Coupon if applicable
     let discount = 0;
     if (couponCode) {
-      const offer = await Offer.findOne({ code: couponCode.trim().toUpperCase(), isActive: true });
+      const offer = await Offer.findOne({
+        where: { code: couponCode.trim().toUpperCase(), isActive: true },
+        transaction
+      });
       if (offer && new Date() < offer.expiryDate) {
         const rawDiscount = (ticketSubtotal * offer.discountPercentage) / 100;
         discount = Math.min(rawDiscount, offer.maxDiscount);
       }
     }
 
-    // 6. Tax and Fee Calculations (e.g. GST 18%, Convenience fee 30 per ticket or flat)
+    // 7. Tax and Fee Calculations
     const convenienceFee = 30 * seats.length;
     const taxableAmount = (ticketSubtotal - discount) + foodSubtotal;
     const tax = Math.round(taxableAmount * 0.18); // 18% GST
     const totalAmount = taxableAmount + convenienceFee + tax;
 
-    // 7. Create unique Booking reference ID
+    // 8. Create unique Booking reference ID
     const bookingId = 'MCB-' + Math.floor(100000 + Math.random() * 900000);
 
-    const booking = new Booking({
+    const booking = await Booking.create({
       userId,
       showId,
       bookingId,
@@ -126,46 +142,17 @@ exports.createBooking = async (req, res, next) => {
       paymentStatus: 'Pending',
       bookingStatus: 'Booked',
       qrCodeUrl: `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${bookingId}`
-    });
+    }, { transaction });
 
-    await booking.save();
-
-    // 8. Unique lock inserts into BookingSeat (secondary check / record keeping)
-    try {
-      const bookingSeats = seats.map(seat => ({
-        showId,
-        seatNumber: seat,
-        bookingId: booking._id,
-        status: 'booked'
-      }));
-      await BookingSeat.insertMany(bookingSeats);
-    } catch (err) {
-      // Clean up and rollback seat selection on clash
-      await Show.findByIdAndUpdate(showId, { $pull: { bookedSeats: { $in: seats } } });
-      await Booking.findByIdAndDelete(booking._id);
-      return res.status(400).json({ error: 'Seat collision detected. Reservation rolled back.' });
-    }
-
-    // 9. Record FoodOrder if food is purchased
-    if (resolvedFoodItems.length > 0) {
-      const foodOrder = new FoodOrder({
-        bookingId: booking._id,
-        userId,
-        items: resolvedFoodItems.map(f => ({
-          foodItemId: f.foodItemId,
-          quantity: f.quantity,
-          price: f.price
-        })),
-        totalAmount: foodSubtotal
-      });
-      await foodOrder.save();
-    }
+    // Commit Transaction (lock released successfully)
+    await transaction.commit();
 
     res.status(201).json({
       message: 'Booking initialized. Complete mock payment.',
       booking
     });
   } catch (error) {
+    await transaction.rollback();
     next(error);
   }
 };
@@ -179,7 +166,7 @@ exports.confirmPayment = async (req, res, next) => {
       return res.status(400).json({ error: 'Please provide bookingId and paymentMethod.' });
     }
 
-    const booking = await Booking.findById(bookingId).populate('showId');
+    const booking = await Booking.findByPk(bookingId);
     if (!booking) {
       return res.status(404).json({ error: 'Booking not found.' });
     }
@@ -189,25 +176,11 @@ exports.confirmPayment = async (req, res, next) => {
     }
 
     // Update payment status
-    booking.paymentStatus = 'Paid';
-    await booking.save();
-
-    // Create Payment log
-    const transactionId = 'TXN-' + Math.floor(10000000 + Math.random() * 90000000);
-    const payment = new Payment({
-      bookingId: booking._id,
-      userId: booking.userId,
-      paymentMethod,
-      transactionId,
-      amount: booking.totalAmount,
-      status: 'Success'
-    });
-    await payment.save();
+    await booking.update({ paymentStatus: 'Paid' });
 
     res.json({
       message: 'Payment confirmed successfully.',
-      booking,
-      payment
+      booking
     });
   } catch (error) {
     next(error);
@@ -217,15 +190,20 @@ exports.confirmPayment = async (req, res, next) => {
 // Get User's Booking History
 exports.getMyBookings = async (req, res, next) => {
   try {
-    const bookings = await Booking.find({ userId: req.user.id })
-      .populate({
-        path: 'showId',
-        populate: [
-          { path: 'movieId' },
-          { path: 'screenId' }
-        ]
-      })
-      .sort({ createdAt: -1 });
+    const bookings = await Booking.findAll({
+      where: { userId: req.user.id },
+      include: [
+        {
+          model: Show,
+          as: 'showId',
+          include: [
+            { model: Movie, as: 'movieId' },
+            { model: Screen, as: 'screenId' }
+          ]
+        }
+      ],
+      order: [['createdAt', 'DESC']]
+    });
 
     res.json(bookings);
   } catch (error) {
@@ -236,21 +214,25 @@ exports.getMyBookings = async (req, res, next) => {
 // Get specific Booking Details
 exports.getBookingDetails = async (req, res, next) => {
   try {
-    const booking = await Booking.findById(req.params.id)
-      .populate({
-        path: 'showId',
-        populate: [
-          { path: 'movieId' },
-          { path: 'screenId' }
-        ]
-      });
+    const booking = await Booking.findByPk(req.params.id, {
+      include: [
+        {
+          model: Show,
+          as: 'showId',
+          include: [
+            { model: Movie, as: 'movieId' },
+            { model: Screen, as: 'screenId' }
+          ]
+        }
+      ]
+    });
 
     if (!booking) {
       return res.status(404).json({ error: 'Booking not found.' });
     }
 
     // Verify authorized user
-    if (booking.userId.toString() !== req.user.id && req.user.role !== 'admin') {
+    if (booking.userId.toString() !== req.user.id.toString() && req.user.role !== 'admin') {
       return res.status(403).json({ error: 'Unauthorized access to booking.' });
     }
 
@@ -262,36 +244,44 @@ exports.getBookingDetails = async (req, res, next) => {
 
 // Cancel Booking (Admin/User)
 exports.cancelBooking = async (req, res, next) => {
+  const transaction = await sequelize.transaction();
   try {
-    const booking = await Booking.findById(req.params.id);
+    const booking = await Booking.findByPk(req.params.id, { transaction });
     if (!booking) {
+      await transaction.rollback();
       return res.status(404).json({ error: 'Booking not found.' });
     }
 
     // Verify auth
-    if (booking.userId.toString() !== req.user.id && req.user.role !== 'admin') {
+    if (booking.userId.toString() !== req.user.id.toString() && req.user.role !== 'admin') {
+      await transaction.rollback();
       return res.status(403).json({ error: 'Unauthorized.' });
     }
 
     if (booking.bookingStatus === 'Cancelled') {
+      await transaction.rollback();
       return res.status(400).json({ error: 'Booking is already cancelled.' });
     }
 
     // 1. Release seats from Show
-    await Show.findByIdAndUpdate(booking.showId, {
-      $pull: { bookedSeats: { $in: booking.seats } }
-    });
+    const show = await Show.findByPk(booking.showId, { transaction, lock: transaction.LOCK.UPDATE });
+    if (show) {
+      const currentBooked = show.bookedSeats;
+      const updatedBooked = currentBooked.filter(seat => !booking.seats.includes(seat));
+      show.bookedSeats = updatedBooked;
+      await show.save({ transaction });
+    }
 
-    // 2. Remove locks from BookingSeat
-    await BookingSeat.deleteMany({ bookingId: booking._id });
+    // 2. Mark booking status as Cancelled
+    await booking.update({
+      bookingStatus: 'Cancelled',
+      paymentStatus: 'Cancelled'
+    }, { transaction });
 
-    // 3. Mark booking status as Cancelled
-    booking.bookingStatus = 'Cancelled';
-    booking.paymentStatus = 'Cancelled';
-    await booking.save();
-
+    await transaction.commit();
     res.json({ message: 'Booking cancelled successfully. Refund initiated.' });
   } catch (error) {
+    await transaction.rollback();
     next(error);
   }
 };

@@ -1,31 +1,43 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../config/db');
 
-const SeatSchema = new mongoose.Schema({
+const Seat = sequelize.define('Seat', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
   screenId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Screen',
-    required: true,
-    index: true
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
   row: {
-    type: String, // e.g. 'A', 'B'
-    required: true,
-    trim: true
+    type: DataTypes.STRING,
+    allowNull: false
   },
   number: {
-    type: Number, // e.g. 1, 2, 3
-    required: true
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
   category: {
-    type: String,
-    enum: ['Standard', 'Premium', 'Recliner'],
-    default: 'Standard'
+    type: DataTypes.ENUM('Standard', 'Premium', 'Recliner'),
+    defaultValue: 'Standard'
   }
 }, {
-  timestamps: true
+  timestamps: true,
+  indexes: [
+    {
+      unique: true,
+      fields: ['screenId', 'row', 'number']
+    }
+  ]
 });
 
-// Compound index to ensure uniqueness of seat per row/number in a screen
-SeatSchema.index({ screenId: 1, row: 1, number: 1 }, { unique: true });
+// Map id to _id for frontend compatibility
+Seat.prototype.toJSON = function () {
+  const values = Object.assign({}, this.get());
+  values._id = values.id;
+  return values;
+};
 
-module.exports = mongoose.model('Seat', SeatSchema);
+module.exports = Seat;

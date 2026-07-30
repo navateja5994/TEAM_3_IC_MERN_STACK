@@ -1,14 +1,28 @@
-const mongoose = require('mongoose');
+const { Sequelize } = require('sequelize');
+const path = require('path');
+
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: path.join(__dirname, '..', 'database.sqlite'),
+  logging: false
+});
 
 const connectDB = async () => {
   try {
-    const connStr = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/cinebook';
-    const conn = await mongoose.connect(connStr);
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    await sequelize.authenticate();
+    console.log('SQLite Database Connected.');
+
+    // We will initialize associations here
+    const initAssociations = require('../models/associations');
+    initAssociations();
+
+    // Sync database schema
+    await sequelize.sync({ force: false }); // Sync tables
+    console.log('SQLite schemas synced.');
   } catch (error) {
-    console.error(`MongoDB connection error: ${error.message}`);
+    console.error(`SQLite connection error: ${error.message}`);
     process.exit(1);
   }
 };
 
-module.exports = connectDB;
+module.exports = { sequelize, connectDB };

@@ -1,31 +1,42 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../config/db');
 
-const ScreenSchema = new mongoose.Schema({
+const Screen = sequelize.define('Screen', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
   name: {
-    type: String,
-    required: true,
-    trim: true,
+    type: DataTypes.STRING,
+    allowNull: false,
     unique: true
   },
   type: {
-    type: String, // e.g. 'Dolby Atmos', 'Premium', 'IMAX 3D', '4DX'
-    required: true,
-    trim: true
+    type: DataTypes.STRING,
+    allowNull: false
   },
   rows: {
-    type: Number, // Number of rows, e.g. 10 (representing A to J)
-    required: true
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
   cols: {
-    type: Number, // Number of seats per row, e.g. 12
-    required: true
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
   isActive: {
-    type: Boolean,
-    default: true
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
   }
 }, {
   timestamps: true
 });
 
-module.exports = mongoose.model('Screen', ScreenSchema);
+// Map id to _id for frontend compatibility
+Screen.prototype.toJSON = function () {
+  const values = Object.assign({}, this.get());
+  values._id = values.id;
+  return values;
+};
+
+module.exports = Screen;

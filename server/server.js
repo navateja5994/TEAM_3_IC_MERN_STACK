@@ -6,7 +6,7 @@ const multer = require('multer');
 const fs = require('fs');
 require('dotenv').config();
 
-const connectDB = require('./config/db');
+const { connectDB } = require('./config/db');
 const errorHandler = require('./middleware/errorHandler');
 
 // Establish Database Connection

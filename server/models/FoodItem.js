@@ -1,31 +1,42 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../config/db');
 
-const FoodItemSchema = new mongoose.Schema({
+const FoodItem = sequelize.define('FoodItem', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
   name: {
-    type: String,
-    required: true,
-    trim: true,
+    type: DataTypes.STRING,
+    allowNull: false,
     unique: true
   },
   price: {
-    type: Number,
-    required: true
+    type: DataTypes.FLOAT,
+    allowNull: false
   },
   image: {
-    type: String,
-    default: ''
+    type: DataTypes.STRING,
+    defaultValue: ''
   },
   category: {
-    type: String,
-    enum: ['Snacks', 'Beverages', 'Combos'],
-    default: 'Snacks'
+    type: DataTypes.ENUM('Snacks', 'Beverages', 'Combos'),
+    defaultValue: 'Snacks'
   },
   isAvailable: {
-    type: Boolean,
-    default: true
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
   }
 }, {
   timestamps: true
 });
 
-module.exports = mongoose.model('FoodItem', FoodItemSchema);
+// Map id to _id for frontend compatibility
+FoodItem.prototype.toJSON = function () {
+  const values = Object.assign({}, this.get());
+  values._id = values.id;
+  return values;
+};
+
+module.exports = FoodItem;

@@ -1,9 +1,17 @@
 const Offer = require('../models/Offer');
+const { Op } = require('sequelize');
 
 // Get all active offers
 exports.getOffers = async (req, res, next) => {
   try {
-    const offers = await Offer.find({ isActive: true, expiryDate: { $gt: new Date() } });
+    const offers = await Offer.findAll({
+      where: {
+        isActive: true,
+        expiryDate: {
+          [Op.gt]: new Date()
+        }
+      }
+    });
     res.json(offers);
   } catch (error) {
     next(error);
@@ -19,12 +27,12 @@ exports.createOffer = async (req, res, next) => {
       return res.status(400).json({ error: 'Please fill all required coupon fields.' });
     }
 
-    const offerExists = await Offer.findOne({ code: code.toUpperCase() });
+    const offerExists = await Offer.findOne({ where: { code: code.toUpperCase() } });
     if (offerExists) {
       return res.status(400).json({ error: 'Coupon code already exists.' });
     }
 
-    const offer = new Offer({
+    const offer = await Offer.create({
       code: code.toUpperCase(),
       description,
       discountPercentage,
@@ -32,7 +40,6 @@ exports.createOffer = async (req, res, next) => {
       expiryDate
     });
 
-    await offer.save();
     res.status(201).json({ message: 'Offer created successfully', offer });
   } catch (error) {
     next(error);
@@ -42,16 +49,13 @@ exports.createOffer = async (req, res, next) => {
 // Admin: Delete (disable) offer
 exports.deleteOffer = async (req, res, next) => {
   try {
-    const offer = await Offer.findByIdAndUpdate(
-      req.params.id,
-      { $set: { isActive: false } },
-      { new: true }
-    );
+    const offer = await Offer.findByPk(req.params.id);
 
     if (!offer) {
       return res.status(404).json({ error: 'Offer not found.' });
     }
 
+    await offer.update({ isActive: false });
     res.json({ message: 'Offer disabled successfully' });
   } catch (error) {
     next(error);

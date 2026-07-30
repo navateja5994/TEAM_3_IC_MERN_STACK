@@ -1,45 +1,69 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../config/db');
 
-const ShowSchema = new mongoose.Schema({
+const Show = sequelize.define('Show', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
   movieId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Movie',
-    required: true,
-    index: true
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
   screenId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Screen',
-    required: true,
-    index: true
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
   date: {
-    type: String, // format YYYY-MM-DD
-    required: true,
-    index: true
+    type: DataTypes.STRING, // format YYYY-MM-DD
+    allowNull: false
   },
   time: {
-    type: String, // e.g. '10:00 AM', '01:30 PM', '07:30 PM'
-    required: true
+    type: DataTypes.STRING, // e.g. '10:00 AM'
+    allowNull: false
   },
   prices: {
-    Standard: { type: Number, required: true, default: 150 },
-    Premium: { type: Number, required: true, default: 250 },
-    Recliner: { type: Number, required: true, default: 400 }
+    type: DataTypes.TEXT,
+    defaultValue: '{"Standard": 150, "Premium": 250, "Recliner": 400}',
+    get() {
+      const value = this.getDataValue('prices');
+      return value ? JSON.parse(value) : { Standard: 150, Premium: 250, Recliner: 400 };
+    },
+    set(value) {
+      this.setDataValue('prices', JSON.stringify(value));
+    }
   },
   bookedSeats: {
-    type: [String], // Array of seat designations, e.g., ['A1', 'A2', 'C5']
-    default: []
+    type: DataTypes.TEXT,
+    defaultValue: '[]',
+    get() {
+      const value = this.getDataValue('bookedSeats');
+      return value ? JSON.parse(value) : [];
+    },
+    set(value) {
+      this.setDataValue('bookedSeats', JSON.stringify(value));
+    }
   },
   isActive: {
-    type: Boolean,
-    default: true
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
   }
 }, {
-  timestamps: true
+  timestamps: true,
+  indexes: [
+    {
+      unique: true,
+      fields: ['screenId', 'date', 'time']
+    }
+  ]
 });
 
-// A screen can't host multiple shows at the exact same date and time
-ShowSchema.index({ screenId: 1, date: 1, time: 1 }, { unique: true });
+// Map id to _id for frontend compatibility
+Show.prototype.toJSON = function () {
+  const values = Object.assign({}, this.get());
+  values._id = values.id;
+  return values;
+};
 
-module.exports = mongoose.model('Show', ShowSchema);
+module.exports = Show;
