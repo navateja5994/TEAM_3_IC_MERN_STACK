@@ -1,0 +1,158 @@
+/* ===========================
+   HERO SECTION
+=========================== */
+
+.hero {
+  width: 100%;
+  min-height: 90vh;
+  background: linear-gradient(to right, #F5F5DC, #FFFDF7);
+  display: flex;
+  align-items: center;
+  padding: 60px 0;
+}
+
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+}
+
+/* ===========================
+   HERO CONTENT
+=========================== */
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-content h1 {
+  font-size: 3.8rem;
+  color: #222;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero-content h1 span {
+  color: #556B2F;
+}
+
+.hero-content p {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 35px;
+  max-width: 550px;
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.shop-btn,
+.explore-btn {
+  padding: 15px 35px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.shop-btn {
+  background: #556B2F;
+  color: white;
+}
+
+.shop-btn:hover {
+  background: #445625;
+  transform: translateY(-4px);
+}
+
+.explore-btn {
+  background: transparent;
+  color: #556B2F;
+  border: 2px solid #556B2F;
+}
+
+.explore-btn:hover {
+  background: #556B2F;
+  color: white;
+}
+
+/* ===========================
+   HERO IMAGE
+=========================== */
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  transition: 0.4s ease;
+}
+
+.hero-image img:hover {
+  transform: scale(1.05);
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 992px) {
+
+  .hero-container {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .hero-content p {
+    margin: 20px auto 35px;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+
+}
+
+@media (max-width: 576px) {
+
+  .hero {
+    padding: 40px 0;
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .shop-btn,
+  .explore-btn {
+    width: 220px;
+  }
+
+}

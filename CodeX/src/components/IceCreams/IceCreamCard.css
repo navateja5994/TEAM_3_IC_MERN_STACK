@@ -1,0 +1,176 @@
+/* ===========================
+   PRODUCT CARD
+=========================== */
+
+.icecream-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: 0.35s ease;
+  padding: 20px;
+  text-align: center;
+}
+
+.icecream-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+}
+
+/* Wishlist */
+
+.wishlist-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #ff4d6d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  box-shadow: 0 5px 12px rgba(0,0,0,.15);
+  transition: .3s;
+}
+
+.wishlist-btn:hover {
+  background: #ff4d6d;
+  color: white;
+}
+
+/* Image */
+
+.card-image {
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-image img {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  transition: .3s;
+}
+
+.icecream-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Name */
+
+.card-content h3 {
+  margin: 15px 0;
+  color: #333;
+  font-size: 22px;
+}
+
+/* Rating */
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #F5F5DC;
+  padding: 6px 14px;
+  border-radius: 30px;
+}
+
+.star {
+  color: gold;
+}
+
+.rating span {
+  font-weight: 600;
+}
+
+/* Price */
+
+.price {
+  color: #556B2F;
+  margin: 20px 0;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* Nutrition Tags */
+
+.nutrition {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.tag {
+  background: #eef6e8;
+  color: #556B2F;
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.green {
+  background: #dff5df;
+}
+
+.protein {
+  background: #e7f0ff;
+  color: #1b4fa0;
+}
+
+.calories {
+  background: #fff4d8;
+  color: #a36a00;
+}
+
+/* Cart */
+
+.cart-btn {
+  width: 100%;
+  padding: 14px;
+  background: #556B2F;
+  color: white;
+  border-radius: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: .3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-btn:hover {
+  background: #6B8E23;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.card-image{
+    height:200px;
+}
+
+.card-image img{
+    width:180px;
+    height:180px;
+}
+
+.card-content h3{
+    font-size:20px;
+}
+
+.price{
+    font-size:26px;
+}
+
+}

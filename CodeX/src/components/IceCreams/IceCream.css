@@ -1,0 +1,93 @@
+/* ===========================
+   ICE CREAM SECTION
+=========================== */
+
+.icecream-section {
+  width: 100%;
+  padding: 80px 0;
+  background: #FFFDF7;
+}
+
+/* ===========================
+   CATEGORY SECTION
+=========================== */
+
+.category-section {
+  width: 90%;
+  max-width: 1300px;
+  margin: 0 auto 80px;
+}
+
+/* ===========================
+   CATEGORY TITLE
+=========================== */
+
+.category-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #556B2F;
+  margin-bottom: 40px;
+  position: relative;
+  font-weight: 700;
+}
+
+.category-title::after {
+  content: "";
+  width: 100px;
+  height: 4px;
+  background: #556B2F;
+  display: block;
+  margin: 15px auto 0;
+  border-radius: 10px;
+}
+
+/* ===========================
+   PRODUCT GRID
+=========================== */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 992px) {
+
+  .category-title {
+    font-size: 2rem;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .icecream-section {
+    padding: 60px 0;
+  }
+
+  .category-section {
+    margin-bottom: 60px;
+  }
+
+  .category-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-title {
+    font-size: 1.6rem;
+  }
+
+}
