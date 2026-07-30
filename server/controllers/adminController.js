@@ -43,16 +43,16 @@ exports.getStats = async (req, res, next) => {
     // 5. Occupancy Rate
     const activeShows = await Show.findAll({
       where: { isActive: true },
-      include: [{ model: Screen, as: 'screenId' }]
+      include: [{ model: Screen, as: 'screen' }] // Alias updated to screen
     });
 
     let totalBookedSeatsCount = 0;
     let totalCapacity = 0;
 
     activeShows.forEach(show => {
-      if (show.screenId) {
+      if (show.screen) { // Property updated to screen
         totalBookedSeatsCount += show.bookedSeats.length;
-        totalCapacity += (show.screenId.rows * show.screenId.cols);
+        totalCapacity += (show.screen.rows * show.screen.cols);
       }
     });
 
@@ -64,12 +64,12 @@ exports.getStats = async (req, res, next) => {
     const recentBookings = await Booking.findAll({
       where: { paymentStatus: 'Paid' },
       include: [
-        { model: User, as: 'userId', attributes: ['name', 'email', 'phoneNumber'] },
+        { model: User, as: 'user', attributes: ['name', 'email', 'phoneNumber'] }, // Alias updated to user
         {
           model: Show,
-          as: 'showId',
+          as: 'show', // Alias updated to show
           include: [
-            { model: Movie, as: 'movieId', attributes: ['title', 'language'] }
+            { model: Movie, as: 'movie', attributes: ['title', 'language'] } // Alias updated to movie
           ]
         }
       ],

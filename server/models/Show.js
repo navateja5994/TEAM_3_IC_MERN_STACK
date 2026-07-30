@@ -7,14 +7,6 @@ const Show = sequelize.define('Show', {
     autoIncrement: true,
     primaryKey: true
   },
-  movieId: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  screenId: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
   date: {
     type: DataTypes.STRING, // format YYYY-MM-DD
     allowNull: false

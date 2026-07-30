@@ -15,8 +15,8 @@ exports.getShows = async (req, res, next) => {
     const shows = await Show.findAll({
       where: filter,
       include: [
-        { model: Movie, as: 'movieId' },
-        { model: Screen, as: 'screenId' }
+        { model: Movie, as: 'movie' },
+        { model: Screen, as: 'screen' }
       ],
       order: [['time', 'ASC']]
     });
@@ -32,8 +32,8 @@ exports.getShowById = async (req, res, next) => {
   try {
     const show = await Show.findByPk(req.params.id, {
       include: [
-        { model: Movie, as: 'movieId' },
-        { model: Screen, as: 'screenId' }
+        { model: Movie, as: 'movie' },
+        { model: Screen, as: 'screen' }
       ]
     });
 
@@ -41,9 +41,9 @@ exports.getShowById = async (req, res, next) => {
       return res.status(404).json({ error: 'Show not found.' });
     }
 
-    // Retrieve all physical seats in this screen
+    // Retrieve all physical seats in this screen using raw screenId attribute
     const seats = await Seat.findAll({
-      where: { screenId: show.screenId.id },
+      where: { screenId: show.screenId },
       order: [['row', 'ASC'], ['number', 'ASC']]
     });
 

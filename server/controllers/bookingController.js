@@ -21,7 +21,7 @@ exports.createBooking = async (req, res, next) => {
 
     // 1. Lock the Show row to prevent concurrent race conditions
     const show = await Show.findByPk(showId, {
-      include: [{ model: Screen, as: 'screenId' }],
+      include: [{ model: Screen, as: 'screen' }],
       transaction,
       lock: transaction.LOCK.UPDATE
     });
@@ -52,7 +52,7 @@ exports.createBooking = async (req, res, next) => {
     for (const q of seatQueries) {
       const seat = await Seat.findOne({
         where: {
-          screenId: show.screenId.id,
+          screenId: show.screenId,
           row: q.row,
           number: q.number
         },
@@ -195,10 +195,10 @@ exports.getMyBookings = async (req, res, next) => {
       include: [
         {
           model: Show,
-          as: 'showId',
+          as: 'show',
           include: [
-            { model: Movie, as: 'movieId' },
-            { model: Screen, as: 'screenId' }
+            { model: Movie, as: 'movie' },
+            { model: Screen, as: 'screen' }
           ]
         }
       ],
@@ -218,10 +218,10 @@ exports.getBookingDetails = async (req, res, next) => {
       include: [
         {
           model: Show,
-          as: 'showId',
+          as: 'show',
           include: [
-            { model: Movie, as: 'movieId' },
-            { model: Screen, as: 'screenId' }
+            { model: Movie, as: 'movie' },
+            { model: Screen, as: 'screen' }
           ]
         }
       ]
