@@ -1,57 +1,84 @@
 .success-container{
 
 display:flex;
+
 justify-content:center;
+
 align-items:center;
-min-height:90vh;
-background:#e91e63;
+
+min-height:100vh;
+
+background:#ffeef6;
+
+padding:30px;
 
 }
 
-.invoice{
+.success-card{
+
+background:white;
+
+padding:40px;
 
 width:500px;
-background:#ffeef6;
-padding:30px;
+
 border-radius:15px;
-box-shadow:0 0 20px rgba(0,0,0,.2);
+
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+text-align:left;
 
 }
 
-.invoice h1{
+.success-card h1{
 
 color:#e91e63;
-text-align:start;
-
-}
-
-.invoice h2{
 
 text-align:center;
-color:#e91e63
+
+margin-bottom:20px;
 
 }
 
-.invoice p{
+.success-card h2{
+
+margin-bottom:15px;
+
+color:#444;
+
+}
+
+.success-card p{
+
+font-size:17px;
+
+margin:10px 0;
+
+}
+
+.success-card button{
+
+margin-top:25px;
+
+width:100%;
+
+padding:14px;
+
+border:none;
+
+background:#e91e63;
+
+color:white;
 
 font-size:18px;
-margin:12px 0;
 
-}
+border-radius:10px;
 
-.invoice button{
-
-padding:12px 25px;
-background:#e91e63;
-color:aqua;
-border:none;
-border-radius:8px;
 cursor:pointer;
-margin-top:15px;
 
 }
 
-.invoice button:hover{
+.success-card button:hover{
 
 background:#c2185b;
 

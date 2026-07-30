@@ -145,9 +145,12 @@ function Cart() {
 
 
 
-        <Link 
-  to="/checkout" 
-  state={{ total: totalAmount }}
+       <Link
+  to="/checkout"
+  state={{
+    total: totalAmount,
+    cartItems: cartItems,
+  }}
 >
   <button className="checkout-btn">
     Proceed To Checkout

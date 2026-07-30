@@ -14,8 +14,8 @@ function Checkout() {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
-  const [stateName, setStateName] = useState("");
-  const [pin, setPin] = useState("");
+  const [state, setState] = useState("");
+  const [pinCode, setPinCode] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +25,10 @@ function Checkout() {
         customerName,
         phone,
         email,
-        address: `${address}, ${city}, ${stateName} - ${pin}`,
+        address,
+        city,
+        state,
+        pinCode,
         total,
         cartItems,
       },
@@ -36,8 +39,7 @@ function Checkout() {
     <div className="checkout-container">
       <h1>Checkout</h1>
 
-      <form onSubmit={handleSubmit} className="checkout-form">
-
+      <form className="checkout-form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Full Name"
@@ -80,23 +82,20 @@ function Checkout() {
         <input
           type="text"
           placeholder="State"
-          value={stateName}
-          onChange={(e) => setStateName(e.target.value)}
+          value={state}
+          onChange={(e) => setState(e.target.value)}
           required
         />
 
         <input
           type="text"
           placeholder="PIN Code"
-          value={pin}
-          onChange={(e) => setPin(e.target.value)}
+          value={pinCode}
+          onChange={(e) => setPinCode(e.target.value)}
           required
         />
 
-        <button type="submit">
-          Proceed to Payment
-        </button>
-
+        <button type="submit">Proceed To Payment</button>
       </form>
     </div>
   );

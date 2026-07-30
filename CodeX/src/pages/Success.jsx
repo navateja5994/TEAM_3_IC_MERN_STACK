@@ -1,41 +1,40 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Success.css";
 
 function Success() {
 
   const location = useLocation();
 
-  const order = location.state || {};
+  const order = location.state;
 
   return (
 
     <div className="success-container">
 
-      <div className="invoice">
+      <div className="success-card">
 
         <h1>🎉 Order Placed!</h1>
 
-        <h2>CodeX Accessories</h2>
+        <h2>Customer Details</h2>
 
-        <hr />
+        <p><strong>Name:</strong> {order?.customerName}</p>
 
-        <p><strong>Customer :</strong> {order.customerName}</p>
+        <p><strong>Phone:</strong> {order?.phone}</p>
 
-        <p><strong>Phone :</strong> {order.phone}</p>
+        <p><strong>Email:</strong> {order?.email}</p>
 
-        <p><strong>Email :</strong> {order.email}</p>
+        <p><strong>Address:</strong> {order?.address}</p>
 
-        <p><strong>Address :</strong> {order.address}</p>
+        <p><strong>City:</strong> {order?.city}</p>
 
-        <p><strong>Payment :</strong> {order.paymentMethod}</p>
+        <p><strong>State:</strong> {order?.state}</p>
 
-        <p><strong>Total :</strong> ₹{order.totalAmount}</p>
+        <p><strong>PIN:</strong> {order?.pinCode}</p>
 
-        <button onClick={() => window.print()}>
-          Download Bill
-        </button>
+        <p><strong>Payment:</strong> {order?.paymentMethod}</p>
 
-        <br /><br />
+        <p><strong>Total:</strong> ₹{order?.totalAmount}</p>
 
         <Link to="/">
           <button>
@@ -48,6 +47,7 @@ function Success() {
     </div>
 
   );
+
 }
 
 export default Success;
