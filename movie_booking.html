@@ -2070,7 +2070,6 @@
       });
     }
 
-    // Update food add-on quantity
     function updateFoodQuantity(itemId, change) {
       const currentQty = bookingState.food[itemId] || 0;
       const newQty = Math.max(0, currentQty + change);
@@ -2134,7 +2133,6 @@
       return { ticketSub, foodSub, fee, tax, total };
     }
 
-    // Update bill layout totals
     function updateInvoiceSummary() {
       const summary = calculateInvoice();
       
