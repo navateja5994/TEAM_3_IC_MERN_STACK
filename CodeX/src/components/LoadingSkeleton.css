@@ -1,0 +1,106 @@
+.skeleton-grid {
+  display: grid;
+  width: 100%;
+  gap: 2rem;
+}
+
+.skeleton-grid.movie {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.skeleton-movie-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-image {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.skeleton-info {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.skeleton-line {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.skeleton-line.title {
+  height: 20px;
+  width: 80%;
+}
+
+.skeleton-line.subtitle {
+  height: 14px;
+  width: 60%;
+}
+
+.skeleton-line.button {
+  height: 35px;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Banner Skeleton */
+.skeleton-banner {
+  width: 100%;
+  height: 60vh;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  align-items: center;
+}
+
+.skeleton-banner-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 600px;
+}
+
+.skeleton-line.badge {
+  height: 25px;
+  width: 120px;
+}
+
+.skeleton-line.heading {
+  height: 50px;
+  width: 90%;
+}
+
+.skeleton-line.paragraph {
+  height: 16px;
+  width: 100%;
+}
+
+.skeleton-line.btn {
+  height: 45px;
+  width: 180px;
+  margin-top: 1rem;
+}
+
+/* Animation Pulse */
+@keyframes pulse {
+  0% {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+}
+
+.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
