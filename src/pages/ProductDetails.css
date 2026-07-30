@@ -1,0 +1,40 @@
+.product-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 60px 10%;
+}
+
+.product-image img {
+    width: 400px;
+    border-radius: 10px;
+}
+
+.product-info {
+    max-width: 500px;
+}
+
+.product-info h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.product-info h2 {
+    color: #2563eb;
+    margin-bottom: 20px;
+}
+
+.product-info p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.product-info button {
+    padding: 12px 25px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}

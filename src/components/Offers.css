@@ -1,0 +1,30 @@
+.offers {
+    background: linear-gradient(135deg, #0f172a, #2563eb);
+    color: white;
+    text-align: center;
+    padding: 70px 20px;
+}
+
+.offers h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.offers p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+.offers button {
+    background: #f97316;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.offers button:hover {
+    background: #ea580c;
+}
