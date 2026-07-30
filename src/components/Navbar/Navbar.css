@@ -1,0 +1,510 @@
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap");
+
+/* ===================================
+   NAVBAR
+=================================== */
+
+.navbar{
+    position:sticky;
+    top:0;
+    width:100%;
+    z-index:1000;
+
+    background:rgba(255,250,245,.88);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(183,110,121,.15);
+
+    box-shadow:0 8px 25px rgba(90,60,40,.08);
+}
+
+.navbar-container{
+
+    max-width:1400px;
+    margin:auto;
+
+    padding:16px 35px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:25px;
+}
+
+/* ===================================
+   LOGO
+=================================== */
+
+.logo{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:2.2rem;
+
+    font-weight:700;
+
+    color:#4a2f1d;
+
+    text-decoration:none;
+
+    transition:.35s;
+}
+
+.logo:hover{
+
+    transform:scale(1.05);
+}
+
+.logo-highlight{
+
+    color:#b76e79;
+}
+
+/* ===================================
+   NAVIGATION
+=================================== */
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:14px;
+
+    flex:1;
+}
+
+.nav-links>a,
+.drop-btn{
+
+    padding:11px 22px;
+
+    border-radius:40px;
+
+    background:rgba(255,255,255,.75);
+
+    border:1px solid rgba(183,110,121,.18);
+
+    color:#5b4636;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    font-family:"Poppins",sans-serif;
+
+}
+
+.drop-btn{
+
+    outline:none;
+
+    border:1px solid rgba(183,110,121,.18);
+}
+
+.nav-links>a:hover,
+.drop-btn:hover,
+.nav-links>a.active{
+
+    background:linear-gradient(
+    135deg,
+    #b76e79,
+    #8b4513);
+
+    color:#fff;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(139,69,19,.25);
+
+}
+
+/* ===================================
+   DROPDOWN
+=================================== */
+
+.dropdown{
+
+    position:relative;
+}
+
+.dropdown-content{
+
+    position:absolute;
+
+    top:58px;
+
+    left:0;
+
+    width:220px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 18px 40px rgba(0,0,0,.15);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(15px);
+
+    transition:.35s;
+
+    z-index:1000;
+}
+
+.dropdown:hover .dropdown-content{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+}
+
+.dropdown-content a{
+
+    display:block;
+
+    padding:15px 20px;
+
+    text-decoration:none;
+
+    color:#5b4636;
+
+    transition:.3s;
+}
+
+.dropdown-content a:hover{
+
+    background:#fff4ed;
+
+    color:#b76e79;
+
+    padding-left:28px;
+}
+
+/* ===================================
+   ICONS
+=================================== */
+
+.navbar-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+}
+
+.icon-btn{
+
+    width:46px;
+
+    height:46px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-decoration:none;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    color:#5b4636;
+
+    font-size:19px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.35s;
+}
+
+.icon-btn:hover{
+
+    background:linear-gradient(
+    135deg,
+    #b76e79,
+    #8b4513);
+
+    color:#fff;
+
+    transform:translateY(-4px);
+}
+
+/* ===================================
+   BADGE
+=================================== */
+
+.badge-btn{
+
+    position:relative;
+}
+
+.badge{
+
+    position:absolute;
+
+    top:-5px;
+
+    right:-5px;
+
+    width:20px;
+
+    height:20px;
+
+    background:#d62839;
+
+    color:#fff;
+
+    border-radius:50%;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+/* ===================================
+   MOBILE MENU
+=================================== */
+
+.menu-toggle{
+
+    display:none;
+
+    flex-direction:column;
+
+    gap:5px;
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+}
+
+.menu-toggle span{
+
+    width:28px;
+
+    height:3px;
+
+    background:#5b4636;
+
+    border-radius:10px;
+
+    transition:.3s;
+}
+
+.menu-toggle.open span:nth-child(1){
+
+    transform:translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2){
+
+    opacity:0;
+}
+
+.menu-toggle.open span:nth-child(3){
+
+    transform:translateY(-8px) rotate(-45deg);
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media(max-width:1100px){
+
+.navbar-container{
+
+padding:15px 20px;
+
+}
+
+.nav-links{
+
+gap:10px;
+
+}
+
+.nav-links>a,
+.drop-btn{
+
+padding:10px 16px;
+
+font-size:14px;
+
+}
+
+}
+
+@media(max-width:900px){
+
+.menu-toggle{
+
+display:flex;
+
+}
+
+.nav-links{
+
+position:absolute;
+
+top:100%;
+
+left:0;
+
+width:100%;
+
+background:#fffaf5;
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:0;
+
+overflow:hidden;
+
+max-height:0;
+
+transition:.4s;
+
+box-shadow:0 15px 30px rgba(0,0,0,.08);
+
+}
+
+.nav-links.active{
+
+max-height:700px;
+
+}
+
+.nav-links>a{
+
+width:100%;
+
+padding:16px 25px;
+
+border-radius:0;
+
+background:none;
+
+border:none;
+
+}
+
+.dropdown{
+
+width:100%;
+
+}
+
+.drop-btn{
+
+width:100%;
+
+text-align:left;
+
+padding:16px 25px;
+
+background:none;
+
+border:none;
+
+border-radius:0;
+
+}
+
+.dropdown-content{
+
+position:static;
+
+opacity:1;
+
+visibility:visible;
+
+transform:none;
+
+box-shadow:none;
+
+width:100%;
+
+display:none;
+
+border-radius:0;
+
+}
+
+.dropdown:hover .dropdown-content{
+
+display:block;
+
+}
+
+.dropdown-content a{
+
+padding-left:40px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.logo{
+
+font-size:1.8rem;
+
+}
+
+.icon-btn{
+
+width:40px;
+
+height:40px;
+
+font-size:17px;
+
+}
+
+.navbar-actions{
+
+gap:10px;
+
+}
+
+}

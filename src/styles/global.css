@@ -1,0 +1,991 @@
+/* =====================================================
+   BAGWORLD - LUXURY FASHION THEME GLOBAL CSS
+===================================================== */
+
+
+/* Google Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+}
+
+
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+
+
+body{
+
+font-family:"Poppins",sans-serif;
+
+background:
+
+radial-gradient(
+circle at top left,
+#fff4e8,
+transparent 35%
+),
+
+radial-gradient(
+circle at bottom right,
+#f3d8d8,
+transparent 30%
+),
+
+#fffaf5;
+
+
+color:#2d211a;
+
+min-height:100vh;
+
+}
+
+
+
+/* Smooth images */
+
+
+img{
+
+max-width:100%;
+
+display:block;
+
+}
+
+
+
+a{
+
+text-decoration:none;
+
+color:inherit;
+
+}
+
+
+
+button{
+
+font-family:inherit;
+
+cursor:pointer;
+
+border:none;
+
+}
+
+
+
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+
+.container{
+
+width:90%;
+
+max-width:1280px;
+
+margin:auto;
+
+}
+
+
+
+
+
+/* =====================================================
+   HEADINGS
+===================================================== */
+
+
+h1,
+h2{
+
+font-family:"Playfair Display",serif;
+
+letter-spacing:.5px;
+
+}
+
+
+
+h1{
+
+font-size:3.5rem;
+
+color:#3b2417;
+
+}
+
+
+
+h2{
+
+font-size:2.6rem;
+
+text-align:center;
+
+color:#5a3825;
+
+margin-bottom:35px;
+
+}
+
+
+
+h2::after{
+
+
+content:"";
+
+display:block;
+
+width:90px;
+
+height:3px;
+
+margin:15px auto;
+
+
+background:
+
+linear-gradient(
+90deg,
+#c58b45,
+#b76e79
+);
+
+
+border-radius:20px;
+
+
+}
+
+
+
+h3{
+
+font-size:1.3rem;
+
+color:#4a2c1d;
+
+}
+
+
+
+p{
+
+color:#6c625b;
+
+font-size:1rem;
+
+line-height:1.8;
+
+}
+
+
+
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+
+.section{
+
+padding:90px 0;
+
+}
+
+
+
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(
+auto-fit,
+minmax(260px,1fr)
+);
+
+
+gap:35px;
+
+}
+
+
+
+
+
+/* =====================================================
+   PREMIUM CARD
+===================================================== */
+
+
+.card{
+
+
+background:
+
+rgba(255,255,255,.75);
+
+
+backdrop-filter:blur(10px);
+
+
+border-radius:25px;
+
+
+overflow:hidden;
+
+
+border:
+
+1px solid rgba(255,255,255,.8);
+
+
+
+box-shadow:
+
+0 15px 40px
+rgba(92,54,30,.12);
+
+
+
+transition:.45s;
+
+
+}
+
+
+
+.card:hover{
+
+
+transform:
+
+translateY(-12px);
+
+
+
+box-shadow:
+
+0 25px 60px
+rgba(92,54,30,.20);
+
+
+
+}
+
+
+
+
+
+.card img{
+
+
+height:280px;
+
+width:100%;
+
+object-fit:contain;
+
+
+background:
+
+linear-gradient(
+135deg,
+#fffaf5,
+#f8eee5
+);
+
+
+}
+
+
+
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+
+.btn{
+
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+
+padding:
+
+14px 35px;
+
+
+border-radius:50px;
+
+
+font-weight:600;
+
+
+background:
+
+linear-gradient(
+135deg,
+#8b4513,
+#c58b45
+);
+
+
+
+color:white;
+
+
+box-shadow:
+
+0 10px 25px
+rgba(139,69,19,.25);
+
+
+transition:.35s;
+
+
+}
+
+
+
+
+.btn:hover{
+
+
+transform:translateY(-5px);
+
+
+box-shadow:
+
+0 18px 35px
+rgba(139,69,19,.35);
+
+
+}
+
+
+
+
+
+/* =====================================================
+   GLASS BOX STYLE
+===================================================== */
+
+
+.glass{
+
+
+background:
+
+rgba(255,255,255,.65);
+
+
+backdrop-filter:blur(15px);
+
+
+border-radius:25px;
+
+
+border:
+
+1px solid rgba(255,255,255,.8);
+
+
+box-shadow:
+
+0 20px 40px rgba(0,0,0,.08);
+
+
+}
+
+
+
+
+
+/* =====================================================
+   PRODUCT PRICE
+===================================================== */
+
+
+.price{
+
+
+color:#b76e79;
+
+
+font-weight:700;
+
+
+font-size:1.2rem;
+
+
+}
+
+
+
+
+
+/* =====================================================
+   PAGE BACKGROUND DECORATION
+===================================================== */
+
+
+.page-container{
+
+
+padding:
+
+60px 0;
+
+
+}
+
+
+
+.page-container h1{
+
+
+text-align:center;
+
+
+margin-bottom:40px;
+
+
+}
+
+
+
+
+
+/* =====================================================
+   SCROLL BAR
+===================================================== */
+
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+
+
+::-webkit-scrollbar-track{
+
+background:#f7eee6;
+
+}
+
+
+
+::-webkit-scrollbar-thumb{
+
+
+background:
+
+linear-gradient(
+#b76e79,
+#8b4513
+);
+
+
+border-radius:20px;
+
+}
+
+
+
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+
+.fade-in{
+
+
+animation:
+
+fade .8s ease;
+
+}
+
+
+
+@keyframes fade{
+
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+}
+
+
+
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+
+@media(max-width:992px){
+
+
+h1{
+
+font-size:2.8rem;
+
+}
+
+
+h2{
+
+font-size:2.1rem;
+
+}
+
+
+}
+
+
+
+@media(max-width:768px){
+
+
+.container{
+
+width:95%;
+
+}
+
+
+
+.section{
+
+padding:60px 0;
+
+}
+
+
+
+h1{
+
+font-size:2.2rem;
+
+}
+
+
+
+h2{
+
+font-size:1.8rem;
+
+}
+
+
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+}
+
+
+
+@media(max-width:500px){
+
+
+h1{
+
+font-size:1.8rem;
+
+}
+
+
+h2{
+
+font-size:1.5rem;
+
+}
+
+
+.btn{
+
+padding:12px 25px;
+
+}
+
+
+}
+/* ==========================================
+   TODAY OFFER BANNER
+========================================== */
+
+.offer-banner{
+
+margin:70px auto;
+
+padding:40px;
+
+background:linear-gradient(135deg,#8b4513,#c58b45,#b76e79);
+
+border-radius:30px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:40px;
+
+color:white;
+
+overflow:hidden;
+
+position:relative;
+
+box-shadow:0 20px 45px rgba(0,0,0,.15);
+
+}
+
+.offer-banner::before{
+
+content:"";
+
+position:absolute;
+
+width:320px;
+
+height:320px;
+
+background:rgba(255,255,255,.08);
+
+border-radius:50%;
+
+right:-120px;
+
+top:-120px;
+
+}
+
+.offer-left{
+
+position:relative;
+
+z-index:2;
+
+}
+
+.offer-tag{
+
+display:inline-block;
+
+background:rgba(255,255,255,.2);
+
+padding:8px 18px;
+
+border-radius:30px;
+
+font-size:14px;
+
+font-weight:600;
+
+margin-bottom:20px;
+
+backdrop-filter:blur(8px);
+
+}
+
+.offer-left h2{
+
+color:white;
+
+font-size:3rem;
+
+margin-bottom:10px;
+
+}
+
+.offer-left h2 span{
+
+color:#ffe9b3;
+
+}
+
+.offer-left p{
+
+color:#fff7ef;
+
+font-size:18px;
+
+}
+
+.offer-right{
+
+display:flex;
+
+gap:18px;
+
+flex-wrap:wrap;
+
+justify-content:flex-end;
+
+position:relative;
+
+z-index:2;
+
+}
+
+.offer-box{
+
+background:rgba(255,255,255,.18);
+
+backdrop-filter:blur(10px);
+
+padding:18px 25px;
+
+border-radius:18px;
+
+font-weight:600;
+
+font-size:16px;
+
+border:1px solid rgba(255,255,255,.2);
+
+transition:.35s;
+
+}
+
+.offer-box:hover{
+
+transform:translateY(-6px);
+
+background:rgba(255,255,255,.28);
+
+}
+
+@media(max-width:992px){
+
+.offer-banner{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.offer-right{
+
+justify-content:center;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.offer-left h2{
+
+font-size:2.2rem;
+
+}
+
+.offer-box{
+
+width:100%;
+
+text-align:center;
+
+}
+
+}
+
+/* =========================================
+   COLLECTION SECTION
+========================================= */
+
+.collection-section{
+
+padding:90px 0;
+
+margin:80px auto;
+
+width:95%;
+
+max-width:1400px;
+
+border-radius:40px;
+
+background:
+
+linear-gradient(
+135deg,
+#fff8f2 0%,
+#f7ece3 50%,
+#fff8f4 100%
+);
+
+position:relative;
+
+overflow:hidden;
+
+box-shadow:
+0 20px 45px rgba(92,54,30,.08);
+
+}
+
+/* Decorative circles */
+
+.collection-section::before{
+
+content:"";
+
+position:absolute;
+
+width:300px;
+
+height:300px;
+
+background:rgba(183,110,121,.08);
+
+border-radius:50%;
+
+top:-120px;
+
+left:-120px;
+
+}
+
+.collection-section::after{
+
+content:"";
+
+position:absolute;
+
+width:250px;
+
+height:250px;
+
+background:rgba(197,139,69,.08);
+
+border-radius:50%;
+
+bottom:-100px;
+
+right:-100px;
+
+}
+
+.collection-section .container{
+
+position:relative;
+
+z-index:2;
+
+}
+
+.collection-subtitle{
+
+max-width:650px;
+
+margin:0 auto 60px;
+
+text-align:center;
+
+font-size:17px;
+
+color:#7a665b;
+
+line-height:1.8;
+
+}
+
+.home-section{
+
+    margin:70px auto;
+
+    width:94%;
+
+    max-width:1350px;
+
+    padding:60px;
+
+    border-radius:35px;
+
+    background:rgba(255,248,242,.82);
+
+    backdrop-filter:blur(16px);
+
+    border:1px solid rgba(255,255,255,.7);
+
+    box-shadow:
+        0 20px 50px rgba(90,55,30,.10);
+
+}

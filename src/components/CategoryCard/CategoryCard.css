@@ -1,0 +1,185 @@
+/* =====================================
+   BAGWORLD PREMIUM CATEGORY CARD
+===================================== */
+
+.category-card{
+    display:block;
+    text-decoration:none;
+    overflow:hidden;
+
+    border-radius:26px;
+
+    background:rgba(255,250,245,.82);
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.7);
+
+    box-shadow:
+        0 15px 35px rgba(92,54,30,.10);
+
+    transition:.45s ease;
+}
+
+.category-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:
+        0 25px 55px rgba(92,54,30,.20);
+
+    border-color:#d7b08a;
+}
+
+
+/* IMAGE */
+
+.category-image{
+
+    position:relative;
+    overflow:hidden;
+    height:260px;
+
+    background:linear-gradient(
+        135deg,
+        #fff6ef,
+        #f8ebe0
+    );
+
+}
+
+.category-image img{
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+    transition:.6s;
+}
+
+.category-card:hover img{
+
+    transform:scale(1.08);
+
+}
+
+
+/* Overlay */
+
+.category-image::after{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:linear-gradient(
+        to top,
+        rgba(50,30,18,.25),
+        transparent 60%
+    );
+
+}
+
+
+/* CONTENT */
+
+.category-content{
+
+    padding:25px;
+
+    text-align:center;
+}
+
+.category-content h3{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:1.5rem;
+
+    color:#5a3825;
+
+    margin-bottom:18px;
+}
+
+
+/* BUTTON */
+
+.category-btn{
+
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+
+    padding:10px 22px;
+
+    border-radius:40px;
+
+    background:linear-gradient(
+        135deg,
+        #8b4513,
+        #c58b45
+    );
+
+    color:white;
+
+    font-size:15px;
+
+    transition:.35s;
+}
+
+.category-card:hover .category-btn{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 10px 20px rgba(139,69,19,.28);
+}
+
+.arrow{
+
+    transition:.3s;
+}
+
+.category-card:hover .arrow{
+
+    transform:translateX(6px);
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+
+.category-image{
+
+height:230px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.category-image{
+
+height:210px;
+
+}
+
+.category-content h3{
+
+font-size:1.3rem;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.category-image{
+
+height:180px;
+
+}
+
+}
