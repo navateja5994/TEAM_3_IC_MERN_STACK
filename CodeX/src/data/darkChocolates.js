@@ -3,7 +3,7 @@ const darkChocolates = [
     id: 21,
     name: "Midnight 72% Dark Bar",
     price: "$9.49",
-    image: "https://images.unsplash.com/photo-1511381939415-e44015466834?w=400&q=80",
+    image: "https://brownliving.in/cdn/shop/files/bitter-sweet-70-cocoa-chocolate-dark-chocolate-sweetened-with-jaggery-8931500354282-anuttama-8342551.jpg?v=1768901529&width=1500",
     description: "Premium 72% cacao dark chocolate with deep, rich cocoa notes and a smooth velvety finish.",
     rating: 4.7
   },
@@ -19,7 +19,7 @@ const darkChocolates = [
     id: 23,
     name: "Dark Sea Salt Caramel",
     price: "$10.99",
-    image: "https://images.unsplash.com/photo-1610450948581-2b66d58f14ca?w=400&q=80",
+    image: "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/NI_CATALOG/IMAGES/CIW/2025/6/24/34dde399-978a-4706-aa30-1f0b5c079171_243013_1.png",
     description: "Silky dark chocolate with liquid salted caramel center and flecks of Mediterranean sea salt.",
     rating: 4.8
   },
@@ -27,7 +27,7 @@ const darkChocolates = [
     id: 24,
     name: "Belgian Dark Truffles",
     price: "$21.50",
-    image: "https://images.unsplash.com/photo-1599599810694-56e29615f751?w=400&q=80",
+    image: "https://d3kgrlupo77sg7.cloudfront.net/media/chococoorgspice.com/images/products/sugar-free-chocolate-coorg-sugar-free-dark-chocolate.20230531010702.webp",
     description: "Hand-rolled Belgian dark chocolate truffles with smooth ganache and cocoa dusting.",
     rating: 4.9
   },
@@ -35,7 +35,7 @@ const darkChocolates = [
     id: 25,
     name: "Dark Chocolate Covered Espresso Beans",
     price: "$8.75",
-    image: "https://images.unsplash.com/photo-1559526324-c1f275fbfa32?w=400&q=80",
+    image: "https://cocoatini.in/cdn/shop/files/1_173bb375-7c47-450c-a914-56f5f20846b8.png?v=1779354152",
     description: "Roasted Arabica espresso beans generously coated in rich 65% dark chocolate.",
     rating: 4.4
   },
@@ -43,7 +43,7 @@ const darkChocolates = [
     id: 26,
     name: "Single Origin Ecuador 75%",
     price: "$14.25",
-    image: "https://images.unsplash.com/photo-1558326567-98ae2405596b?w=400&q=80",
+    image: "https://theobroma.in/cdn/shop/files/TR000056_55_Dark_Chocolate_with_Sea_Salt_Almond_60g.jpg?v=1768193128",
     description: "Single-origin Ecuadorian cacao with floral notes, red fruit undertones, and smooth finish.",
     rating: 4.7
   },
@@ -59,7 +59,7 @@ const darkChocolates = [
     id: 28,
     name: "Peru 80% Organic Dark",
     price: "$13.00",
-    image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&q=80",
+    image: "https://supermunchies.com/cdn/shop/files/CHOCOLATE_HERO.png?v=1773986707",
     description: "Certified organic Peruvian cacao, 80% dark with notes of blackberry and earthy spices.",
     rating: 4.5
   },
@@ -67,7 +67,7 @@ const darkChocolates = [
     id: 29,
     name: "Dark Chocolate Almond Bark",
     price: "$10.25",
-    image: "https://images.unsplash.com/photo-1571766075764-efae1e5d02d7?w=400&q=80",
+    image: "https://www.soothys.in/cdn/shop/files/55_Dark_Raisins_2.png?v=1742401570&width=533",
     description: "Thin dark chocolate bark scattered with whole roasted almonds and a touch of sea salt.",
     rating: 4.3
   },
@@ -75,7 +75,7 @@ const darkChocolates = [
     id: 30,
     name: "Chili Lime Dark Chocolate",
     price: "$9.99",
-    image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400&q=80",
+    image: "https://ziaho.in/cdn/shop/files/3PackwithBar_a79d1d33-6bc5-4ff2-8700-72fbd576f12d.png?v=1777462142&width=1080",
     description: "Adventurous dark chocolate with a kick of cayenne chili and refreshing lime zest.",
     rating: 4.4
   },
@@ -83,7 +83,7 @@ const darkChocolates = [
     id: 31,
     name: "Madagascar Vanilla Dark",
     price: "$12.75",
-    image: "https://images.unsplash.com/photo-1611229406189-f5586e5ac506?w=400&q=80",
+    image: "https://www.novanova.in/cdn/shop/files/Dark_Chocolate_1.png?v=1743760016&width=800",
     description: "70% dark chocolate infused with real Madagascar vanilla bean pods for aromatic depth.",
     rating: 4.6
   },
@@ -91,7 +91,7 @@ const darkChocolates = [
     id: 32,
     name: "Dark Chocolate Cherry Cordials",
     price: "$14.00",
-    image: "https://images.unsplash.com/photo-1558326567-e063ae3e9436?w=400&q=80",
+    image: "https://chokola.in/cdn/shop/files/0B8A1937.jpg?v=1764317035",
     description: "Whole maraschino cherries in liquid sugar syrup, wrapped in premium dark chocolate.",
     rating: 4.7
   },
@@ -139,7 +139,7 @@ const darkChocolates = [
     id: 38,
     name: "Smoked Sea Salt Dark Square",
     price: "$12.25",
-    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&q=80",
+    image: "https://royceindia.com/cdn/shop/files/Origin_Chocolate_-_ROYCE_1800x1800.webp?v=1773828541",
     description: "Rich dark chocolate squares topped with artisanal smoked sea salt for a savory-sweet kick.",
     rating: 4.7
   },

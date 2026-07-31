@@ -11,7 +11,7 @@ const milkChocolates = [
     id: 42,
     name: "Caramel Filled Milk Squares",
     price: "$9.75",
-    image: "https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?w=400&q=80",
+    image: "https://cococart.in/cdn/shop/products/277561913_1329995014160836_4796798666536159654_n.jpg?v=1675772161&width=1946",
     description: "Milk chocolate squares oozing with buttery soft caramel center in every bite.",
     rating: 4.6
   },
@@ -27,7 +27,7 @@ const milkChocolates = [
     id: 44,
     name: "Milk Chocolate Honeycomb Crunch",
     price: "$10.50",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&q=80",
+    image: "https://floristchennai.com/cdn/shop/files/KitKat-DairyMilk-Chocolate-Bouquet.jpg?v=1756864553",
     description: "Aerated honeycomb pieces coated in milk chocolate for a satisfying crispy texture.",
     rating: 4.5
   },
@@ -35,7 +35,7 @@ const milkChocolates = [
     id: 45,
     name: "Nougat Milk Chocolate Bar",
     price: "$7.99",
-    image: "https://images.unsplash.com/photo-1594041225306-7949c2e08dfb?w=400&q=80",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQozqNwQ2A-q_GpZYgapWWFlahDhIK9UXWMqPPzlTIFKw&s",
     description: "Fluffy vanilla nougat and caramel layered under smooth milk chocolate.",
     rating: 4.4
   },
@@ -43,7 +43,7 @@ const milkChocolates = [
     id: 46,
     name: "Milk Chocolate Covered Pretzels",
     price: "$8.25",
-    image: "https://images.unsplash.com/photo-1610450948581-2b66d58f14ca?w=400&q=80",
+    image: "https://www.soothys.in/cdn/shop/files/Milk_Chocolate_Classic_2.png?v=1742398693",
     description: "Crunchy salted pretzels generously dipped in velvety milk chocolate. Sweet meets salty.",
     rating: 4.6
   },
@@ -51,7 +51,7 @@ const milkChocolates = [
     id: 47,
     name: "Irish Cream Milk Truffles",
     price: "$16.00",
-    image: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=400&q=80",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZHIKTxExsSq6q5igEdVjlbBGgtudAuTSTr0Tmwx2txg&s=10",
     description: "Luxurious Irish cream ganache truffles enrobed in silky milk chocolate.",
     rating: 4.7
   },
@@ -59,7 +59,7 @@ const milkChocolates = [
     id: 48,
     name: "Rice Crisp Milk Chocolate",
     price: "$6.99",
-    image: "https://images.unsplash.com/photo-1571766075764-efae1e5d02d7?w=400&q=80",
+    image: "https://cdn.bloomsflora.com/uploads/product/bloomsflora/FEB2026/13715-1770285424519.webp",
     description: "Crisped rice cereal mixed with creamy milk chocolate for a delightful childhood crunch.",
     rating: 4.3
   },

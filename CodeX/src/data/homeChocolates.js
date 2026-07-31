@@ -27,7 +27,7 @@ const homeChocolates = [
     id: 4,
     name: "Creamy White Chocolate",
     price: "$8.99",
-    image: "https://images.unsplash.com/photo-1514996937319-344454492b37?w=400&q=80",
+    image:"https://m.media-amazon.com/images/I/61n5SFb5D7L._AC_UF894,1000_QL80_.jpg",
     description: "Luxuriously smooth white chocolate with vanilla notes and a touch of creamy cocoa butter.",
     rating: 4.3
   },
@@ -43,7 +43,7 @@ const homeChocolates = [
     id: 6,
     name: "Roasted Almond Crunch",
     price: "$11.99",
-    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzJ_IieC4_oNL0GC5-M9nw2WPR-aLQLR753FwVzSm9p4b6hcioYiFfnHo&s=10",
     description: "Whole roasted almonds embedded in premium milk chocolate for a satisfying crunch.",
     rating: 4.4
   },
@@ -51,7 +51,7 @@ const homeChocolates = [
     id: 7,
     name: "Strawberry Dream Truffle",
     price: "$9.99",
-    image: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=400&q=80",
+    image: "https://www.loveandoliveoil.com/wp-content/uploads/2014/05/dark-chocolate-strawberry-ice-cream.jpg",
     description: "Sun-ripened strawberry ganache wrapped in white chocolate with a pink shimmer finish.",
     rating: 4.5
   },
@@ -59,7 +59,7 @@ const homeChocolates = [
     id: 8,
     name: "Cocoa Nib Crunch Bar",
     price: "$10.99",
-    image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&q=80",
+    image:"https://eatelite.co.in/cdn/shop/files/image-9.jpg?v=1775647466&width=1920",
     description: "Dark chocolate studded with roasted cocoa nibs for an intense, textured experience.",
     rating: 4.2
   },
@@ -67,7 +67,7 @@ const homeChocolates = [
     id: 9,
     name: "Peanut Butter Cup",
     price: "$6.99",
-    image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&q=80",
+    image: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSx0CaFykXEvjGV_hIN2t9YD45aedOv3HKcGVvaLAcFzK0HAIXaj12GUXPwUUFsTE7U9b56Z217XuYDIaz2ut0C1I45nfUmtA",
     description: "Creamy peanut butter filling nestled inside a thick milk chocolate shell.",
     rating: 4.6
   },
@@ -75,7 +75,7 @@ const homeChocolates = [
     id: 10,
     name: "Raspberry Ganache Hearts",
     price: "$14.50",
-    image: "https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=400&q=80",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN7t43GIzbbdasXpmn0uMjy0Nfl4852-wyA3OOeVvoKw&s=10",
     description: "Heart-shaped chocolates filled with tangy raspberry ganache and dark chocolate.",
     rating: 4.7
   },
@@ -83,7 +83,7 @@ const homeChocolates = [
     id: 11,
     name: "Toffee Crunch Cluster",
     price: "$9.75",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&q=80",
+    image: "https://m.media-amazon.com/images/I/61+3GeHOp8L.jpg",
     description: "Buttery toffee pieces with toasted pecans, enrobed in silky milk chocolate.",
     rating: 4.4
   },
@@ -91,7 +91,7 @@ const homeChocolates = [
     id: 12,
     name: "Matcha White Chocolate",
     price: "$11.50",
-    image: "https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?w=400&q=80",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqrp4u0deP8JPRE5M3bdxm9ATI7IgcisngAOfJJnvWdMK0FW-0sSRJif8&s=10",
     description: "Premium Japanese matcha infused into creamy white chocolate for an earthy delight.",
     rating: 4.3
   },
@@ -131,7 +131,7 @@ const homeChocolates = [
     id: 17,
     name: "Vanilla Bean Truffle",
     price: "$12.99",
-    image: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=400&q=80",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgQxHF2ECAuQAIa86NavAn3d4gtL-GJ0tZ9aZht7QK_w&s",
     description: "Madagascar vanilla bean ganache in white chocolate, garnished with edible gold leaf.",
     rating: 4.7
   },
@@ -139,7 +139,7 @@ const homeChocolates = [
     id: 18,
     name: "Banana Chocolate Bites",
     price: "$8.25",
-    image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&q=80",
+    image: "https://assets.epicurious.com/photos/6650c4fbe976a50cb532d54d/16:9/w_6142,h_3455,c_limit/Chocolate-Covered-Bananas_RECIPE_6525.jpg",
     description: "Freeze-dried banana pieces dipped in rich dark chocolate for a tropical treat.",
     rating: 4.2
   },
@@ -155,7 +155,7 @@ const homeChocolates = [
     id: 20,
     name: "Pistachio Marzipan",
     price: "$13.75",
-    image: "https://images.unsplash.com/photo-1579631542720-3a87824fff86?w=400&q=80",
+    image: "https://m.media-amazon.com/images/I/519P8lPSx3L._AC_UF894,1000_QL80_.jpg",
     description: "Sweet pistachio marzipan center wrapped in milk chocolate with crushed pistachios.",
     rating: 4.6
   }
