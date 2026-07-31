@@ -340,3 +340,7 @@ transform:translateY(0);
 }
 
 }
+
+.cartIcon span{
+    color:white;
+}
