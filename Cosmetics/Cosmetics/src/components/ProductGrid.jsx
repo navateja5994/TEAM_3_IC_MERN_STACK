@@ -2,7 +2,14 @@ import { motion } from "framer-motion";
 import ProductCard from "./ProductCard";
 import "../styles/FeaturedProducts.css";
 
-function ProductGrid({ products, title, subtitle }) {
+function ProductGrid({
+  products,
+  title,
+  subtitle,
+  onAddToCart,
+  onToggleWishlist,
+  wishlistIds = [],
+}) {
   return (
     <section className="featured-section">
       <div className="section-heading">
@@ -21,7 +28,12 @@ function ProductGrid({ products, title, subtitle }) {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.45, delay: index * 0.05 }}
           >
-            <ProductCard product={product} />
+            <ProductCard
+              product={product}
+              onAddToCart={onAddToCart}
+              onToggleWishlist={onToggleWishlist}
+              isWishlisted={wishlistIds.includes(product.id)}
+            />
           </motion.div>
         ))}
       </div>

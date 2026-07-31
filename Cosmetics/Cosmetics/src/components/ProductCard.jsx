@@ -2,7 +2,13 @@ import { motion } from "framer-motion";
 import { FaHeart, FaEye, FaShoppingCart, FaStar } from "react-icons/fa";
 import "../styles/ProductCard.css";
 
-function ProductCard({ product, compact = false }) {
+function ProductCard({
+  product,
+  compact = false,
+  onAddToCart,
+  onToggleWishlist,
+  isWishlisted = false,
+}) {
   return (
     <motion.article
       className={`product-card ${compact ? "compact" : ""}`}
@@ -12,7 +18,14 @@ function ProductCard({ product, compact = false }) {
       <div className="product-image-wrap">
         <img src={product.image} alt={product.name} />
         <span className="discount-badge">{product.discount}</span>
-        <button className="wishlist-btn" aria-label="Add to wishlist">
+        <button
+          className={`wishlist-btn ${isWishlisted ? "active" : ""}`}
+          aria-label="Toggle wishlist"
+          onClick={(event) => {
+            event.preventDefault();
+            onToggleWishlist?.(product);
+          }}
+        >
           <FaHeart />
         </button>
       </div>
@@ -30,11 +43,17 @@ function ProductCard({ product, compact = false }) {
             <span className="current-price">{product.price}</span>
             <span className="old-price">{product.oldPrice}</span>
           </div>
-          <button className="icon-btn">
+          <button className="icon-btn" aria-label="Quick preview">
             <FaEye />
           </button>
         </div>
-        <button className="add-btn">
+        <button
+          className="add-btn"
+          onClick={(event) => {
+            event.preventDefault();
+            onAddToCart?.(product);
+          }}
+        >
           <FaShoppingCart /> Add to Cart
         </button>
       </div>

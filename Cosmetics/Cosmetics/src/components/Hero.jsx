@@ -19,7 +19,7 @@ function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
         >
-          Discover Your <span>Natural Beauty</span>
+          Discover Your <span>Signature Glow</span>
         </motion.h1>
 
         <motion.p
@@ -27,33 +27,28 @@ function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          Shop premium skincare, makeup, fragrances, and beauty essentials with
+          Shop premium skincare, makeup, and fragrance essentials with
           exciting offers curated for your glow.
         </motion.p>
-
-        <motion.div
-          className="hero-actions"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <button>Shop Now</button>
-          <button className="ghost">Explore Collection</button>
-        </motion.div>
       </div>
 
       <motion.div
         className="hero-visual"
         initial={{ opacity: 0, x: 40 }}
-        animate={{ opacity: 1, x: 0 }}
+        animate={{ opacity: 1, x: 0 }} 
         transition={{ duration: 0.8 }}
       >
         <div className="hero-card">
-          <img
-            src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80"
-            alt="Luxury beauty products"
-          />
-          <div className="floating-badge">Luxury Edit</div>
+          <video
+            className="hero-video"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src="/images/mainx1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </motion.div>
     </section>

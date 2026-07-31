@@ -1,7 +1,19 @@
 import { motion } from "framer-motion";
 import "../styles/Newsletter.css";
 
-function Newsletter() {
+function Newsletter({ onSubscribe }) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value.trim();
+    if (!email) {
+      onSubscribe?.("Please enter your email address");
+      return;
+    }
+
+    onSubscribe?.(`Thanks, ${email}! You are subscribed.`);
+    event.target.reset();
+  };
+
   return (
     <motion.section
       className="newsletter"
@@ -16,8 +28,8 @@ function Newsletter() {
         <p>Receive exclusive offers and first access to luxe beauty launches.</p>
       </div>
 
-      <form className="newsletter-form">
-        <input type="email" placeholder="Enter your email" />
+      <form className="newsletter-form" onSubmit={handleSubmit}>
+        <input type="email" name="email" placeholder="Enter your email" />
         <button type="submit">Subscribe</button>
       </form>
     </motion.section>

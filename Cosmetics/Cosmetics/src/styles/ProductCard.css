@@ -54,6 +54,11 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
+.wishlist-btn.active {
+  background: #d81b60;
+  color: white;
+}
+
 .icon-btn {
   position: static;
   width: 34px;

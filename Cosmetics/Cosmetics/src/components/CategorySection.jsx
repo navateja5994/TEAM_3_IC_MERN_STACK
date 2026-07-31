@@ -1,13 +1,5 @@
 import { motion } from "framer-motion";
-import {
-  FaPaintBrush,
-  FaSpa,
-  FaCut,
-  FaSprayCan,
-  FaPumpSoap,
-  FaHandSparkles,
-  FaMale,
-} from "react-icons/fa";
+import { FaPaintBrush, FaSpa, FaCut, FaSprayCan } from "react-icons/fa";
 
 import "../styles/CategorySection.css";
 
@@ -16,36 +8,29 @@ const categories = [
     icon: <FaPaintBrush />,
     title: "Makeup",
     description: "Foundation, powder, kajal, mascara, lipstick, nail polish.",
+    accent: "#ff5c9a",
+    softBg: "#fff0f5",
   },
   {
     icon: <FaSpa />,
     title: "Skincare",
     description: "Serums, face wash, moisturizer, sunscreen, toner.",
+    accent: "#2f8f79",
+    softBg: "#effcf7",
   },
   {
     icon: <FaCut />,
     title: "Hair Care",
     description: "Shampoo, conditioner, serum, rosemary oil, repair treatments.",
+    accent: "#7b5cff",
+    softBg: "#f3efff",
   },
   {
     icon: <FaSprayCan />,
     title: "Fragrance",
     description: "Signature scents crafted to linger.",
-  },
-  {
-    icon: <FaPumpSoap />,
-    title: "Bath & Body",
-    description: "Soft textures and indulgent rituals.",
-  },
-  {
-    icon: <FaHandSparkles />,
-    title: "Beauty Tools",
-    description: "Precision tools and accessories for polished results.",
-  },
-  {
-    icon: <FaMale />,
-    title: "Men's Grooming",
-    description: "Modern essentials with effortless style.",
+    accent: "#c07a00",
+    softBg: "#fff8e8",
   },
 ];
 
@@ -71,11 +56,16 @@ function CategorySection({ onCategorySelect }) {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.35, delay: index * 0.05 }}
             onClick={() => onCategorySelect(item.title)}
+            style={{ background: `linear-gradient(180deg, #fff 0%, ${item.softBg} 100%)` }}
           >
-            <div className="category-icon">{item.icon}</div>
+            <div className="category-icon" style={{ background: `linear-gradient(135deg, ${item.softBg}, ${item.accent}22)`, color: item.accent }}>
+              {item.icon}
+            </div>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
-            <button type="button">Explore</button>
+            <button type="button" style={{ color: item.accent, borderColor: `${item.accent}30` }}>
+              Explore
+            </button>
           </motion.article>
         ))}
       </div>

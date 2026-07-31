@@ -40,14 +40,17 @@
   padding: 0;
 }
 
-.nav-links a {
+.nav-links .nav-link {
   color: #5b3b51;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.25s ease, transform 0.25s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
-.nav-links a:hover {
+.nav-links .nav-link:hover {
   color: #d81b60;
   transform: translateY(-2px);
 }
@@ -59,16 +62,51 @@
   color: #5b3b51;
 }
 
-.icons svg,
-.menu-btn {
+.icon-button {
+  position: relative;
+  border: none;
+  background: transparent;
+  color: inherit;
   cursor: pointer;
+  padding: 0.2rem;
   transition: transform 0.25s ease, color 0.25s ease;
 }
 
-.icons svg:hover,
+.icon-button:hover,
 .menu-btn:hover {
   transform: scale(1.1);
   color: #d81b60;
+}
+
+.cart-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #d81b60, #ff5c9a);
+  color: white;
+  font-weight: 700;
+}
+
+.cart-button:hover {
+  color: white;
+}
+
+.cart-label {
+  font-size: 0.9rem;
+}
+
+.icon-badge {
+  position: absolute;
+  top: -0.4rem;
+  right: -0.45rem;
+  background: #d81b60;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.35rem;
+  border-radius: 999px;
 }
 
 .menu-btn {

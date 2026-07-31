@@ -2,7 +2,13 @@ import { useMemo } from "react";
 import ProductGrid from "../components/ProductGrid";
 import { categories } from "../data/product";
 
-function CategoryPage({ category, products }) {
+function CategoryPage({
+  category,
+  products,
+  onAddToCart,
+  onToggleWishlist,
+  wishlistIds,
+}) {
   const selectedCategory = categories.find((item) => item.title === category);
 
   const filteredProducts = useMemo(() => {
@@ -38,6 +44,9 @@ function CategoryPage({ category, products }) {
         products={filteredProducts}
         title={category === "Offers" ? "Special Offers" : `${category} Essentials`}
         subtitle={category === "Offers" ? "Shop the best deals" : `All ${category.toLowerCase()} products`}
+        onAddToCart={onAddToCart}
+        onToggleWishlist={onToggleWishlist}
+        wishlistIds={wishlistIds}
       />
     </section>
   );

@@ -16,14 +16,6 @@ export const categories = [
     description: "Premium perfumes for a refined signature scent.",
   },
   {
-    title: "Bath & Body",
-    description: "Face wash, body wash, creams, and body lotions for daily care.",
-  },
-  {
-    title: "Beauty Tools",
-    description: "Tools and accessories for flawless application.",
-  },
-  {
     title: "Men's Grooming",
     description: "Grooming essentials for a polished routine.",
   },
@@ -325,61 +317,6 @@ export const products = [
     discount: "25% OFF",
     image:"https://sp.yimg.com/ib/th/id/OIP.ETZgQ97nxcSzycdp7kUfbwHaHa?pid=Api&w=148&h=148&c=7&dpr=2&rs=1"
   },
-  {
-    id: 24,
-    category: "Bath & Body",
-    subcategory: "Face Wash",
-    brand: "Biotique",
-    name: "Bio Fruit Whitening Face Wash",
-    price: "₹549",
-    oldPrice: "₹749",
-    rating: 4.5,
-    discount: "25% OFF",
-    image:
-      "https://tse3.mm.bing.net/th/id/OIP.pFU9x5Ln6o9lBp0AhuYkdgHaHo?r=0&pid=Api&P=0&h=180",
-  },
-  {
-    id: 25,
-    category: "Bath & Body",
-    subcategory: "Body Wash",
-    brand: "Nivea",
-    name: "Purifying Neem Body Wash",
-    price: "₹399",
-    oldPrice: "₹499",
-    rating: 4.6,
-    discount: "20% OFF",
-    image:"https://i5.walmartimages.com/seo/Nivea-Shea-Butter-Nourishing-Body-Wash-Moisturizing-Body-Wash-For-Dry-Skin-20-Fl-Oz-Bottle_3bc0ce97-99b6-4cdf-a21f-67bd4b182d67.053f254a477891b6b775f5fdfa8f7f6e.jpeg"
-  },
-  {
-    id: 26,
-    category: "Bath & Body",
-    subcategory: "Body Lotion",
-    brand: "Forest Essentials",
-    name: "Aloe Body Lotion",
-    price: "₹699",
-    oldPrice: "₹899",
-    rating: 4.7,
-    discount: "15% OFF",
-    image:"https://tse3.mm.bing.net/th/id/OIP.jjYtCYr63M08anxY-ELPNAHaHa?r=0&pid=Api&P=0&h=180"
-      
-  },
-  {
-    id: 27,
-    category: "Bath & Body",
-    subcategory: "Cream",
-    brand: "Nivea",
-    name: "Soft Light Cream",
-    price: "₹399",
-    oldPrice: "₹499",
-    rating: 4.4,
-    discount: "20% OFF",
-    image:
-      "https://tse4.mm.bing.net/th/id/OIP.dyYbKN_BgzIdGoblinhhuQHaHa?r=0&pid=Api&P=0&h=180",
-  },
-  
- 
-  
-
 ];
 
 export const bestSellerProducts = products.filter((product) =>
