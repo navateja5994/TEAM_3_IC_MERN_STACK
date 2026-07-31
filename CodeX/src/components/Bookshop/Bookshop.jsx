@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Bookshop.css";
 import atomicHabits from "../../assets/Books/atomic-habits.jpg";
 import alchemist from "../../assets/Books/the-alchemist.jpg";
@@ -203,8 +203,14 @@ const books = [
 ];
 function Bookshop() {
     const [search, setSearch] = useState("");
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(() => {
+  const savedCart = localStorage.getItem("cart");
+  return savedCart ? JSON.parse(savedCart) : [];
+});
     const [category, setCategory] = useState("All");
+ useEffect(() => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}, [cart]);
 const addToCart = (book) => {
   const existingBook = cart.find((item) => item.title === book.title);
 
