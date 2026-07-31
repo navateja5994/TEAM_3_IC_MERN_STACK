@@ -4,8 +4,22 @@ import atomicHabits from "../../assets/Books/atomic-habits.jpg";
 import alchemist from "../../assets/Books/the-alchemist.jpg";
 import ikigai from "../../assets/Books/ikigai.jpg";
 import psychology from "../../assets/Books/psychology-of-money.jpg";
-import richDad from "../../assets/books/rich-dad-poor-dad.jpg";
-import harryPotter from "../../assets/books/harry-potter.jpg";
+import richDad from "../../assets/Books/rich-dad-poor-dad.jpg";
+import harryPotter from "../../assets/Books/harry-potter.jpg";
+import thinkLikeAMonk from "../../assets/Books/think-like-a-monk.jpg";
+import deepWork from "../../assets/Books/deep-work.jpg";
+import zeroToOne from "../../assets/Books/zero-to-one.jpg";
+import leanStartup from "../../assets/Books/the-lean-startup.jpg";
+import cleanCode from "../../assets/Books/clean-code.jpg";
+import javaReference from "../../assets/Books/java-complete-reference.jpg";
+import eloquentJS from "../../assets/Books/eloquent-javascript.jpg";
+import pythonCrash from "../../assets/Books/python-crash-course.jpg";
+import silentPatient from "../../assets/Books/the-silent-patient.jpg";
+import mockingbird from "../../assets/Books/to-kill-a-mockingbird.jpg";
+import pride from "../../assets/Books/pride-and-prejudice.jpg";
+import charlie from "../../assets/Books/charlie-and-the-chocolate-factory.jpg";
+import matilda from "../../assets/Books/matilda.jpg";
+import jungleBook from "../../assets/Books/the-jungle-book.jpg";
 const books = [
   {
     title: "Atomic Habits",
@@ -17,14 +31,23 @@ const books = [
     bestSeller: true,
   },
   {
-    title: "The Alchemist",
-    author: "Paulo Coelho",
-    price: "₹399",
-    rating: "⭐⭐⭐⭐☆ (4.7)",
-    image: alchemist,
-    category: "Fiction",
-    bestSeller: false,
-  },
+  title: "Think Like a Monk",
+  author: "Jay Shetty",
+  price: "₹499",
+  rating: "⭐⭐⭐⭐⭐ (4.8)",
+  image: thinkLikeAMonk,
+  category: "Education",
+  bestSeller: true,
+},
+{
+  title: "Deep Work",
+  author: "Cal Newport",
+  price: "₹520",
+  rating: "⭐⭐⭐⭐☆ (4.7)",
+  image: deepWork,
+  category: "Education",
+  bestSeller: false,
+},
   {
     title: "Ikigai",
     author: "Héctor García",
@@ -35,6 +58,42 @@ const books = [
     bestSeller: false,
   },
   {
+    title: "The Alchemist",
+    author: "Paulo Coelho",
+    price: "₹399",
+    rating: "⭐⭐⭐⭐☆ (4.7)",
+    image: alchemist,
+    category: "Fiction",
+    bestSeller: false,
+  },
+{
+  title: "The Silent Patient",
+  author: "Alex Michaelides",
+  price: "₹520",
+  rating: "⭐⭐⭐⭐⭐ (4.8)",
+  image: silentPatient,
+  category: "Fiction",
+  bestSeller: true,
+},
+{
+  title: "To Kill a Mockingbird",
+  author: "Harper Lee",
+  price: "₹450",
+  rating: "⭐⭐⭐⭐⭐ (4.9)",
+  image: mockingbird,
+  category: "Fiction",
+  bestSeller: false,
+},
+{
+  title: "Pride and Prejudice",
+  author: "Jane Austen",
+  price: "₹380",
+  rating: "⭐⭐⭐⭐☆ (4.7)",
+  image: pride,
+  category: "Fiction",
+  bestSeller: false,
+},
+  {
     title: "The Psychology of Money",
     author: "Morgan Housel",
     price: "₹550",
@@ -42,7 +101,24 @@ const books = [
     image: psychology,
     category: "Business",
     bestSeller: true,
-  },
+  },{
+  title: "Zero to One",
+  author: "Peter Thiel",
+  price: "₹480",
+  rating: "⭐⭐⭐⭐⭐ (4.8)",
+  image: zeroToOne,
+  category: "Business",
+  bestSeller: true,
+},
+{
+  title: "The Lean Startup",
+  author: "Eric Ries",
+  price: "₹530",
+  rating: "⭐⭐⭐⭐☆ (4.7)",
+  image: leanStartup,
+  category: "Business",
+  bestSeller: false,
+},
   {
     title: "Rich Dad Poor Dad",
     author: "Robert Kiyosaki",
@@ -53,6 +129,42 @@ const books = [
     bestSeller: false,
   },
   {
+  title: "Clean Code",
+  author: "Robert C. Martin",
+  price: "₹699",
+  rating: "⭐⭐⭐⭐⭐ (4.9)",
+  image: cleanCode,
+  category: "Programming",
+  bestSeller: true,
+},
+{
+  title: "Java: The Complete Reference",
+  author: "Herbert Schildt",
+  price: "₹850",
+  rating: "⭐⭐⭐⭐⭐ (4.8)",
+  image: javaReference,
+  category: "Programming",
+  bestSeller: true,
+},
+{
+  title: "Eloquent JavaScript",
+  author: "Marijn Haverbeke",
+  price: "₹650",
+  rating: "⭐⭐⭐⭐☆ (4.7)",
+  image: eloquentJS,
+  category: "Programming",
+  bestSeller: false,
+},
+{
+  title: "Python Crash Course",
+  author: "Eric Matthes",
+  price: "₹720",
+  rating: "⭐⭐⭐⭐⭐ (4.8)",
+  image: pythonCrash,
+  category: "Programming",
+  bestSeller: false,
+},
+  {
     title: "Harry Potter",
     author: "J.K. Rowling",
     price: "₹599",
@@ -61,7 +173,33 @@ const books = [
     category: "Kids",
     bestSeller: true,
   },
-  
+ {
+  title: "Charlie and the Chocolate Factory",
+  author: "Roald Dahl",
+  price: "₹350",
+  rating: "⭐⭐⭐⭐☆ (4.7)",
+  image: charlie,
+  category: "Kids",
+  bestSeller: false,
+},
+{
+  title: "Matilda",
+  author: "Roald Dahl",
+  price: "₹340",
+  rating: "⭐⭐⭐⭐⭐ (4.8)",
+  image: matilda,
+  category: "Kids",
+  bestSeller: false,
+},
+{
+  title: "The Jungle Book",
+  author: "Rudyard Kipling",
+  price: "₹320",
+  rating: "⭐⭐⭐⭐☆ (4.6)",
+  image: jungleBook,
+  category: "Kids",
+  bestSeller: false,
+}, 
 ];
 function Bookshop() {
     const [search, setSearch] = useState("");
