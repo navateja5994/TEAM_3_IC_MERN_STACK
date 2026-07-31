@@ -96,7 +96,8 @@
 }
 
 .book-card:hover{
-    transform:translateY(-8px);
+    transform:translateY(-10px);
+    box-shadow:0 15px 30px rgba(0,0,0,.2);
 }
 
 .book-card img{
@@ -122,13 +123,23 @@
 }
 
 .book-card button{
+    width: 80%;
+    margin: 8px auto;
+    display: block;
     background:#5c3d2e;
     color:white;
     border:none;
-    padding:12px 20px;
+    padding:12px;
     border-radius:25px;
     cursor:pointer;
-    transition:.3s;
+    transition:all .3s ease;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.book-card button:hover{
+    background:#8b5e3c;
+    transform:translateY(-3px);
 }
 
 .book-card button:hover{
@@ -237,24 +248,26 @@
 }
 
 .arrival-card:hover{
-    transform: translateY(-8px);
-}
-
-.arrival-card:hover{
-    transform: translateY(-8px);
-}
-
-.arrival-card:hover{
     transform:translateY(-8px);
+    box-shadow:0 12px 25px rgba(0,0,0,.15);
 }
 
 .arrival-card h3{
     color:#5c3d2e;
     margin-bottom:10px;
 }
-
+.hero{
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
 .arrival-card p{
     color:#666;
+}
+.cart-section{
+    transition:.3s;
+}
+
+.cart-section:hover{
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 /* Why Choose Us */
 
@@ -277,7 +290,10 @@
     flex-wrap: nowrap;
     margin-top: 30px;
 }
-
+.feature-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 12px 25px rgba(0,0,0,.15);
+}
 .feature-card{
     width: 300px;
     min-height: 220px;
@@ -374,4 +390,202 @@
 
 .checkout-btn:hover{
     background:#218838;
+}
+/* Wishlist */
+
+.wishlist-info {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.wishlist-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 2;
+}
+
+.wishlist-icon:hover {
+    transform: scale(1.2);
+}
+/* Book Details Modal */
+
+.details-btn{
+    margin-top:10px;
+    background:#ff9800;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:25px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.details-btn:hover{
+    background:#e68900;
+}
+
+.modal-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.book-modal{
+    width:380px;
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    text-align:center;
+    animation:popup .3s ease;
+}
+
+.book-modal img{
+    width:180px;
+    height:250px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.book-modal h2{
+    color:#5c3d2e;
+    margin-bottom:15px;
+}
+
+.book-modal p{
+    margin:8px 0;
+    color:#444;
+}
+
+.close-btn{
+    margin-top:15px;
+    margin-left:10px;
+    background:#d32f2f;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:25px;
+    cursor:pointer;
+}
+
+.close-btn:hover{
+    background:#b71c1c;
+}
+
+@keyframes popup{
+    from{
+        transform:scale(.8);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+/* ===========================
+   Tablet (768px and below)
+=========================== */
+
+@media (max-width: 768px) {
+
+  .hero h1{
+    font-size:36px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  .search-bar{
+    width:90%;
+  }
+
+  .book-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .arrival-container{
+    flex-wrap:wrap;
+  }
+
+  .features{
+    flex-wrap:wrap;
+  }
+
+  .footer-container{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .cart-item{
+    flex-direction:column;
+    gap:15px;
+    text-align:center;
+  }
+
+}
+
+/* ===========================
+   Mobile (480px and below)
+=========================== */
+
+@media (max-width:480px){
+
+  .hero{
+    padding:40px 15px;
+  }
+
+  .hero h1{
+    font-size:28px;
+  }
+
+  .hero p{
+    font-size:15px;
+  }
+
+  .categories{
+    gap:10px;
+  }
+
+  .categories button{
+    padding:10px 16px;
+    font-size:13px;
+  }
+
+  .book-grid{
+    grid-template-columns:1fr;
+  }
+
+  .arrival-card,
+  .feature-card{
+    width:100%;
+  }
+
+  .book-modal{
+    width:90%;
+  }
+
+  .cart-image{
+    width:60px;
+    height:80px;
+  }
+
+  .cart-total{
+    text-align:center;
+    font-size:20px;
+  }
+
 }

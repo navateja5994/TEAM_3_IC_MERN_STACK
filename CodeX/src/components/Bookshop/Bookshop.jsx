@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
 import "./Bookshop.css";
 import atomicHabits from "../../assets/Books/atomic-habits.jpg";
@@ -208,9 +210,20 @@ function Bookshop() {
   return savedCart ? JSON.parse(savedCart) : [];
 });
     const [category, setCategory] = useState("All");
+const [selectedBook, setSelectedBook] = useState(null);
+const [wishlist, setWishlist] = useState(() => {
+  const savedWishlist = localStorage.getItem("wishlist");
+  return savedWishlist ? JSON.parse(savedWishlist) : [];
+});
  useEffect(() => {
   localStorage.setItem("cart", JSON.stringify(cart));
 }, [cart]);
+useEffect(() => {
+  localStorage.setItem(
+    "wishlist",
+    JSON.stringify(wishlist)
+  );
+}, [wishlist]);
 const addToCart = (book) => {
   const existingBook = cart.find((item) => item.title === book.title);
 
@@ -222,8 +235,10 @@ const addToCart = (book) => {
     );
 
     setCart(updatedCart);
+    toast.success(`${book.title} quantity updated!`);
   } else {
     setCart([...cart, { ...book, quantity: 1 }]);
+    toast.success(`${book.title} added to cart!`);
   }
 };
 const removeFromCart = (title) => {
@@ -236,6 +251,7 @@ const removeFromCart = (title) => {
     .filter((item) => item.quantity > 0);
 
   setCart(updatedCart);
+  toast.info("Book removed from cart");
 };
 const totalItems = cart.reduce(
   (total, item) => total + item.quantity,
@@ -252,13 +268,33 @@ const filteredBooks = books.filter(
 );
 const checkout = () => {
   if (cart.length === 0) {
-    alert("Your cart is empty!");
+    toast.error("Your cart is empty!");
     return;
   }
 
-  alert("🎉 Thank you for your purchase!");
+  toast.success("🎉 Order placed successfully!");
 
   setCart([]);
+  localStorage.removeItem("cart");
+};
+const toggleWishlist = (book) => {
+  const exists = wishlist.some(
+    (item) => item.title === book.title
+  );
+
+  if (exists) {
+    setWishlist(
+      wishlist.filter(
+        (item) => item.title !== book.title
+      )
+    );
+
+    toast.info("Removed from Wishlist");
+  } else {
+    setWishlist([...wishlist, book]);
+
+    toast.success("Added to Wishlist ❤️");
+  }
 };
   return (
     <div className="bookshop-container">
@@ -276,6 +312,9 @@ const checkout = () => {
 />
 <div className="cart-info">
   🛒 Cart ({totalItems})
+</div>
+<div className="wishlist-info">
+  ❤️ Wishlist ({wishlist.length})
 </div>
       </header>
 <section className="categories">
@@ -329,7 +368,14 @@ const checkout = () => {
   {filteredBooks.length > 0 ? (
     filteredBooks.map((book, index) => (
       <div className="book-card" key={index}>
-
+<span
+  className="wishlist-icon"
+  onClick={() => toggleWishlist(book)}
+>
+  {wishlist.some((item) => item.title === book.title)
+    ? "❤️"
+    : "🤍"}
+</span>
         {book.bestSeller && (
           <span className="badge">Best Seller</span>
         )}
@@ -347,7 +393,12 @@ const checkout = () => {
         <button onClick={() => addToCart(book)}>
           Add to Cart
         </button>
-
+<button
+  className="details-btn"
+  onClick={() => setSelectedBook(book)}
+>
+  View Details
+</button>
       </div>
     ))
   ) : (
@@ -471,6 +522,55 @@ const checkout = () => {
 
 </section>
 </section>
+{selectedBook && (
+  <div
+    className="modal-overlay"
+    onClick={() => setSelectedBook(null)}
+  >
+    <div
+      className="book-modal"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <img
+        src={selectedBook.image}
+        alt={selectedBook.title}
+      />
+
+      <h2>{selectedBook.title}</h2>
+
+      <p><strong>Author:</strong> {selectedBook.author}</p>
+
+      <p><strong>Category:</strong> {selectedBook.category}</p>
+
+      <p><strong>Price:</strong> {selectedBook.price}</p>
+
+      <p><strong>Rating:</strong> {selectedBook.rating}</p>
+
+      <p>
+        <strong>Status:</strong>{" "}
+        {selectedBook.bestSeller
+          ? "Best Seller"
+          : "Popular Book"}
+      </p>
+
+      <button
+        onClick={() => {
+          addToCart(selectedBook);
+          setSelectedBook(null);
+        }}
+      >
+        Add to Cart
+      </button>
+
+      <button
+        className="close-btn"
+        onClick={() => setSelectedBook(null)}
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
 <footer className="footer">
 
   <div className="footer-container">
@@ -505,6 +605,15 @@ const checkout = () => {
   </p>
 
 </footer>
+<ToastContainer
+  position="top-right"
+  autoClose={2000}
+  hideProgressBar={false}
+  newestOnTop
+  closeOnClick
+  pauseOnHover
+  theme="colored"
+/>
  </div>
   )
 };
