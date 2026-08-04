@@ -10,6 +10,8 @@ export default function Toast({ toast, onClose }) {
         return <ShoppingBag size={18} color="var(--primary)" />;
       case 'wishlist':
         return <Heart size={18} color="#EF4444" fill="#EF4444" />;
+      case 'order':
+        return <CheckCircle2 size={18} color="#10B981" />;
       default:
         return <Info size={18} color="var(--primary)" />;
     }

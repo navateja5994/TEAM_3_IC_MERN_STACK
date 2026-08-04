@@ -6,6 +6,7 @@ import ProductGrid from './components/ProductGrid';
 import Cart from './components/Cart';
 import Wishlist from './components/Wishlist';
 import QuickViewModal from './components/QuickViewModal';
+import CheckoutModal from './components/CheckoutModal';
 import Footer from './components/Footer';
 import Toast from './components/Toast';
 import { PRODUCTS } from './data/products';
@@ -37,9 +38,10 @@ export default function App() {
   const [sortBy, setSortBy] = useState('default');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Modals & Drawers state
+// Modals & Drawers state
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
   const [toast, setToast] = useState(null);
 
@@ -186,10 +188,27 @@ export default function App() {
     return count;
   }, [selectedCategory, selectedPriceRange, selectedRating, sortBy, searchQuery]);
 
-  const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const wishlistCount = wishlistItems.length;
   const wishlistIds = wishlistItems.map((item) => item.id);
   const cartItemIds = cartItems.map((item) => item.id);
+
+  // Checkout totals
+  const cartSubtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const freeShippingThreshold = 999;
+  const isFreeShipping = cartSubtotal >= freeShippingThreshold;
+  const cartShippingCost = isFreeShipping ? 0 : 99;
+  const cartFinalTotal = cartSubtotal + cartShippingCost;
+
+  const handleOpenCheckout = () => {
+    setIsCartOpen(false);
+    setIsCheckoutOpen(true);
+  };
+
+  const handleCompleteOrder = (orderInfo) => {
+    setCartItems([]);
+    showToast(`Order ${orderInfo.orderId} placed successfully! 🎉`, 'order');
+  };
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -251,6 +270,19 @@ export default function App() {
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveFromCart}
         onClearCart={handleClearCart}
+        onCheckout={handleOpenCheckout}
+      />
+
+      {/* Checkout Modal */}
+      <CheckoutModal
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+        cartItems={cartItems}
+        subtotal={cartSubtotal}
+        shippingCost={cartShippingCost}
+        finalTotal={cartFinalTotal}
+        totalItemsCount={cartCount}
+        onPlaceOrder={handleCompleteOrder}
       />
 
       {/* Wishlist Drawer */}

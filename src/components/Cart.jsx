@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight, CheckCircle2, Truck } from 'lucide-react';
-import confetti from 'canvas-confetti';
+import React from 'react';
+import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight, Truck } from 'lucide-react';
 
 export default function Cart({
   isOpen,
@@ -8,11 +7,9 @@ export default function Cart({
   cartItems,
   onUpdateQuantity,
   onRemoveItem,
-  onClearCart
+  onClearCart,
+  onCheckout
 }) {
-  const [isCheckingOut, setIsCheckingOut] = useState(false);
-  const [orderComplete, setOrderComplete] = useState(false);
-
   if (!isOpen) return null;
 
   const totalItemsCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -24,27 +21,6 @@ export default function Cart({
   const isFreeShipping = subtotal >= freeShippingThreshold;
   const shippingCost = isFreeShipping ? 0 : 99;
   const finalTotal = subtotal + shippingCost;
-
-  const handleCheckout = () => {
-    setIsCheckingOut(true);
-    // Trigger festive confetti
-    confetti({
-      particleCount: 120,
-      spread: 70,
-      origin: { y: 0.6 }
-    });
-
-    setTimeout(() => {
-      setIsCheckingOut(false);
-      setOrderComplete(true);
-    }, 1200);
-  };
-
-  const handleFinishOrder = () => {
-    setOrderComplete(false);
-    onClearCart();
-    onClose();
-  };
 
   return (
     <>
@@ -80,8 +56,8 @@ export default function Cart({
           </button>
         </div>
 
-        {/* Free Shipping Progress Bar */}
-        {cartItems.length > 0 && !orderComplete && (
+{/* Free Shipping Progress Bar */}
+        {cartItems.length > 0 && (
           <div style={{
             backgroundColor: 'var(--primary-light)',
             padding: '0.75rem 1.5rem',
@@ -123,25 +99,7 @@ export default function Cart({
           padding: '1.5rem'
         }}>
 
-          {orderComplete ? (
-            /* Order Success View */
-            <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
-              <CheckCircle2 size={64} color="#10B981" style={{ margin: '0 auto 1rem auto' }} />
-              <h3 style={{ fontSize: '1.6rem', fontWeight: '800', color: 'var(--dark)', marginBottom: '0.5rem' }}>
-                Order Confirmed!
-              </h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
-                Thank you for shopping with <strong>Dressify</strong>. Your order has been placed successfully.
-              </p>
-              <button
-                onClick={handleFinishOrder}
-                className="btn-primary"
-                style={{ width: '100%' }}
-              >
-                Continue Shopping
-              </button>
-            </div>
-          ) : cartItems.length > 0 ? (
+{cartItems.length > 0 ? (
             /* Item List */
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               {cartItems.map((item) => (
@@ -245,7 +203,7 @@ export default function Cart({
         </div>
 
         {/* Footer Summary & Checkout */}
-        {cartItems.length > 0 && !orderComplete && (
+        {cartItems.length > 0 && (
           <div style={{
             padding: '1.25rem 1.5rem',
             borderTop: '1px solid var(--border-light)',
@@ -288,12 +246,11 @@ export default function Cart({
             {/* Buttons */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               <button
-                onClick={handleCheckout}
-                disabled={isCheckingOut}
+                onClick={onCheckout}
                 className="btn-primary"
                 style={{ width: '100%', padding: '0.85rem 0', fontSize: '1rem' }}
               >
-                {isCheckingOut ? "Processing Order..." : <>Proceed to Checkout <ArrowRight size={18} /></>}
+                Proceed to Checkout <ArrowRight size={18} />
               </button>
 
               <div style={{ display: 'flex', gap: '0.5rem' }}>
