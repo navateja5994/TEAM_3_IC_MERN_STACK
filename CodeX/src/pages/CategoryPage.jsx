@@ -1,49 +1,59 @@
 import { useParams } from "react-router-dom";
-import products from "../data/products";
+import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import "./CategoryPage.css";
 
+function CategoryPage() {
 
-function CategoryPage(){
+  const { categoryName } = useParams();
 
-const {categoryName}=useParams();
+  const [products, setProducts] = useState([]);
 
+  useEffect(() => {
 
-const filteredProducts = products.filter(
-(product)=>
-product.category === categoryName
-);
+    fetch("http://127.0.0.1:8000/api/products/")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+      })
+      .catch((err) => console.log(err));
 
+  }, []);
 
-return(
+  const filteredProducts = products.filter(
+    (product) => product.category === categoryName
+  );
 
-<div className="category-page">
+  return (
 
-<h1>
-{categoryName.toUpperCase()}
-</h1>
+    <div className="category-page">
 
+      <h1>{categoryName.toUpperCase()}</h1>
 
-<div className="products-grid">
+      <div className="products-grid">
 
-{
-filteredProducts.map(product=>(
+        {filteredProducts.length > 0 ? (
 
-<ProductCard
-key={product.id}
-product={product}
-/>
+          filteredProducts.map((product) => (
 
-))
-}
+            <ProductCard
+              key={product._id}
+              product={product}
+            />
 
+          ))
 
-</div>
+        ) : (
 
+          <h2>No Products Found</h2>
 
-</div>
+        )}
 
-)
+      </div>
+
+    </div>
+
+  );
 
 }
 

@@ -4,23 +4,36 @@ import Rating from "./Rating";
 import "./ProductCard.css";
 
 function ProductCard({ product }) {
+
   const { addToCart } = useCart();
 
   return (
-    <div className="product-card">
-      <span className="discount">{product.discount}</span>
 
-      <Link to={`/product/${product.id}`}>
-        <img src={product.image} alt={product.name} />
+    <div className="product-card">
+
+      {product.discount && (
+        <span className="discount">
+          {product.discount}
+        </span>
+      )}
+
+      <Link to={`/product/${product._id}`}>
+        <img
+          src={product.image}
+          alt={product.name}
+        />
       </Link>
 
-      <Link to={`/product/${product.id}`} className="product-link">
+      <Link
+        to={`/product/${product._id}`}
+        className="product-link"
+      >
         <h3>{product.name}</h3>
       </Link>
 
       <Rating
-        rating={product.rating}
-        reviews={product.reviews}
+        rating={Number(product.rating)}
+        reviews={Number(product.reviews)}
       />
 
       <h2>₹{product.price}</h2>
@@ -28,8 +41,11 @@ function ProductCard({ product }) {
       <button onClick={() => addToCart(product)}>
         Add To Cart
       </button>
+
     </div>
+
   );
+
 }
 
 export default ProductCard;

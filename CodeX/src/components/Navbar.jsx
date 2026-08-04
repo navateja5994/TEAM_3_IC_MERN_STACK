@@ -8,10 +8,10 @@ function Navbar() {
   return (
     <nav className="navbar">
 
-      <div className="logo">
-        <FaGem className="logo-icon" />
-        <h2>CodeX Accessories</h2>
-      </div>
+     <Link to="/" className="logo">
+    <FaGem className="logo-icon" />
+    <h2>CodeX Accessories</h2>
+</Link>
 
       <ul className="nav-links">
 

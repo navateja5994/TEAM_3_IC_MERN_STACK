@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import products from "../data/products";
+import { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import "./ProductDetails.css";
 
@@ -12,18 +11,47 @@ function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
 
-  const product = products.find((item) => item.id === Number(id));
+const [product, setProduct] = useState(null);
 
-  if (!product) {
-    return <h2 style={{ padding: "40px", textAlign: "center" }}>Product not found.</h2>;
-  }
+useEffect(() => {
+
+  fetch("http://127.0.0.1:8000/api/products/")
+    .then((res) => res.json())
+    .then((data) => {
+
+      const selected = data.find(
+        (item) => item._id === id
+      );
+
+      setProduct(selected);
+
+    });
+
+}, [id]);
+  
+
+if (!product) {
+
+  return (
+    <h2
+      style={{
+        textAlign: "center",
+        marginTop: "100px"
+      }}
+    >
+      Loading Product...
+    </h2>
+  );
+
+}
 
   // Formatting currency helper
-  const formattedPrice = new Intl.NumberFormat("en-IN", {
-    style: "currency",
+const formattedPrice = new Intl.NumberFormat("en-IN", {
+  style: "currency",
     currency: "INR",
     maximumFractionDigits: 0,
-  }).format(product.price);
+}).format(Number(product.price));
+
 
   const handleAddToCart = () => {
     // Pass product with selected quantity to cart
@@ -94,7 +122,7 @@ function ProductDetails() {
             className="buy-now-btn"
             onClick={() => {
               handleAddToCart();
-              navigate("/payment", { state: { total: product.price * quantity } });
+              navigate("/payment", { state: { total: Number  (product.price )* quantity } });
             }}
           >
             Buy Now

@@ -24,9 +24,13 @@ function Footer() {
         >
           {showContact ? "📞 9030523441" : "Contact Us"}
         </p>
+<p onClick={()=>setShowContact(!showContact)}
+  style={{cursor:"pointer",fontWeight:"bold",color:"#b31561"}}>
+    {showContact ? "NO RETURNS": "Return Policy"}
+  </p>
 
-        <p>Privacy Policy</p>
-        <p>Return Policy</p>
+
+
       </div>
 
       <div className="copyright">
