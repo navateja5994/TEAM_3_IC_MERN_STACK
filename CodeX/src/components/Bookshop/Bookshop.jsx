@@ -2,6 +2,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
 import "./Bookshop.css";
+import { FaShoppingCart, FaHeart } from "react-icons/fa";
 import atomicHabits from "../../assets/Books/atomic-habits.jpg";
 import alchemist from "../../assets/Books/the-alchemist.jpg";
 import ikigai from "../../assets/Books/ikigai.jpg";
@@ -299,24 +300,46 @@ const toggleWishlist = (book) => {
   return (
     <div className="bookshop-container">
 
-      <header className="hero">
-        <h1>📚 Book Haven</h1>
-        <p>Discover your next favorite book at the mall.</p>
+<header className="hero">
 
-      <input
-  type="text"
-  placeholder="🔍 Search books..."
-  className="search-bar"
-  value={search}
-  onChange={(e) => setSearch(e.target.value)}
-/>
-<div className="cart-info">
-  🛒 Cart ({totalItems})
+  <div className="hero-left">
+
+    <h1>📚 Book Haven</h1>
+
+    <p>Discover your next favorite book at the mall.</p>
+
+    <input
+      type="text"
+      placeholder="🔍 Search books..."
+      className="search-bar"
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+    />
+
+  </div>
+
+  <div className="hero-right">
+<div
+  className="cart-info"
+  onClick={() =>
+    document
+      .getElementById("cart-section")
+      ?.scrollIntoView({
+        behavior: "smooth",
+      })
+  }
+>
+    <FaShoppingCart />
+    <span>Cart ({totalItems})</span>
 </div>
+
 <div className="wishlist-info">
-  ❤️ Wishlist ({wishlist.length})
+    <FaHeart />
+    <span>Wishlist ({wishlist.length})</span>
 </div>
-      </header>
+</div>
+
+</header>
 <section className="categories">
   <button
     className={category === "All" ? "active" : ""}
@@ -407,7 +430,7 @@ const toggleWishlist = (book) => {
     </div>
   )}
 </div>
-<section className="cart-section">
+<section id="cart-section" className="cart-section">
 
   <h2>Shopping Cart</h2>
 

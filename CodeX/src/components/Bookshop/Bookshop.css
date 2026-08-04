@@ -11,12 +11,28 @@
 }
 
 .hero{
-  background:linear-gradient(135deg,#5c3d2e,#8b5e3c);
-  color:white;
-  text-align:center;
-  padding:60px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:70px 80px;
+
+    background:#7b5137;
+    color:white;
+}
+.hero-left{
+    width:60%;
 }
 
+.hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 40px;
+
+    margin-top: 40px;
+    min-width: 350px;
+}
 .hero h1{
   font-size:48px;
   margin-bottom:15px;
@@ -165,11 +181,37 @@
     font-size:13px;
     font-weight:bold;
 }
-.cart-info{
-    margin-top:20px;
-    font-size:22px;
-    font-weight:bold;
-    color:white;
+.cart-info,
+.wishlist-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.label,
+.cart-info strong,
+.wishlist-info strong {
+    font-size: 18px;
+}
+
+.icon {
+    font-size: 22px;
+    line-height: 1;
+}
+.cart-info:hover,
+.wishlist-info:hover {
+    transform: scale(1.05);
+}
+.divider {
+    width: 1px;
+    height: 35px;
+    background: rgba(255,255,255,0.3);
 }
 .cart-section{
     width:85%;
@@ -400,16 +442,71 @@
     color: white;
 }
 
-.wishlist-icon {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 28px;
-    cursor: pointer;
-    transition: 0.3s;
-    z-index: 2;
+.wishlist-icon{
+    position:absolute;
+    top:12px;
+    right:12px;
+
+    width:42px;
+    height:42px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(255,255,255,0.95);
+
+    border-radius:50%;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 10px rgba(0,0,0,0.25);
+
+    transition:all .3s ease;
+}
+.wishlist-icon:hover{
+
+    transform:scale(1.15);
+
+    background:#ffe5ec;
+
+}.cart-page{
+
+    width:80%;
+
+    margin:50px auto;
+
+    text-align:center;
+
 }
 
+.cart-page button{
+
+    background:#5c3d2e;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    margin-bottom:30px;
+
+    font-size:16px;
+
+}
+
+.cart-page button:hover{
+
+    background:#7b5137;
+
+}
 .wishlist-icon:hover {
     transform: scale(1.2);
 }
@@ -510,8 +607,11 @@
   }
 
   .search-bar{
-    width:90%;
-  }
+
+    width:70%;
+
+    margin-top:25px;
+}
 
   .book-grid{
     grid-template-columns:repeat(2,1fr);
