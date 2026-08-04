@@ -12,168 +12,35 @@ import jardinDeNuit from './assets/jardin_de_nuit.jpg'
 import santalSupreme from './assets/santal_supreme.jpg'
 import neroliBlanc from './assets/neroli_blanc.jpg'
 import noirEpice from './assets/noir_epice.jpg'
+import onyxAbsolu from './assets/onyx_absolu.jpg'
+import pivoineNectar from './assets/pivoine_nectar.jpg'
 import './App.css'
 
-const PRODUCTS = [
-  {
-    id: 1,
-    name: 'AURA NOIR',
-    category: 'men',
-    price: 145.0,
-    image: auraNoir,
-    concentration: 'Eau de Parfum',
-    description: 'An intense, mysterious scent combining earthy vetiver, smoky cedarwood, and cracked black pepper.',
-    notes: ['Vetiver', 'Cedarwood', 'Black Pepper', 'Sandalwood'],
-    rating: 4.9,
-    reviews: 124
-  },
-  {
-    id: 2,
-    name: 'BLEU AZUR',
-    category: 'men',
-    price: 125.0,
-    image: bleuAzur,
-    concentration: 'Eau de Parfum',
-    description: 'A clean, crisp composition featuring marine sea salt, zesty bergamot, and rich, earthy ambergris.',
-    notes: ['Sea Salt', 'Bergamot', 'Ambergris', 'Grapefruit'],
-    rating: 4.7,
-    reviews: 98
-  },
-  {
-    id: 3,
-    name: 'ROSE D\'AMOUR',
-    category: 'women',
-    price: 135.0,
-    image: roseDamour,
-    concentration: 'Eau de Parfum',
-    description: 'An enchanting, seductive fragrance layered with sweet Damask rose, warm patchouli, and dark cocoa.',
-    notes: ['Damask Rose', 'Patchouli', 'Dark Chocolate', 'Vanilla'],
-    rating: 4.8,
-    reviews: 156
-  },
-  {
-    id: 4,
-    name: 'AMBER LUMIÈRE',
-    category: 'women',
-    price: 175.0,
-    image: amberLumiere,
-    concentration: 'Extrait de Parfum',
-    description: 'A glowing, sophisticated blend of warm golden amber, sweet tonka bean, and sheer white musk.',
-    notes: ['Golden Amber', 'Tonka Bean', 'White Musk', 'Benzoin'],
-    rating: 5.0,
-    reviews: 82
-  },
-  {
-    id: 5,
-    name: 'OUD INSENSÉ',
-    category: 'men',
-    price: 165.0,
-    image: oudInsense,
-    concentration: 'Extrait de Parfum',
-    description: 'A deep, hypnotic blend of premium Cambodian oud, dark leather, warm saffron, and burning incense.',
-    notes: ['Cambodian Oud', 'Leather', 'Saffron', 'Incense'],
-    rating: 4.9,
-    reviews: 112
-  },
-  {
-    id: 6,
-    name: 'ROUGE SOIRÉE',
-    category: 'women',
-    price: 155.0,
-    image: rougeSoiree,
-    concentration: 'Eau de Parfum',
-    description: 'A glamorous, velvety symphony of sweet jasmine grandiflorum, bitter almond, warm amberwood, and sheer musk.',
-    notes: ['Jasmine', 'Bitter Almond', 'Amberwood', 'Musk'],
-    rating: 4.8,
-    reviews: 143
-  },
-  {
-    id: 7,
-    name: 'VERT ÉCLAT',
-    category: 'men',
-    price: 130.0,
-    image: vertEclat,
-    concentration: 'Eau de Parfum',
-    description: 'A bright, invigorating creation featuring fresh crushed mint, crisp green tea, zesty lime, and clean white cedar.',
-    notes: ['Mint', 'Green Tea', 'Lime', 'White Cedar'],
-    rating: 4.6,
-    reviews: 76
-  },
-  {
-    id: 8,
-    name: 'SOLEIL D\'OR',
-    category: 'women',
-    price: 180.0,
-    image: soleilDor,
-    concentration: 'Extrait de Parfum',
-    description: 'A glowing, radiant composition layered with sweet orange blossom, creamy coconut milk, sea salt, and ylang-ylang.',
-    notes: ['Orange Blossom', 'Coconut Milk', 'Sea Salt', 'Ylang-Ylang'],
-    rating: 5.0,
-    reviews: 64
-  },
-  {
-    id: 9,
-    name: 'CUIR IMPÉRIAL',
-    category: 'men',
-    price: 160.0,
-    image: cuirImperial,
-    concentration: 'Eau de Parfum',
-    description: 'A powerful, sophisticated fusion of rich Russian leather, smoky tobacco leaf, and warm amberwood.',
-    notes: ['Russian Leather', 'Tobacco Leaf', 'Amberwood', 'Cacao'],
-    rating: 4.8,
-    reviews: 92
-  },
-  {
-    id: 10,
-    name: 'JARDIN DE NUIT',
-    category: 'women',
-    price: 150.0,
-    image: jardinDeNuit,
-    concentration: 'Eau de Parfum',
-    description: 'A seductive nocturnal bloom blending sweet night-blooming jasmine, creamy tuberose, and warm Madagascar vanilla.',
-    notes: ['Night Jasmine', 'Tuberose', 'Vanilla', 'Sandalwood'],
-    rating: 4.9,
-    reviews: 104
-  },
-  {
-    id: 11,
-    name: 'SANTAL SUPRÊME',
-    category: 'men',
-    price: 170.0,
-    image: santalSupreme,
-    concentration: 'Extrait de Parfum',
-    description: 'A smooth, enveloping composition of warm Australian sandalwood, spicy cardamom, and sheer papyrus.',
-    notes: ['Sandalwood', 'Cardamom', 'Papyrus', 'Leather'],
-    rating: 4.7,
-    reviews: 88
-  },
-  {
-    id: 12,
-    name: 'NEROLI BLANC',
-    category: 'women',
-    price: 140.0,
-    image: neroliBlanc,
-    concentration: 'Eau de Parfum',
-    description: 'A sparkling, sunlit masterpiece combining crisp Tunisian neroli, sweet orange blossom, and clean white musk.',
-    notes: ['Neroli', 'Orange Blossom', 'White Musk', 'Petitgrain'],
-    rating: 5.0,
-    reviews: 73
-  },
-  {
-    id: 13,
-    name: 'NOIR ÉPICE',
-    category: 'men',
-    price: 155.0,
-    image: noirEpice,
-    concentration: 'Eau de Parfum',
-    description: 'An exotic, spicy blend featuring warm cinnamon bark, zesty fresh ginger, and rich Indonesian patchouli.',
-    notes: ['Cinnamon Bark', 'Ginger', 'Patchouli', 'Pimento'],
-    rating: 4.8,
-    reviews: 65
-  }
-]
+// Map database image string descriptors to imported local assets
+const IMAGE_MAP = {
+  aura_noir: auraNoir,
+  bleu_azur: bleuAzur,
+  rose_damour: roseDamour,
+  amber_lumiere: amberLumiere,
+  oud_insense: oudInsense,
+  rouge_soiree: rougeSoiree,
+  vert_eclat: vertEclat,
+  soleil_dor: soleilDor,
+  cuir_imperial: cuirImperial,
+  jardin_de_nuit: jardinDeNuit,
+  santal_supreme: santalSupreme,
+  neroli_blanc: neroliBlanc,
+  noir_epice: noirEpice,
+  onyx_absolu: onyxAbsolu,
+  pivoine_nectar: pivoineNectar
+}
+
+const BACKEND_URL = 'http://localhost:5000/api'
 
 function App() {
+  const [products, setProducts] = useState([])
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true)
+  const [productsError, setProductsError] = useState('')
   const [cart, setCart] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
@@ -200,6 +67,36 @@ function App() {
   const [isProcessing, setIsProcessing] = useState(false)
   const [orderId, setOrderId] = useState('')
   const [cartBadgeAnimation, setCartBadgeAnimation] = useState(false)
+
+  // Fetch Products from MongoDB backend on mount
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setIsLoadingProducts(true)
+        const response = await fetch(`${BACKEND_URL}/products`)
+        if (!response.ok) {
+          throw new Error('Failed to retrieve product list.')
+        }
+        const data = await response.json()
+        
+        // Map database image string descriptors to imported local assets
+        const mappedProducts = data.map(product => ({
+          ...product,
+          image: IMAGE_MAP[product.image] || auraNoir // fallback to auraNoir
+        }))
+        
+        setProducts(mappedProducts)
+        setProductsError('')
+      } catch (error) {
+        console.error('Error fetching products from MongoDB:', error)
+        setProductsError('Unable to load our luxury boutique collections from MongoDB at this time.')
+      } finally {
+        setIsLoadingProducts(false)
+      }
+    }
+
+    fetchProducts()
+  }, [])
 
   // Trigger mini cart icon animation when cart changes
   useEffect(() => {
@@ -288,7 +185,8 @@ function App() {
     }
   }
 
-  const handlePlaceOrder = (e) => {
+  // Save Order to MongoDB
+  const handlePlaceOrder = async (e) => {
     e.preventDefault()
     if (paymentMethod === 'upi') {
       if (!upiId.trim() || !/^[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+$/.test(upiId)) {
@@ -300,18 +198,49 @@ function App() {
 
     setIsProcessing(true)
 
-    // Simulate luxury transaction gateway delay
-    setTimeout(() => {
-      setIsProcessing(false)
-      const randomOrderId = 'AUR-' + Math.floor(100000 + Math.random() * 900000)
-      setOrderId(randomOrderId)
+    try {
+      const orderPayload = {
+        shippingInfo,
+        items: cart.map(item => ({
+          productId: String(item.product.id),
+          name: item.product.name,
+          price: item.product.price,
+          quantity: item.quantity
+        })),
+        subtotal: getSubtotal(),
+        shippingFee: 15.0,
+        totalAmount: getSubtotal() + 15.0,
+        paymentMethod,
+        upiId: paymentMethod === 'upi' ? upiId : undefined
+      }
+
+      const response = await fetch(`${BACKEND_URL}/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderPayload)
+      })
+
+      if (!response.ok) {
+        throw new Error('Order submission failed.')
+      }
+
+      const orderData = await response.json()
+      
+      setOrderId(orderData.orderId)
       setCheckoutStep('success')
       setCart([]) // Clear cart
-    }, 2000)
+    } catch (error) {
+      console.error('Order submission error:', error)
+      alert('We were unable to secure your order. Please check backend MongoDB connection.')
+    } finally {
+      setIsProcessing(false)
+    }
   }
 
   // Filters
-  const filteredProducts = PRODUCTS.filter((product) => {
+  const filteredProducts = products.filter((product) => {
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           product.notes.some(note => note.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -370,105 +299,114 @@ function App() {
 
       {/* Hero Section */}
       <section className="hero-section">
-            <div className="hero-overlay"></div>
-            <div className="hero-content">
-              <h2 className="hero-subtitle">THE ART OF SCENT</h2>
-              <h3 className="hero-title">Elegance in Every Droplet</h3>
-              <p className="hero-text">
-                Discover our curated portfolio of rare ingredients, designed to express individuality, confidence, and ultimate sophistication.
-              </p>
-              <a href="#fragrance-collection" className="gold-btn">Explore Collections</a>
-            </div>
-          </section>
+        <div className="hero-overlay"></div>
+        <div className="hero-content">
+          <h2 className="hero-subtitle">THE ART OF SCENT</h2>
+          <h3 className="hero-title">Elegance in Every Droplet</h3>
+          <p className="hero-text">
+            Discover our curated portfolio of rare ingredients, designed to express individuality, confidence, and ultimate sophistication.
+          </p>
+          <a href="#fragrance-collection" className="gold-btn">Explore Collections</a>
+        </div>
+      </section>
 
-          {/* Main Content Layout */}
-          <main className="main-content" id="fragrance-collection">
-            
-            {/* Navigation Filters */}
-            <div className="filter-navigation">
-              <h2>Our Collections</h2>
-              <div className="filter-tabs">
-                <button 
-                  className={`filter-tab ${selectedCategory === 'all' ? 'active' : ''}`}
-                  onClick={() => setSelectedCategory('all')}
-                >
-                  All Fragrances
-                </button>
-                <button 
-                  className={`filter-tab ${selectedCategory === 'men' ? 'active' : ''}`}
-                  onClick={() => setSelectedCategory('men')}
-                >
-                   Men's 
-                </button>
-                <button 
-                  className={`filter-tab ${selectedCategory === 'women' ? 'active' : ''}`}
-                  onClick={() => setSelectedCategory('women')}
-                >
-                  Women's
-                </button>
+      {/* Main Content Layout */}
+      <main className="main-content" id="fragrance-collection">
+        
+        {/* Navigation Filters */}
+        <div className="filter-navigation">
+          <h2>Our Collections</h2>
+          <div className="filter-tabs">
+            <button 
+              className={`filter-tab ${selectedCategory === 'all' ? 'active' : ''}`}
+              onClick={() => setSelectedCategory('all')}
+            >
+              All Fragrances
+            </button>
+            <button 
+              className={`filter-tab ${selectedCategory === 'men' ? 'active' : ''}`}
+              onClick={() => setSelectedCategory('men')}
+            >
+               Men's 
+            </button>
+            <button 
+              className={`filter-tab ${selectedCategory === 'women' ? 'active' : ''}`}
+              onClick={() => setSelectedCategory('women')}
+            >
+              Women's
+            </button>
+          </div>
+        </div>
+
+        {/* Product Grid / Loading / Error */}
+        {isLoadingProducts ? (
+          <div className="no-products">
+            <span className="gold-spinner" style={{ display: 'inline-block', width: '30px', height: '30px', border: '3px solid #1a1a24', borderTopColor: 'var(--gold)', marginBottom: '16px' }}></span>
+            <p>Unveiling collection masterpieces from MongoDB...</p>
+          </div>
+        ) : productsError ? (
+          <div className="no-products">
+            <p style={{ color: 'var(--error)' }}>{productsError}</p>
+            <p style={{ fontSize: '12px', marginTop: '10px' }}>Make sure the backend MongoDB server is running on port 5000.</p>
+          </div>
+        ) : filteredProducts.length === 0 ? (
+          <div className="no-products">
+            <p>No masterworks match your current search details.</p>
+            <button className="reset-filter-btn" onClick={() => { setSelectedCategory('all'); setSearchQuery(''); }}>
+              Show All Masterpieces
+            </button>
+          </div>
+        ) : (
+          <div className="product-grid">
+            {filteredProducts.map((product) => (
+              <div className="product-card" key={product.id}>
+                <div className="product-image-container">
+                  <img src={product.image} alt={product.name} className="product-image" />
+                  <div className="product-badge">{product.concentration}</div>
+                </div>
                 
-              </div>
-            </div>
-
-            {/* Product Grid */}
-            {filteredProducts.length === 0 ? (
-              <div className="no-products">
-                <p>No masterworks match your current search details.</p>
-                <button className="reset-filter-btn" onClick={() => { setSelectedCategory('all'); setSearchQuery(''); }}>
-                  Show All Masterpieces
-                </button>
-              </div>
-            ) : (
-              <div className="product-grid">
-                {filteredProducts.map((product) => (
-                  <div className="product-card" key={product.id}>
-                    <div className="product-image-container">
-                      <img src={product.image} alt={product.name} className="product-image" />
-                      <div className="product-badge">{product.concentration}</div>
+                <div className="product-details">
+                  <span className="product-category">
+                    {product.category === 'men' ? 'POUR HOMME' : product.category === 'women' ? 'POUR FEMME' : 'MIXTE'}
+                  </span>
+                  <h3 className="product-name">{product.name}</h3>
+                  
+                  {/* Rating */}
+                  <div className="product-rating">
+                    <div className="stars">
+                      {'★'.repeat(Math.floor(product.rating))}
+                      {product.rating % 1 !== 0 ? '½' : ''}
                     </div>
-                    
-                    <div className="product-details">
-                      <span className="product-category">
-                        {product.category === 'men' ? 'POUR HOMME' : product.category === 'women' ? 'POUR FEMME' : 'MIXTE'}
-                      </span>
-                      <h3 className="product-name">{product.name}</h3>
-                      
-                      {/* Rating */}
-                      <div className="product-rating">
-                        <div className="stars">
-                          {'★'.repeat(Math.floor(product.rating))}
-                          {product.rating % 1 !== 0 ? '½' : ''}
-                        </div>
-                        <span className="rating-text">({product.reviews} reviews)</span>
-                      </div>
-
-                      <p className="product-description">{product.description}</p>
-                      
-                      {/* Notes tag list */}
-                      <div className="product-notes">
-                        {product.notes.map((note, index) => (
-                          <span key={index} className="note-tag">{note}</span>
-                        ))}
-                      </div>
-
-                      <div className="product-footer">
-                        <span className="product-price">₹{product.price.toFixed(2)}</span>
-                        <button 
-                          className="add-to-cart-btn"
-                          onClick={() => addToCart(product)}
-                        >
-                          <span>Add To Cart</span>
-                          <svg viewBox="0 0 24 24" width="16" height="16">
-                            <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
+                    <span className="rating-text">({product.reviews} reviews)</span>
                   </div>
-                ))}
+
+                  <p className="product-description">{product.description}</p>
+                  
+                  {/* Notes tag list */}
+                  <div className="product-notes">
+                    {product.notes.map((note, index) => (
+                      <span key={index} className="note-tag">{note}</span>
+                    ))}
+                  </div>
+
+                  <div className="product-footer">
+                    <span className="product-price">₹{product.price.toFixed(2)}</span>
+                    <button 
+                      className="add-to-cart-btn"
+                      onClick={() => addToCart(product)}
+                    >
+                      <span>Add To Cart</span>
+                      <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
               </div>
-            )}
-          </main>
+            ))}
+          </div>
+        )}
+      </main>
 
       {/* Information Modal Overlay */}
       {activeInfoTab && (
@@ -842,7 +780,7 @@ function App() {
                   >
                     {isProcessing ? (
                       <span className="btn-spinner-text">
-                        <span className="gold-spinner"></span> Securing Order...
+                        <span className="gold-spinner"></span> Securing Order in MongoDB...
                       </span>
                     ) : (
                       `Authorize & Place Order - ₹${(getSubtotal() + 15).toFixed(2)}`
@@ -861,7 +799,7 @@ function App() {
                   </svg>
                 </div>
                 <h3>THANK YOU FOR YOUR PATRONAGE</h3>
-                <p className="success-msg">Your olfactory journey begins now. We have received your order and are preparing the shipment.</p>
+                <p className="success-msg">Your olfactory journey begins now. We have received your order and have logged it to MongoDB.</p>
                 
                 <div className="order-receipt-summary">
                   <div className="receipt-row">
