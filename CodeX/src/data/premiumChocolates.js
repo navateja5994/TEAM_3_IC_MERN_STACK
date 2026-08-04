@@ -11,7 +11,7 @@ const premiumChocolates = [
     id: 62,
     name: "Gold Leaf Chocolate Bonbons",
     price: "$45.00",
-    image: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=400&q=80",
+    image: "https://www.oyegifts.com/cdn/shop/files/delight-chocolates-hamper.jpg?v=1773748608",
     description: "Exquisite bonbons hand-finished with 24-karat edible gold leaf for the ultimate luxury.",
     rating: 5.0
   },
@@ -35,7 +35,7 @@ const premiumChocolates = [
     id: 65,
     name: "Saffron Pistachio Chocolate",
     price: "$32.00",
-    image: "https://images.unsplash.com/photo-1579631542720-3a87824fff86?w=400&q=80",
+    image: "https://assets.winni.in/product/primary/2024/1/93497.jpeg?dpr=1&w=500",
     description: "Persian saffron and Sicilian pistachios blended into single-origin white chocolate.",
     rating: 4.8
   },
@@ -59,7 +59,7 @@ const premiumChocolates = [
     id: 68,
     name: "Himalayan Salt Crystal Discs",
     price: "$24.00",
-    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&q=80",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTcbciByg_Y9nlYf9JXCL-11f9W4Oxq7sc6wBoMjEzbw&s=10",
     description: "72% dark chocolate discs topped with hand-harvested pink Himalayan salt crystals.",
     rating: 4.7
   },
@@ -75,7 +75,7 @@ const premiumChocolates = [
     id: 70,
     name: "Matcha Wagyu Chocolate",
     price: "$48.00",
-    image: "https://images.unsplash.com/photo-1582657233895-0f37a3f150c0?w=400&q=80",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1zNcZEuPhWUySn2ftgH1wNa67r2eUHm5ubbYXPoVzZRlliY1wxSL1cBhT&s=10",
     description: "Uji matcha white chocolate with edible A5 Wagyu beef fat infusion, uniquely Japanese.",
     rating: 4.6
   },
@@ -83,7 +83,7 @@ const premiumChocolates = [
     id: 71,
     name: "Black Truffle Dark Ganache",
     price: "$58.00",
-    image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&q=80",
+    image: "https://www.godiva.com/cdn/shop/files/08_01_HP_SUM_GFT_IMG.jpg?v=1785419230&width=800",
     description: "Italian black winter truffle shavings inside 80% dark chocolate ganache squares.",
     rating: 4.8
   },
@@ -91,7 +91,7 @@ const premiumChocolates = [
     id: 72,
     name: "Dom Pérignon Champagne Truffles",
     price: "$75.00",
-    image: "https://images.unsplash.com/photo-1551024709-8f23bef4c123?w=400&q=80",
+    image: "https://www.godiva.com/cdn/shop/files/08_01_HP_SUM_GFT_IMG.jpg?v=1785419230&width=800",
     description: "Dom Pérignon champagne cream ganache in dark chocolate, finished with platinum leaf.",
     rating: 5.0
   },
@@ -115,7 +115,7 @@ const premiumChocolates = [
     id: 75,
     name: "Vintage Port Wine Ganache",
     price: "$34.00",
-    image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400&q=80",
+    image: "https://smoor.in/cdn/shop/files/ChocolateNibblesAlmondNoAddedSugar_360x.jpg?v=1778508626",
     description: "40-year Tawny Port wine ganache in dark chocolate shells with port reduction glaze.",
     rating: 4.8
   },
@@ -131,7 +131,7 @@ const premiumChocolates = [
     id: 77,
     name: "Tonka Bean Madagascar Bar",
     price: "$22.00",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&q=80",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2frbNYxijaGvkMIR1-5upHjWsR0cVaBMf3j8ilQj-A-mNNHeT_J3XpGyh&s=10",
     description: "Rare tonka bean infused into single-origin Madagascar dark chocolate 75%.",
     rating: 4.6
   },

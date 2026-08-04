@@ -67,7 +67,7 @@ const milkChocolates = [
     id: 49,
     name: "Tiramisu Milk Chocolate Square",
     price: "$11.25",
-    image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&q=80",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5NorI4JptBhgo-lBNZzzbEg7uWpQFO7XHlMBS88ERBOOMZU9U3FivkX9D&s=10",
     description: "Mascarpone and espresso ganache filling in milk chocolate, dusted with cocoa powder.",
     rating: 4.6
   },
@@ -131,7 +131,7 @@ const milkChocolates = [
     id: 57,
     name: "Maple Walnut Milk Square",
     price: "$11.75",
-    image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&q=80",
+    image: "https://artisante.in/cdn/shop/products/fruit-nut-923535_387x.jpg?v=1663919878",
     description: "Vermont maple syrup ganache with toasted walnuts, wrapped in creamy milk chocolate.",
     rating: 4.6
   },
