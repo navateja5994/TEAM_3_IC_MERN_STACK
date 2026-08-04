@@ -12,12 +12,12 @@ function Cart() {
     cartTotal,
   } = useCart();
 
+  // Empty Cart
   if (cartItems.length === 0) {
     return (
       <section className="section container">
         <div className="empty-cart">
           <h2>Your Cart is Empty 🛍️</h2>
-
           <p>Add your favorite bags to start shopping.</p>
 
           <Link to="/" className="btn">
@@ -30,35 +30,21 @@ function Cart() {
 
   return (
     <section className="section container">
-
-      <h2 className="cart-title">
-        Shopping Cart
-      </h2>
+      <h2 className="cart-title">Shopping Cart</h2>
 
       <div className="cart-grid">
-
         {cartItems.map((item) => (
-
           <div className="cart-card" key={item.id}>
-
+            {/* Product Image */}
             <div className="cart-image">
-
-              <img
-                src={item.image}
-                alt={item.name}
-              />
-
+              <img src={item.image} alt={item.name} />
             </div>
 
+            {/* Product Details */}
             <div className="cart-content">
+              <p className="cart-category">{item.category}</p>
 
-              <p className="cart-category">
-                {item.category}
-              </p>
-
-              <h3>
-                {item.name}
-              </h3>
+              <h3>{item.name}</h3>
 
               <div className="cart-rating">
                 ⭐ {item.rating} / 5
@@ -68,68 +54,62 @@ function Cart() {
                 ₹{item.price}
               </h4>
 
+              {/* Quantity */}
               <div className="quantity-box">
-
-                <button
-                  onClick={() =>
-                    decreaseQuantity(item.id)
-                  }
-                >
+                <button onClick={() => decreaseQuantity(item.id)}>
                   −
                 </button>
 
-                <span>
-                  {item.quantity}
-                </span>
+                <span>{item.quantity}</span>
 
-                <button
-                  onClick={() =>
-                    increaseQuantity(item.id)
-                  }
-                >
+                <button onClick={() => increaseQuantity(item.id)}>
                   +
                 </button>
-
               </div>
 
+              {/* Subtotal */}
+              <h4
+                style={{
+                  marginTop: "10px",
+                  color: "#8B4513",
+                }}
+              >
+                Subtotal : ₹{item.price * item.quantity}
+              </h4>
+
+              {/* Remove Button */}
               <button
                 className="remove-btn"
-                onClick={() =>
-                  removeFromCart(item.id)
-                }
+                onClick={() => removeFromCart(item.id)}
               >
                 Remove
               </button>
-
             </div>
-
           </div>
-
         ))}
-
       </div>
 
+      {/* Cart Total */}
       <div className="cart-total">
-
         <h2>Total : ₹{cartTotal}</h2>
 
         <div className="cart-buttons">
-
-          <button
-            className="btn"
-            onClick={clearCart}
-          >
+          <button className="btn" onClick={clearCart}>
             Clear Cart
           </button>
 
-          <button className="btn">
-            Checkout
-          </button>
-
+          <Link
+            to="/checkout"
+            className="btn"
+            style={{
+              textDecoration: "none",
+              display: "inline-block",
+            }}
+          >
+            Proceed to Checkout
+          </Link>
         </div>
-
       </div>
-
     </section>
   );
 }
