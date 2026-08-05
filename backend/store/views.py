@@ -10,41 +10,42 @@ def home(request):
         "message": "Welcome to CodeX Accessories API"
     })
 
+
 @csrf_exempt
 def products(request):
 
     if request.method == "GET":
 
-        data = list(
-            products_collection.find({})
-        )
+        data = list(products_collection.find({}))
 
         for product in data:
             product["_id"] = str(product["_id"])
 
-        return JsonResponse(
-            data,
-            safe=False
-        )
-
+        return JsonResponse(data, safe=False)
 
     elif request.method == "POST":
 
         try:
-
             data = json.loads(request.body)
 
-            products_collection.insert_one(data)
+            print("Received Data:", data)
+
+            result = products_collection.insert_one(data)
+
+            print("Inserted ID:", result.inserted_id)
 
             return JsonResponse({
-                "message":"Product Added Successfully"
+                "message": "Product Added Successfully"
             })
 
         except Exception as e:
 
+            print("ERROR:", str(e))
+
             return JsonResponse({
-                "error":str(e)
-            },status=500)
+                "error": str(e)
+            }, status=500)
+
 
 @csrf_exempt
 def delete_product(request, product_id):
@@ -56,9 +57,13 @@ def delete_product(request, product_id):
         )
 
         if result.deleted_count == 1:
-            return JsonResponse({"message": "Product Deleted"})
-        else:
-            return JsonResponse({"message": "Product Not Found"}, status=404)
+            return JsonResponse({
+                "message": "Product Deleted"
+            })
+
+        return JsonResponse({
+            "message": "Product Not Found"
+        }, status=404)
 
 
 @csrf_exempt
@@ -66,60 +71,62 @@ def update_product(request, product_id):
 
     if request.method == "PUT":
 
-        data = json.loads(request.body)
+        try:
+            data = json.loads(request.body)
 
-        products_collection.update_one(
-            {"_id": ObjectId(product_id)},
-            {
-                "$set": {
-                    "name": data["name"],
-                    "category": data["category"],
-                    "price": data["price"],
-                    "rating": data["rating"],
-                    "reviews": data["reviews"],
-                    "image": data["image"]
+            products_collection.update_one(
+                {"_id": ObjectId(product_id)},
+                {
+                    "$set": {
+                        "name": data["name"],
+                        "category": data["category"],
+                        "price": data["price"],
+                        "rating": data["rating"],
+                        "reviews": data["reviews"],
+                        "image": data["image"]
+                    }
                 }
-            }
-        )
+            )
 
-        return JsonResponse({
-            "message": "Product Updated Successfully"
-        })
-    
+            return JsonResponse({
+                "message": "Product Updated Successfully"
+            })
+
+        except Exception as e:
+
+            return JsonResponse({
+                "error": str(e)
+            }, status=500)
+
+
 @csrf_exempt
 def orders(request):
 
     if request.method == "POST":
 
         try:
-
             data = json.loads(request.body)
 
             result = orders_collection.insert_one(data)
 
-            return JsonResponse({
-                "message":"Order Saved Successfully"
-            })
+            print("Order Inserted:", result.inserted_id)
 
+            return JsonResponse({
+                "message": "Order Saved Successfully"
+            })
 
         except Exception as e:
 
+            print("ERROR:", str(e))
+
             return JsonResponse({
-                "error":str(e)
-            },status=500)
+                "error": str(e)
+            }, status=500)
 
-
-
-    if request.method == "GET":
+    elif request.method == "GET":
 
         data = list(
-            orders_collection.find(
-                {},
-                {"_id":0}
-            )
+            orders_collection.find({}, {"_id": 0})
         )
 
-        return JsonResponse(
-            data,
-            safe=False
-        )
+        return JsonResponse(data, safe=False)

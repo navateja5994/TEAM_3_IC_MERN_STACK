@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import "./EditProduct.css";
 
 function EditProduct() {
 
@@ -65,79 +66,105 @@ function EditProduct() {
 
     return (
 
-        <div className="admin-container">
+<div className="admin-container">
 
-            <h1>Edit Product</h1>
+<div className="edit-card">
 
-            <form onSubmit={updateProduct}>
+<h1>Edit Product</h1>
 
-                <input
-                    name="name"
-                    value={product.name}
-                    onChange={handleChange}
-                    placeholder="Product Name"
-                />
+<form
+className="edit-form"
+onSubmit={updateProduct}
+>
 
-                <select
-                    name="category"
-                    value={product.category}
-                    onChange={handleChange}
-                >
+<label>Product Name</label>
 
-                    <option value="earrings">Earrings</option>
-                    <option value="rings">Rings</option>
-                    <option value="necklace">Necklace</option>
-                    <option value="bracelets">Bracelets</option>
-                    <option value="bangles">Bangles</option>
-                    <option value="hairbands">Hair Bands</option>
-                    <option value="hairclips">Hair Clips</option>
-                    <option value="anklets">Anklets</option>
-                    <option value="pluckers">Pluckers</option>
-                    <option value="nosepins">Nose Pins</option>
+<input
+name="name"
+value={product.name}
+onChange={handleChange}
+/>
 
-                </select>
+<label>Category</label>
 
-                <input
-                    type="number"
-                    name="price"
-                    value={product.price}
-                    onChange={handleChange}
-                    placeholder="Price"
-                />
+<select
+name="category"
+value={product.category}
+onChange={handleChange}
+>
 
-                <input
-                    type="number"
-                    step="0.1"
-                    name="rating"
-                    value={product.rating}
-                    onChange={handleChange}
-                    placeholder="Rating"
-                />
+<option value="earrings">Earrings</option>
+<option value="rings">Rings</option>
+<option value="necklace">Necklace</option>
+<option value="bracelets">Bracelets</option>
+<option value="bangles">Bangles</option>
+<option value="hairbands">Hair Bands</option>
+<option value="hairclips">Hair Clips</option>
+<option value="anklets">Anklets</option>
+<option value="pluckers">Hair Pluckers</option>
+<option value="nosepins">Nose Pins</option>
 
-                <input
-                    type="number"
-                    name="reviews"
-                    value={product.reviews}
-                    onChange={handleChange}
-                    placeholder="Reviews"
-                />
+</select>
 
-                <input
-                    name="image"
-                    value={product.image}
-                    onChange={handleChange}
-                    placeholder="/images/image.jpg"
-                />
+<label>Price</label>
 
-                <button type="submit">
-                    Update Product
-                </button>
+<input
+type="number"
+name="price"
+value={product.price}
+onChange={handleChange}
+/>
 
-            </form>
+<label>Rating</label>
 
-        </div>
+<input
+type="number"
+step="0.1"
+name="rating"
+value={product.rating}
+onChange={handleChange}
+/>
 
-    );
+<label>Reviews</label>
+
+<input
+type="number"
+name="reviews"
+value={product.reviews}
+onChange={handleChange}
+/>
+
+<label>Image Path</label>
+
+<input
+name="image"
+value={product.image}
+onChange={handleChange}
+/>
+
+<div className="preview">
+
+<img
+src={product.image}
+alt={product.name}
+/>
+
+</div>
+
+<button
+type="submit"
+className="update-btn"
+>
+Update Product
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+);
 
 }
 
