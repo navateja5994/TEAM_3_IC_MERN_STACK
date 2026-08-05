@@ -6,25 +6,25 @@
 }
 
 .offers h2 {
-    font-size: 2.5rem;
+    font-size: 42px;
     margin-bottom: 15px;
 }
 
 .offers p {
-    font-size: 1.2rem;
+    font-size: 22px;
     margin-bottom: 25px;
 }
 
 .offers button {
-    background: #f97316;
+    padding: 14px 35px;
+    background: #ff6b00;
     color: white;
     border: none;
-    padding: 12px 30px;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 18px;
     cursor: pointer;
 }
 
 .offers button:hover {
-    background: #ea580c;
+    background: #e65c00;
 }

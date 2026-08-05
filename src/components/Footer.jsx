@@ -7,24 +7,27 @@ function Footer() {
 
                 <div className="footer-section">
                     <h2>Sports Store</h2>
-                    <p>Your one-stop shop for sports shoes, jerseys and accessories.</p>
+                    <p>
+                        Your one-stop destination for sports shoes, jerseys,
+                        accessories and equipment.
+                    </p>
                 </div>
 
                 <div className="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
                         <li>Home</li>
-                        <li>Categories</li>
                         <li>Products</li>
-                        <li>Contact</li>
+                        <li>Categories</li>
+                        <li>Offers</li>
                     </ul>
                 </div>
 
                 <div className="footer-section">
                     <h3>Contact</h3>
-                    <p>📞 +91 8247458597</p>
-                    <p>📧 support@sportsstore.com</p>
-                    <p>📍 Andhra Pradesh, India</p>
+                    <p>Email: sportsstore@gmail.com</p>
+                    <p>Phone: +91 9876543210</p>
+                    <p>Location: Andhra Pradesh</p>
                 </div>
 
             </div>

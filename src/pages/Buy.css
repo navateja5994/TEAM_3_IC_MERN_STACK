@@ -1,0 +1,55 @@
+.buy-page {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.buy-page h1 {
+    text-align: center;
+    color: #2563eb;
+    margin-bottom: 25px;
+}
+
+.buy-page input,
+.buy-page textarea,
+.buy-page select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.buy-page textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.buy-page input:focus,
+.buy-page textarea:focus,
+.buy-page select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.buy-page button {
+    width: 100%;
+    padding: 14px;
+    background: #2563eb;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.buy-page button:hover {
+    background: #1d4ed8;
+}

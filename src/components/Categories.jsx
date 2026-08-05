@@ -4,7 +4,7 @@ function Categories() {
     const categories = [
         { name: "Sports Shoes", emoji: "👟" },
         { name: "Jerseys", emoji: "👕" },
-        { name: "Equipment", emoji: "🏀" },
+        { name: "Equipment", emoji: "🏏" },
         { name: "Accessories", emoji: "🎒" },
     ];
 
@@ -15,7 +15,7 @@ function Categories() {
             <div className="category-grid">
                 {categories.map((item, index) => (
                     <div className="category-card" key={index}>
-                        <div className="category-icon">{item.emoji}</div>
+                        <span className="category-icon">{item.emoji}</span>
                         <h3>{item.name}</h3>
                     </div>
                 ))}
