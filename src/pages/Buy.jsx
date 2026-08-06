@@ -16,8 +16,33 @@ function Buy() {
         });
     };
 
-    const placeOrder = () => {
-        alert("🎉 Order Placed Successfully!");
+    const placeOrder = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/api/orders", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            console.log(data);
+
+            alert("🎉 Order Placed Successfully!");
+
+            setFormData({
+                name: "",
+                phone: "",
+                address: "",
+                payment: "Cash on Delivery",
+            });
+
+        } catch (error) {
+            console.log(error);
+            alert("Order failed");
+        }
     };
 
     return (
